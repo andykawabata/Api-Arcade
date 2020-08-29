@@ -4,7 +4,7 @@ To get started and establish a workflow, try adding your name to this readme pag
 
 ### A normal workflow would look like this:
 1) Clone repository to your local machine
-2) Create a new branch and call it <your name>
+2) Create a new branch and call it &lt;your name&gt;
 3) While on your new branch, edit the readme file and add your name
 4) Stage changes
 5) Commit changes

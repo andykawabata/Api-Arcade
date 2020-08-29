@@ -16,7 +16,7 @@ To get started and establish a workflow, try adding your name to this readme pag
 1) from the command line, navigate to the directory you wish to clone into (I just use the Desktop)
 2) run `git clone https://github.com/andykawabata/Api-Arcade.git` to clone the repository
 3) run `cd Api-Arcade` to go into the repo you just cloned
-4) run `git checkout -b <your name>` to create a branch called <your name> (you're automaticly on your new branch after you do this)
+4) run `git checkout -b <your name>` to create a branch called &lt;your name&gt; (you're automaticly on your new branch after you do this)
 5) add your name to the readme file and save it
 6) run `git add .` to stage your changes
 7) run `git commit -m"added name to readme"` to commit changes

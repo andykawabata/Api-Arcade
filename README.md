@@ -15,10 +15,10 @@ We've already cloned the repo and pushed/merged changes in the central repo, so 
   
 ### Commands to accomplish the above steps
 1) On your local master branch run `git pull` to make sure your master branch is up to date with remote master
-2) Run `git checkout &lt;your name&gt;` to checkout your personal branch
+2) Run `git checkout <your name>` to checkout your personal branch
 3) Run `git rebase master` to make sure your branch incorperates the changes to master
 4) Write ur code and stuff
-5) Run `git add .` to stage then `git commit -m"&lt;your name&gt;"` to commit
-6) Run `git push origin &lt;your name&gt;` to push your branch to the remote
+5) Run `git add .` to stage then `git commit -m"<your name>"` to commit
+6) Run `git push origin <your name>` to push your branch to the remote
 7) Go to github and create pull request from YOUR BRANCH to MASTER
 

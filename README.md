@@ -24,6 +24,6 @@ To get started and establish a workflow, try adding your name to this readme pag
 9) go to the repo on github and click "comapre and pull request"
 
 ### Members
-Andy Kawabata
-Ryan Cabell
+Andy Kawabata  
+Ryan Cabell  
 Francisco Serratos

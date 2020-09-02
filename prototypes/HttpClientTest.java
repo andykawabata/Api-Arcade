@@ -5,7 +5,7 @@ import java.net.URI;
 import java.net.http.*;
 /**
  *
- *Makes http request to a "quotes" api and and prints the JSON response
+ *Makes http request to a "jokes" api and and prints the JSON response
  *
  */
 

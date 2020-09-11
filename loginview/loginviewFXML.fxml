@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #000039;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="apiarcadeprototype.ApiarcadeFXMLController">
+   <children>
+      <AnchorPane layoutX="504.0" layoutY="58.0" prefHeight="321.0" prefWidth="226.0" style="-fx-background-color: E0A406;" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="502.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="65.0">
+         <children>
+            <JFXTextField layoutX="15.0" layoutY="103.0" prefHeight="25.0" prefWidth="252.0" promptText="email address" unFocusColor="WHITE" />
+            <JFXPasswordField layoutX="22.0" layoutY="169.0" prefHeight="25.0" prefWidth="252.0" promptText="password" unFocusColor="WHITE" />
+            <JFXButton layoutX="15.0" layoutY="247.0" onAction="#_btnSignIn" prefHeight="25.0" prefWidth="252.0" style="-fx-background-color: F1DEAC;" text="Submit" textFill="#6b6b6b">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </JFXButton>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="27.0" prefHeight="54.0" prefWidth="132.0" text="Sign In" textAlignment="CENTER">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+            <Hyperlink layoutX="81.0" layoutY="206.0" onAction="#_hyplnkForgotPassword" text="forgot password?" textFill="#6b6b6b" underline="true" />
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="450.0" fitWidth="480.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="320.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@images/Untitled-2.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="_lblXOut" alignment="CENTER" layoutX="744.0" layoutY="14.0" prefHeight="38.0" prefWidth="42.0" text="X" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="502.0" layoutY="34.0" onAction="#_btnSignUp" prefHeight="25.0" prefWidth="119.0" style="-fx-background-color: F1DEAC;" text="Sign Up" textFill="#6b6b6b" />
+      <Label blendMode="SRC_ATOP" layoutX="33.0" layoutY="395.0" text="Where the fun has no end" textFill="WHITE">
+         <font>
+            <Font name="Cooper Black" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

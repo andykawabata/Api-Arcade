@@ -10,7 +10,7 @@ import org.json.JSONArray;
 
 public class JsonJavaTest {
 
-    public static void printJokeCategory() throws IOException, InterruptedException, JSONException {
+    public static void getJokeCategoryAndPrint() throws IOException, InterruptedException, JSONException {
     
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse response = httpClient.send(HttpRequest.newBuilder()

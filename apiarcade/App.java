@@ -6,7 +6,11 @@
 package apiarcade;
 import java.io.IOException;
 import org.json.JSONException;
+
+import prototypes.HttpClientTest;
 import prototypes.JsonJavaTest;
+import prototypes.JsonJavaTest2;
+
 
 /**
  *
@@ -15,7 +19,12 @@ import prototypes.JsonJavaTest;
 public class App {
     
     public static void main(String[] args) throws IOException, InterruptedException, JSONException{
-       JsonJavaTest.printJokeCategory();
+       
+        //Only uncomment one method at a time! (idk why)
+        
+        //HttpClientTest.getHttpResponseAndPrint();
+        //JsonJavaTest.getJokeCategoryAndPrint();
+        //JsonJavaTest2.getTwopartJokesAndPrint();
     }
     
 }

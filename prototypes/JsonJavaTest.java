@@ -1,4 +1,4 @@
-package http.request.test;
+package prototypes;
 
 import java.io.IOException;
 import java.net.URI;
@@ -10,7 +10,7 @@ import org.json.JSONArray;
 
 public class JsonJavaTest {
 
-    public static void main(String[] args) throws IOException, InterruptedException, JSONException {
+    public static void printJokeCategory() throws IOException, InterruptedException, JSONException {
     
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse response = httpClient.send(HttpRequest.newBuilder()

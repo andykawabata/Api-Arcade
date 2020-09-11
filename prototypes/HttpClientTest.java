@@ -1,4 +1,4 @@
-package http.request.test;
+package prototypes;
 
 import java.io.IOException;
 import java.net.URI;
@@ -9,7 +9,7 @@ import java.net.http.*;
  *
  */
 
-public class HttpRequestTest {
+public class HttpClientTest{
 
     public static void main(String[] args) throws IOException, InterruptedException {
     

@@ -11,7 +11,7 @@ import java.net.http.*;
 
 public class HttpClientTest{
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void getHttpResponseAndPrint() throws IOException, InterruptedException {
     
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse response = httpClient.send(HttpRequest.newBuilder()

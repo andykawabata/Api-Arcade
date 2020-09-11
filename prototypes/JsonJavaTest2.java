@@ -9,7 +9,7 @@ import org.json.JSONArray;
 
 public class JsonJavaTest2 {
 
-    public static void main(String[] args) throws IOException, InterruptedException, JSONException {
+    public static void getTwopartJokesAndPrint() throws IOException, InterruptedException, JSONException {
     
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse response = httpClient.send(HttpRequest.newBuilder()
@@ -25,12 +25,11 @@ public class JsonJavaTest2 {
         
         JSONObject obj = new JSONObject(response.body().toString());
         JSONArray jokesArray = (JSONArray) obj.get("jokes");
-        
         for(int i = 0; i < jokesArray.length(); i++){
             JSONObject joke = (JSONObject) jokesArray.get(i);
-            String category = (String) joke.get("category");
+            String type = (String) joke.get("type");
                     
-            if(category.equals("twopart")){
+            if(type.equals("twopart")){
                 String setup = (String) joke.get("setup");
                 String delivery = (String) joke.get("delivery");
                 System.out.println(setup);

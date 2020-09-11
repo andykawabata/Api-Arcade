@@ -24,7 +24,7 @@ public class App {
         
         //HttpClientTest.getHttpResponseAndPrint();
         //JsonJavaTest.getJokeCategoryAndPrint();
-        //JsonJavaTest2.getTwopartJokesAndPrint();
+        JsonJavaTest2.getTwopartJokesAndPrint();
     }
     
 }

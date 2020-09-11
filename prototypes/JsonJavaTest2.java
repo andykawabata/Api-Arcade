@@ -1,4 +1,4 @@
-package http.request.test;
+package prototypes;
 
 import java.io.IOException;
 import java.net.URI;

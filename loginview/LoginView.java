@@ -12,18 +12,22 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-
+/**
+ *
+ * @author RyanC
+ */
 public class LoginView extends Application{
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);    }
+        launch(args);    
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("apiarcadeFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("loginviewFXML.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Elon Musketeers");
         stage.setScene(scene);

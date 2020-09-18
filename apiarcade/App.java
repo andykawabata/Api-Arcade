@@ -12,7 +12,6 @@ import org.json.JSONException;
 import prototypes.HttpClientTest;
 import prototypes.JsonJavaTest;
 import prototypes.JsonJavaTest2;
-import loginview.LoginView;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #000039;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loginview.LoginViewFXMLController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #000039;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
     <children>
         <AnchorPane layoutX="504.0" layoutY="58.0" prefHeight="321.0" prefWidth="226.0" style="-fx-background-color: E0A406;" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="502.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="65.0">
             <children>
@@ -30,10 +30,12 @@
             </children>
         </AnchorPane>
         <ImageView fitHeight="450.0" fitWidth="480.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="320.0" AnchorPane.topAnchor="0.0">
+           
             <image>
-                <Image url="@images/Untitled-2.png" />
+                <Image url="/images/Untitled-2.png" />
             </image>
         </ImageView>
+        
         <Label fx:id="_lblXOut" alignment="CENTER" layoutX="744.0" layoutY="14.0" prefHeight="38.0" prefWidth="42.0" text="X" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="28.0" />

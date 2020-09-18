@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package loginview;
+package apiarcade;
 
+import java.io.File;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,7 +17,7 @@ import javafx.stage.Stage;
  *
  * @author RyanC
  */
-public class LoginView extends Application{
+public class RunLoginView extends Application{
 
     /**
      * @param args the command line arguments
@@ -27,10 +28,11 @@ public class LoginView extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("loginviewFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Elon Musketeers");
         stage.setScene(scene);
-        stage.show();    }
+        stage.show();   
+    }
 }
     

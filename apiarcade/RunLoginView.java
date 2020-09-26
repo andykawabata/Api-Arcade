@@ -28,7 +28,7 @@ public class RunLoginView extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/views/register.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Elon Musketeers");
         stage.setScene(scene);

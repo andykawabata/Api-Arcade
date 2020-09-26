@@ -38,11 +38,20 @@ public class LoginController implements Initializable {
     @FXML
     private void _btnSignIn(ActionEvent event) {
         System.out.println("Clicked Sign In");
+        //transfer to main game view if user exists
     }
 
     @FXML
-    private void _hyplnkForgotPassword(ActionEvent event) {
+    private void _hyplnkForgotPassword(ActionEvent event) throws IOException{
         System.out.println("Clicked Forgot Password");
+        Parent regViewParent =
+                FXMLLoader.load(getClass().getResource("/views/forgotPassword.fxml"));
+        Scene regViewScene = new Scene(regViewParent);
+        
+        //get Stage information
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(regViewScene);
+        window.show();
     }
 
     /*

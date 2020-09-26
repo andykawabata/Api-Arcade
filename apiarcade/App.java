@@ -5,7 +5,12 @@
  */
 package apiarcade;
 
+import com.opencsv.CSVWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.json.JSONException;
 
@@ -19,6 +24,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import models.DB;
+import models.User;
+
 /**
  *
  * @author andyk
@@ -27,9 +35,10 @@ public class App{
     
     public static void main(String[] args) throws IOException, InterruptedException, JSONException{
        
-        HttpClientTest.getHttpResponseAndPrint();
-        JsonJavaTest.getJokeCategoryAndPrint();
-        JsonJavaTest2.getTwopartJokesAndPrint();
+        //HttpClientTest.getHttpResponseAndPrint();
+        //JsonJavaTest.getJokeCategoryAndPrint();
+        //JsonJavaTest2.getTwopartJokesAndPrint();
+
     }
     
 }

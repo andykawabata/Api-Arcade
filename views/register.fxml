@@ -3,52 +3,41 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #000039;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterController">
     <children>
-        <AnchorPane layoutX="504.0" layoutY="58.0" prefHeight="321.0" prefWidth="226.0" style="-fx-background-color: E0A406;" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="502.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="65.0">
+        <AnchorPane layoutX="508.0" layoutY="28.0" prefHeight="450.0" prefWidth="292.0" style="-fx-background-color: E0A406;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="508.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <JFXTextField fx:id="username" layoutX="15.0" layoutY="103.0" prefHeight="25.0" prefWidth="252.0" promptText="Desired Username" unFocusColor="WHITE" />
-                <JFXPasswordField fx:id="password" layoutX="22.0" layoutY="169.0" prefHeight="25.0" prefWidth="252.0" promptText="Password" unFocusColor="WHITE" />
-                <JFXPasswordField fx:id="confirmPassowrd" layoutX="22.0" layoutY="200" prefHeight="25.0" prefWidth="252.0" promptText="Confirm Password" unFocusColor="WHITE" />
-                <JFXButton layoutX="15.0" layoutY="247.0" onAction="#_btnRegister" prefHeight="25.0" prefWidth="252.0" style="-fx-background-color: F1DEAC;" text="Submit" textFill="#6b6b6b">
+                <JFXTextField fx:id="username" layoutX="15.0" layoutY="107.0" prefHeight="25.0" prefWidth="252.0" promptText="username" unFocusColor="WHITE" />
+                <JFXPasswordField fx:id="password" layoutX="22.0" layoutY="169.0" prefHeight="25.0" prefWidth="252.0" promptText="password" unFocusColor="WHITE" />
+                <JFXPasswordField fx:id="confirmPassowrd" layoutX="22.0" layoutY="200" prefHeight="25.0" prefWidth="252.0" promptText="confirm password" unFocusColor="WHITE" />
+                <JFXButton layoutX="15.0" layoutY="396.0" onAction="#_btnRegister" prefHeight="25.0" prefWidth="252.0" style="-fx-background-color: F1DEAC;" text="Create Account" textFill="#6b6b6b">
                    
                 </JFXButton>
-                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="30.0" prefHeight="54.0" prefWidth="132.0" text="Register" textAlignment="CENTER">
-                    <font>
-                        <Font size="28.0" />
-                    </font>
-                </Label>
-                <Label fx:id="errorMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="270.0" prefHeight="54.0" prefWidth="160.0" text="" textAlignment="CENTER">
+                <Label fx:id="errorMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="382.0" prefHeight="54.0" prefWidth="160.0" textAlignment="CENTER">
                     <font>
                         <Font size="12.0" />
                     </font>
                 </Label>
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="78.0" layoutY="30.0" prefHeight="54.0" prefWidth="132.0" text="Register" textAlignment="CENTER">
+                    <font>
+                        <Font size="28.0" />
+                    </font>
+                </Label>
                 
             </children>
+         <effect>
+            <Blend />
+         </effect>
         </AnchorPane>
-        <ImageView fitHeight="450.0" fitWidth="480.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="320.0" AnchorPane.topAnchor="0.0">
-           
-            <image>
-                <Image url="/images/Untitled-2.png" />
-            </image>
-        </ImageView>
         
         <Label fx:id="_lblXOut" alignment="CENTER" layoutX="744.0" layoutY="14.0" prefHeight="38.0" prefWidth="42.0" text="X" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="28.0" />
-            </font>
-        </Label>
-        <JFXButton layoutX="502.0" layoutY="34.0" onAction="#_btnSignUp" prefHeight="25.0" prefWidth="119.0" style="-fx-background-color: F1DEAC;" text="Sign Up" textFill="#6b6b6b" />
-        <Label blendMode="SRC_ATOP" layoutX="33.0" layoutY="395.0" text="Where the fun has no end" textFill="WHITE">
-            <font>
-                <Font name="Cooper Black" size="20.0" />
             </font>
         </Label>
     </children>

@@ -29,12 +29,6 @@
                 <Hyperlink layoutX="81.0" layoutY="206.0" onAction="#_hyplnkForgotPassword" text="forgot password?" textFill="#6b6b6b" underline="true" />
             </children>
         </AnchorPane>
-        <ImageView fitHeight="450.0" fitWidth="480.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="320.0" AnchorPane.topAnchor="0.0">
-           
-            <image>
-                <Image url="/images/Untitled-2.png" />
-            </image>
-        </ImageView>
         
         <Label fx:id="_lblXOut" alignment="CENTER" layoutX="744.0" layoutY="14.0" prefHeight="38.0" prefWidth="42.0" text="X" textFill="WHITE">
             <font>
@@ -47,5 +41,10 @@
                 <Font name="Cooper Black" size="20.0" />
             </font>
         </Label>
+      <ImageView fitHeight="450.0" fitWidth="493.0" layoutX="1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Untitled-2.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

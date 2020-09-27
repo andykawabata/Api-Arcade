@@ -20,6 +20,7 @@ import models.User;
  * FXML Controller class
  *
  * @author RyanC
+ * @author AndyK
  */
 public class RegisterController implements Initializable {
     

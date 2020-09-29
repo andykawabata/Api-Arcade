@@ -42,12 +42,13 @@ public class RegisterController implements Initializable {
     
     @FXML
     private void _btnRegister(ActionEvent event) {
+        System.out.println("Hello?");
         errorMessage.setText("");
         if(this.username == null || this.password == null){
             errorMessage.setText("Enter username and password");
             return;
         }
-          
+        
         String newUsername = this.username.getText();
         String newPassword = this.password.getText();
         String confirmPassword = this.confirmPassowrd.getText();
@@ -65,6 +66,7 @@ public class RegisterController implements Initializable {
                 errorMessage.setText("Passwords dont match");
             }
             else{
+                System.out.println("Yup");
                 user.addNewUser();
             }
         }catch(Exception e){

@@ -18,7 +18,7 @@
                 <JFXButton layoutX="15.0" layoutY="396.0" onAction="#_btnRegister" prefHeight="25.0" prefWidth="252.0" style="-fx-background-color: F1DEAC;" text="Create Account" textFill="#6b6b6b">
                    
                 </JFXButton>
-                <Label fx:id="errorMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="382.0" prefHeight="54.0" prefWidth="160.0" textAlignment="CENTER">
+                <Label fx:id="errorMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="300.0" prefHeight="54.0" prefWidth="160.0" textAlignment="CENTER">
                     <font>
                         <Font size="12.0" />
                     </font>

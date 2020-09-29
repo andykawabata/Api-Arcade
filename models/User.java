@@ -52,6 +52,13 @@ public class User {
             return true;
         return false;
     }
+    /**
+     * user DB's "query" method to log user in
+     * creates session file??
+     */
+    public void login(){
+        
+    }
     
     public String getConfirmPassword() {
         return confirmPassword;

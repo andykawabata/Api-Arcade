@@ -76,6 +76,18 @@ public class DB {
         
     }
     
-    
+    /**
+     * Takes in a table, a key (row) to search for, and a value (column) to return
+     * 
+     * returns 
+     * @param _table
+     * @param _key
+     * @param _value
+     * @return 
+     */
+    public static String query(String _table, String _key, String _value){
+        
+        return "password123";
+    }
     
 }

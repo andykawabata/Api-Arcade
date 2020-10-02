@@ -41,8 +41,7 @@ public class RegisterController implements Initializable {
     }    
     
     @FXML
-    private void _btnRegister(ActionEvent event) {
-        System.out.println("Hello?");
+    private void _btnRegister(ActionEvent event) throws Exception {
         errorMessage.setText("");
         if(this.username == null || this.password == null){
             errorMessage.setText("Enter username and password");
@@ -56,22 +55,7 @@ public class RegisterController implements Initializable {
         User user = new User();
         user.setUsername(newUsername);
         user.setPassword(newPassword);
-        user.setConfirmPassword(confirmPassword);
-        
-        //if username is unique, and password match, add user to database
-        try{
-            if(user.exists()){
-                errorMessage.setText("Username already exists");
-            }else if(!user.passwordsMatch()){
-                errorMessage.setText("Passwords dont match");
-            }
-            else{
-                System.out.println("Yup");
-                user.addNewUser();
-            }
-        }catch(Exception e){
-        }
-        
+        user.save();
         
     }
     

@@ -5,6 +5,7 @@
  */
 package models;
 
+import db.DataObject;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,16 +13,16 @@ import java.util.Map;
  *
  * @author andyk
  */
-public class User {
+public class User extends DataObject {
     
     private String username;
-    private String password;
-    private String confirmPassword;
+    private String password = "abc123";
+    public static String USER_TABLE = "src/storage/users.csv";
 
-    private Scores scores;
     
     public User(){}
 
+    /*
     //make better exception
     public boolean exists() throws Exception{
         try{
@@ -48,25 +49,16 @@ public class User {
     }
     
     public boolean passwordsMatch(){
-        if(this.password.equals(this.confirmPassword))
-            return true;
+        //if(this.password.equals(this.confirmPassword))
+          //  return true;
         return false;
     }
     /**
      * user DB's "query" method to log user in
      * creates session file??
      */
-    public void login(){
-        
-    }
     
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
+   
 
     public String getUsername() {
         return username;
@@ -84,15 +76,7 @@ public class User {
         this.password = password;
     }
 
-    public Scores getScores() {
-        return scores;
-    }
-
-    public void setScores(Scores scores) {
-        this.scores = scores;
-    }
-    
-    
+ 
     
     
     

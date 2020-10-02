@@ -29,7 +29,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import models.DB;
+
 import models.User;
 
 /**
@@ -43,13 +43,8 @@ public class App{
         //HttpClientTest.getHttpResponseAndPrint();
         //JsonJavaTest.getJokeCategoryAndPrint();
         //JsonJavaTest2.getTwopartJokesAndPrint();
-        //RunLoginView.main(args);
-        
-        //Test Code For adding user;
-        User user = new User();
-        user.setUsername("jim");
-        System.out.println(user.save());
-        
+        RunLoginView.main(args);
+ 
     }
     
 }

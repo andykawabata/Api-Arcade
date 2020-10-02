@@ -9,10 +9,7 @@ import db.DataObject;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- *
- * @author andyk
- */
+//Get Rid of hardcoded password
 public class User extends DataObject {
     
     private String username;
@@ -22,43 +19,6 @@ public class User extends DataObject {
     
     public User(){}
 
-    /*
-    //make better exception
-    public boolean exists() throws Exception{
-        try{
-            return DB.keyExists(DB.USER_TABLE, this.username);
-        }catch(Exception e){
-            throw new Exception();
-        }
-            
-    }
-    
-    public void addNewUser(){
-        Map<String, String> userInfo = new HashMap<>();
-        
-        //keys in map should not be hard coded
-        //keys in map must match column names in table
-        userInfo.put("username", this.username);
-        userInfo.put("password",this.password);
-        try{
-            DB.addRow(DB.USER_TABLE, userInfo);
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        
-    }
-    
-    public boolean passwordsMatch(){
-        //if(this.password.equals(this.confirmPassword))
-          //  return true;
-        return false;
-    }
-    /**
-     * user DB's "query" method to log user in
-     * creates session file??
-     */
-    
-   
 
     public String getUsername() {
         return username;
@@ -74,10 +34,6 @@ public class User extends DataObject {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
- 
-    
-    
+    } 
     
 }

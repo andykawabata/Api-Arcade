@@ -8,21 +8,34 @@ package models;
 import db.DataObject;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 //Get Rid of hardcoded password
 public class User extends DataObject {
     
     private String username;
-    private String password = "abc123";
+    private String password;
+    private UUID uuid;
     public static String USER_TABLE = "src/storage/users.csv";
 
     
     public User(){}
 
+   
 
     public String getUsername() {
         return username;
     }
+    
+    
+    public static String findUsername(String target){
+        /*
+        if(FoundUsername)
+            return User such that username == target
+        */
+        return null;
+    }
+        
 
     public void setUsername(String username) {
         this.username = username;
@@ -34,6 +47,14 @@ public class User extends DataObject {
 
     public void setPassword(String password) {
         this.password = password;
+    } 
+    
+    public UUID getUUID() {
+        return uuid;
+    }
+    
+    public void setUUID() {
+        this.uuid = UUID.randomUUID();
     } 
     
 }

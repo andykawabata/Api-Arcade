@@ -28,15 +28,25 @@ public class movieGameAPITest {
      * @throws InterruptedException
      * @throws JSONException
      */
+    
+    
+    public static final int NUMOFQUESTIONS = 1;
+    public static final String DIFFICULTY_EASY = "easy";
+    public static final String DIFFICULTY_MED = "medium";
+    public static final String DIFFICULTY_HARD = "hard";
+    
+        
     public static String movieQuestion() throws IOException, InterruptedException, JSONException {
-
+        String questionDifficulty = movieGameAPITest.DIFFICULTY_EASY;
+        int numQuestions = movieGameAPITest.NUMOFQUESTIONS;
+        
         String baseUrl = "https://opentdb.com/api.php";
-        String numOfQuestions = "?amount=1";
+        String numOfQuestions = "?amount=" + numQuestions;
         String questionCategory = "&category=11";
-        String questionDiff = "&difficulty=easy";
+        String questionDiff = "&difficulty="+ questionDifficulty;
         String qustionType = "&type=boolean";
         String urlString = baseUrl + numOfQuestions + questionCategory + questionDiff + qustionType + "&encode=base64";
-        String quest = "";
+        String triviaQuestion = "";
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse response = httpClient.send(HttpRequest.newBuilder()
@@ -53,9 +63,9 @@ public class movieGameAPITest {
         JSONObject obj = new JSONObject(response.body().toString());
         JSONArray arr = obj.getJSONArray("results");
         for (int i = 0; i < arr.length(); i++) {
-            quest = arr.getJSONObject(i).getString("question");
+            triviaQuestion = arr.getJSONObject(i).getString("question");
         }
-        String movieQuest = quest;
+        String movieQuest = triviaQuestion;
 
         /**
          * movieTitle is being decoded

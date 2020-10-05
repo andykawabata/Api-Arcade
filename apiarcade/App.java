@@ -43,7 +43,8 @@ public class App{
         //HttpClientTest.getHttpResponseAndPrint();
         //JsonJavaTest.getJokeCategoryAndPrint();
         //JsonJavaTest2.getTwopartJokesAndPrint();
-        RunLoginView.main(args);
+        //RunLoginView.main(args);
+        RunApp.main(args);
  
     }
     

@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import apiarcade.RunApp;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -28,6 +29,7 @@ import models.User;
  */
 public class ForgotPasswordController implements Initializable {
 
+    private RunApp run;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -42,16 +44,13 @@ public class ForgotPasswordController implements Initializable {
     @FXML
     private void _btnCancel(ActionEvent event) throws IOException {
         System.out.println("Clicked Forgot Password");
-        Parent regViewParent =
-                FXMLLoader.load(getClass().getResource("/views/login.fxml"));
-        Scene regViewScene = new Scene(regViewParent);
-        
-        //get Stage information
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(regViewScene);
-        window.show();
+        run.showLoginView();
     }
 
+    @FXML
+    private void _btnUpdateInfoAndReturn() {
+        
+    }
 
     
 }

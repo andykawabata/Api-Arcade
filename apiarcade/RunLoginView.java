@@ -23,16 +23,15 @@ public class RunLoginView extends Application{
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);    
+        launch(args);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/views/register.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Elon Musketeers");
         stage.setScene(scene);
-        stage.show();   
+        stage.show();
     }
-}
-    
+}    

@@ -31,32 +31,52 @@ public class RegisterController implements Initializable {
     JFXPasswordField password;
     
     @FXML
-    JFXPasswordField confirmPassowrd;
+    JFXPasswordField confirmPassword;
     
     @FXML
-    Label errorMessage;
+    Label lblErrorMessage;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }    
     
     @FXML
+    /*
+    First checks password == confirmPassword and sets the error message
+    Then checks if either username or password have not been entered because
+        that message is more important
+    
+    @param event - click on button and check fields entered
+    */
     private void _btnRegister(ActionEvent event) throws Exception {
-        errorMessage.setText("");
+        //Checks nulls
+        lblErrorMessage.setText("");
+        if(this.confirmPassword == null)
+            lblErrorMessage.setText("Confirm password");
         if(this.username == null || this.password == null){
-            errorMessage.setText("Enter username and password");
+            lblErrorMessage.setText("Enter username and password");
             return;
         }
         
         String newUsername = this.username.getText();
         String newPassword = this.password.getText();
-        String confirmPassword = this.confirmPassowrd.getText();
         
-        User user = new User();
-        user.setUsername(newUsername);
-        user.setPassword(newPassword);
-        user.save();
-        
+        //Checks if password is confirmed before making User
+        //if user exists --> error
+        //If user is new --> create
+        if(!confirmPassword.getText().equals(password.getText()))
+            lblErrorMessage.setText("Confirm password");
+        else if(User.findUsername(newUsername) == null){
+            User user = new User();
+            user.setUUID();
+            user.setUsername(newUsername);
+            user.setPassword(newPassword);
+            user.save();
+        }
+        else{
+            lblErrorMessage.setText("Username already taken");
+        }
+            
     }
     
     

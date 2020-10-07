@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import apiarcade.RunApp;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,6 +25,8 @@ import javafx.stage.Stage;
  */
 public class LoginController implements Initializable {
 
+    private RunApp run;
+    
     @FXML
     private Label _lblXOut;
 
@@ -43,15 +46,8 @@ public class LoginController implements Initializable {
 
     @FXML
     private void _hyplnkForgotPassword(ActionEvent event) throws IOException{
+        run.showPassRecovery();
         System.out.println("Clicked Forgot Password");
-        Parent regViewParent =
-                FXMLLoader.load(getClass().getResource("/views/forgotPassword.fxml"));
-        Scene regViewScene = new Scene(regViewParent);
-        
-        //get Stage information
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(regViewScene);
-        window.show();
     }
 
     /*
@@ -59,16 +55,13 @@ public class LoginController implements Initializable {
     */
     @FXML
     private void _btnSignUp(ActionEvent event) throws IOException{
+        run.showRegister();
         System.out.println("Clicked Sign Up");
-        Parent regViewParent =
-                FXMLLoader.load(getClass().getResource("/views/register.fxml"));
-        Scene regViewScene = new Scene(regViewParent);
-        
-        //get Stage information
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(regViewScene);
-        window.show();
-        
     }
-    
+
+    @FXML
+     private void guestLogin(ActionEvent event) throws IOException{
+          run.showMainGame();
+          System.out.println("Clicked Guest login");
+    }
 }

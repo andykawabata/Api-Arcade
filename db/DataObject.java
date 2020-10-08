@@ -50,7 +50,7 @@ public class DataObject extends DataFactory {
     
     
     public String generateUuid(){
-        return "1001000101";
+        return "sg7e4s2";
     }
     
     // ================================ GETTERS ====================================

@@ -66,7 +66,7 @@ public class CSVConnector implements DBConnectorInterface {
     }
     
     private String getNextId(String _table) {
-        return "420";
+        return "1";
     }
 
     @Override

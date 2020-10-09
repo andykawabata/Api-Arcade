@@ -15,6 +15,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import models.User;
+import db.DataObject;
 
 /**
  * FXML Controller class
@@ -75,7 +76,7 @@ public class RegisterController implements Initializable {
             return;
         }
         //check if user already exists
-        if(true){
+        if(/*UUID DOES NOT EXIST IN USER.JAVA*/true){
             User user = new User();
             user.setUsername(newUsername);
             user.setPassword(newPassword);

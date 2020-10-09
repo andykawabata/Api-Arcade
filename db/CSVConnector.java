@@ -101,6 +101,12 @@ public class CSVConnector implements DBConnectorInterface {
    
     @Override
     public Boolean updateObject(Map<String, String> _keyValuePairs, String _uuid, String _table) {
+        /*if (_table links to users.csv)
+            update password
+          if (_table links to scores.csv)
+            update scores from Scores.java
+        */
+        
         return true;
     }
 

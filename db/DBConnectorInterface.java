@@ -15,11 +15,11 @@ import java.util.Map;
  */
 public interface DBConnectorInterface {
     
-    public abstract int createObject(Map<String,String> _keyValuePairs, String _table) throws Exception;
+    public abstract int                     createObject(Map<String,String> _keyValuePairs, String _table) throws Exception;
 
     public abstract HashMap<String, Object> readObject(Map<String,Object> _keyValuePairs, String _table);
 
-    public abstract Boolean updateObject(Map<String,String> _keyValuePairs, String _uuid, String _table);
+    public abstract Boolean                 updateObject(Map<String,String> _keyValuePairs, String _uuid, String _table);
 
-    public abstract Boolean deleteObject(String uuid);
+    public abstract Boolean                 deleteObject(String uuid);
 }

@@ -16,16 +16,14 @@ public class User extends DataObject {
     private String username;
     private String password;
     public static String TABLE = "src/storage/users.csv";
-
     
-    public User(){}
-
-   
+    public User(){
+        
+    }
 
     public String getUsername() {
         return username;
     }
-    
     
     public String loadByUsername(String username){
                 
@@ -33,16 +31,9 @@ public class User extends DataObject {
        map.put("username", username);
        this.loadByCondition(map, this.TABLE);
        
-       return"";
+       return "";
     }
     
-    
-    
-    
-    
-    
-        
-
     public void setUsername(String username) {
         this.username = username;
     }

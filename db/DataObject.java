@@ -8,6 +8,8 @@ package db;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.UUID;
+
 
 /**
  *
@@ -16,11 +18,13 @@ import java.util.logging.Logger;
 public class DataObject extends DataFactory {
     
     protected final String dataTable = "";
+    protected static String TABLE = "";
     protected int id = 0;
-    protected String uuid;
+    protected UUID uuid;
     
     public DataObject() {
-        this.setUuid(generateUuid());
+        this.setUuid();
+        this.setId(-1);
     }
     
     public Boolean save() throws Exception {
@@ -31,33 +35,22 @@ public class DataObject extends DataFactory {
             } catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException | NoSuchFieldException ex) {
 
             }
-        } else {/*
+        } else {
             try {
                 // This is an exisitng object in the database, just update the object.
-                return DataStoreAdapter.updateObject(this);
+                return DataStoreAdapter.updateObject(this, this.TABLE);
             } catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException | NoSuchFieldException ex) {
-
-            }*/
+                
+            }
         }
         return false;
     }
-    
-    
-    
-    
-    
-    
-    
-    public String generateUuid(){
-        return "sg7e4s2";
-    }
-    
     // ================================ GETTERS ====================================
 
 
 
     public String getUuid() {
-        return this.uuid;
+        return this.uuid.toString();
     }
 
     public int getId() {
@@ -67,8 +60,8 @@ public class DataObject extends DataFactory {
 // ================================ SETTERS ====================================
 
 
-    public void setUuid(String _uuid) {
-        this.uuid = _uuid;
+    public void setUuid() {
+        uuid = UUID.randomUUID();
     }
 
     public void setId(int _id) {

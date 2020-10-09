@@ -29,8 +29,17 @@ public class DataStoreAdapter {
     }
     
     public static HashMap<String, Object> readObject(Map <String, Object> _map, String _table) {
-        
         return connector.readObject(_map, _table);
+    }
+    
+    public static Boolean updateObject(DataObject obj, String _table)throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, NoSuchFieldException, Exception {
+        /*Use CSVConnector to change info
+          What are the strings in Map<String, String>
+          If the second one is the table (_table aka "src/storage/users.csv") 
+          Then why is there a _table
+        */
+        return CSVConnector.updateObject((new Map<"password", _table>), obj.getUUID(), new String("Fix This Line"));
+            
     }
     
     

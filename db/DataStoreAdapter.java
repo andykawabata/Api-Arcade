@@ -6,6 +6,10 @@
 package db;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import models.User;
 
 /**
@@ -19,9 +23,16 @@ public class DataStoreAdapter {
     public static Boolean createObject(DataObject obj) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, NoSuchFieldException, Exception {
         // Send name-value pairs to the connector class. This class should
         // return a generated id number.
-        int id = connector.createObject(obj.getProperties(), User.USER_TABLE);
+        int id = connector.createObject(obj.getProperties(), User.TABLE);
         obj.setId(id);
         return (id != 0);
     }
+    
+    public static HashMap<String, Object> readObject(Map <String, Object> _map, String _table) {
+        
+        return connector.readObject(_map, _table);
+    }
+    
+    
     
 }

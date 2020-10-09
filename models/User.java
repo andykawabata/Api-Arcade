@@ -15,8 +15,7 @@ public class User extends DataObject {
     
     private String username;
     private String password;
-    private UUID uuid;
-    public static String USER_TABLE = "src/storage/users.csv";
+    public static String TABLE = "src/storage/users.csv";
 
     
     public User(){}
@@ -28,13 +27,20 @@ public class User extends DataObject {
     }
     
     
-    public static String findUsername(String target){
-        /*
-        if(FoundUsername)
-            return User such that username == target
-        */
-        return null;
+    public String loadByUsername(String username){
+                
+       HashMap<String, Object> map = new HashMap<>();
+       map.put("username", username);
+       this.loadByCondition(map, this.TABLE);
+       
+       return"";
     }
+    
+    
+    
+    
+    
+    
         
 
     public void setUsername(String username) {
@@ -49,12 +55,5 @@ public class User extends DataObject {
         this.password = password;
     } 
     
-    public UUID getUUID() {
-        return uuid;
-    }
-    
-    public void setUUID() {
-        this.uuid = UUID.randomUUID();
-    } 
-    
+  
 }

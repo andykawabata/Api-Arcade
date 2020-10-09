@@ -24,7 +24,7 @@ import org.json.JSONObject;
  *
  * @author andyk
  */
-public class OmdbTranslator implements movieApiInterface {
+public class OmdbTranslator implements MovieApiInterface {
     
     String baseURL = "https://api.themoviedb.org/3/movie/";
     String apiKey = "3ee7fedb5506448980b60224316cdcd0";
@@ -66,7 +66,7 @@ public class OmdbTranslator implements movieApiInterface {
      * @param numPosters
      * @return 
      */
-
+    //STUB
     @Override
     public String[] getPostersOfSimilarById(int id, int numPosters) {
         

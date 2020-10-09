@@ -14,11 +14,11 @@
             <children>
                 <JFXTextField fx:id="username" layoutX="15.0" layoutY="107.0" prefHeight="25.0" prefWidth="252.0" promptText="username" unFocusColor="WHITE" />
                 <JFXPasswordField fx:id="password" layoutX="22.0" layoutY="169.0" prefHeight="25.0" prefWidth="252.0" promptText="password" unFocusColor="WHITE" />
-                <JFXPasswordField fx:id="confirmPassowrd" layoutX="22.0" layoutY="200" prefHeight="25.0" prefWidth="252.0" promptText="confirm password" unFocusColor="WHITE" />
+                <JFXPasswordField fx:id="confirmPassword" layoutX="22.0" layoutY="200" prefHeight="25.0" prefWidth="252.0" promptText="confirm password" unFocusColor="WHITE" />
                 <JFXButton layoutX="15.0" layoutY="396.0" onAction="#_btnRegister" prefHeight="25.0" prefWidth="252.0" style="-fx-background-color: F1DEAC;" text="Create Account" textFill="#6b6b6b">
                    
                 </JFXButton>
-                <Label fx:id="errorMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="300.0" prefHeight="54.0" prefWidth="160.0" textAlignment="CENTER">
+                <Label fx:id="lblErrorMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="300.0" prefHeight="54.0" prefWidth="160.0" textAlignment="CENTER">
                     <font>
                         <Font size="12.0" />
                     </font>

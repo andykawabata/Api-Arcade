@@ -2,6 +2,7 @@ package prototypes.gameDesign;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Map;
 
 import java.util.ResourceBundle;
@@ -79,8 +80,35 @@ public class gameController  implements Initializable  {
         updateView(data);
        
     }
-    
+       
+    /*
+    data:
+        {
+        gameTitle: String,
+        questionText: String,
+        images: ArrayList<String>,
+        result: String,
+        currentScore: String,
+        currentQuestionNumber: String
+        }
+     */
     private void updateView(Map<String, Object> data){
+        
+        if(data.containsKey("gameTitle")){
+            String title = (String) data.get("gameTitle");
+            this.title.setText(title);
+        }
+        if(data.containsKey("questionText")){
+            String text = (String) data.get("questionText");
+            this.questionText.setText(text);
+         }
+        if(data.containsKey("images")){
+            ArrayList<String> images = (ArrayList<String>) data.get("images");
+            for(String image : images){
+                //append image to container
+            }
+         }
+        
         
     }
     

@@ -12,7 +12,7 @@ import java.util.Map;
  *
  * @author andyk
  */
-public interface movieApiInterface {
+public interface MovieApiInterface {
     
     public Map<String, String> getPosterAndDescriptionById(int id) throws Exception;
     

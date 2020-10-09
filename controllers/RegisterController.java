@@ -40,7 +40,7 @@ public class RegisterController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
     }    
     
-    @FXML
+    
     /*
     First checks password == confirmPassword and sets the error message
     Then checks if either username or password have not been entered because
@@ -48,27 +48,35 @@ public class RegisterController implements Initializable {
     
     @param event - click on button and check fields entered
     */
+    @FXML
     private void _btnRegister(ActionEvent event) throws Exception {
+
+        
+        String newUsername = username.getText();
+        String newPassword = password.getText();
+        String newConfirmPassword = confirmPassword.getText();
         //Checks nulls
         lblErrorMessage.setText("");
-        if(this.confirmPassword == null)
+        if(newConfirmPassword == null){
             lblErrorMessage.setText("Confirm password");
-        if(this.username == null || this.password == null){
+            return;
+        }
+        if(newUsername == null || newPassword == null){
             lblErrorMessage.setText("Enter username and password");
             return;
         }
         
-        String newUsername = this.username.getText();
-        String newPassword = this.password.getText();
         
         //Checks if password is confirmed before making User
         //if user exists --> error
         //If user is new --> create
-        if(!confirmPassword.getText().equals(password.getText()))
-            lblErrorMessage.setText("Confirm password");
-        else if(User.findUsername(newUsername) == null){
+        if(!newConfirmPassword.equals(newPassword)){
+            lblErrorMessage.setText("passwords don't match");
+            return;
+        }
+        //check if user already exists
+        if(true){
             User user = new User();
-            user.setUUID();
             user.setUsername(newUsername);
             user.setPassword(newPassword);
             user.save();

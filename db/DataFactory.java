@@ -10,6 +10,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -70,5 +72,18 @@ public class DataFactory {
            
         return pairs;
     }
+    
+    
+    public static HashMap<String, Object> loadByCondition(HashMap<String, Object> _data, String _table) {
+        try {
+            // Given an empty object, this method fills this object with data from the database.
+            return DataStoreAdapter.readObject(_data, _table);
+        } catch (Exception e){
+        }
+        return null;
+
+    }
+    
+    
     
 }

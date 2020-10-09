@@ -21,7 +21,6 @@ public class DataObject extends DataFactory {
     
     public DataObject() {
         this.setUuid(generateUuid());
-        
     }
     
     public Boolean save() throws Exception {

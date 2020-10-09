@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,7 +22,28 @@ import java.util.logging.Logger;
  * @author andyk
  */
 public class CSVConnector implements DBConnectorInterface {
-    
+     /*
+    *Takes in key and value (ex "username": "user123")
+    *Returns all key value pairs in row
+    *ex:
+    *{
+    *id: 3
+    *uuid: 12343
+    *username: user123
+    *password: 123445
+    */
+ 
+     public HashMap<String, Object> readObject(Map<String,Object> _keyValuePair, String _table) {
+         
+         Set keySet = _keyValuePair.keySet();
+         String key = keySet.toString();
+         
+         
+         //DO SOME STUFF
+         
+         return new HashMap<String, Object>();
+         
+     }
     
 
     @Override
@@ -32,7 +54,6 @@ public class CSVConnector implements DBConnectorInterface {
         _keyValuePairs.put("id", newId);
         String[] columnNames = getColumnNames(_table);
         String[] newRow = buildRow(columnNames, _keyValuePairs);
-        
    
         //write row to file
         CSVWriter writer = new CSVWriter(new FileWriter(_table, true));
@@ -65,15 +86,19 @@ public class CSVConnector implements DBConnectorInterface {
         return newRow;
     }
     
+    
+    /**
+     * USE buffered reader to iterate over given table
+     * @param _table - path to the csv table
+     * @return  String representation of next user id number
+     * for example if there are 10 entries in the table it should return "11"
+     */
     private String getNextId(String _table) {
+        
         return "1";
     }
 
-    @Override
-    public HashMap<String, Object> readObject(Map<String, String> _keyValuePairs, String _table) {
-        return new HashMap<String, Object>();
-    }
-
+   
     @Override
     public Boolean updateObject(Map<String, String> _keyValuePairs, String _uuid, String _table) {
         return true;

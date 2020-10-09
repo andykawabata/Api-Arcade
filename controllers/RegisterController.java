@@ -70,12 +70,13 @@ public class RegisterController implements Initializable {
         //Checks if password is confirmed before making User
         //if user exists --> error
         //If user is new --> create
-        if(!newConfirmPassword.equals(newPassword))
+        if(!newConfirmPassword.equals(newPassword)){
             lblErrorMessage.setText("passwords don't match");
-        else if(User.findUsername(newUsername) == null){
-            System.out.println("in");
+            return;
+        }
+        //check if user already exists
+        if(true){
             User user = new User();
-            user.setUUID();
             user.setUsername(newUsername);
             user.setPassword(newPassword);
             user.save();

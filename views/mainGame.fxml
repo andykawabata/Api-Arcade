@@ -24,7 +24,11 @@
                   <Hyperlink layoutX="31.0" layoutY="33.0" text="Leaderboards" />
                   <Hyperlink layoutX="476.0" layoutY="48.0" text="View Profile" />
                   <Label fx:id="userID" layoutX="481.0" layoutY="23.0" prefHeight="17.0" prefWidth="71.0" text="Hello, user" textFill="WHITE" />
+<<<<<<< HEAD
                   <Hyperlink layoutX="476.0" layoutY="79.0" onAction="#_userLogOut" text="Logout" />
+=======
+                  <Hyperlink layoutX="476.0" layoutY="79.0" onAction="#_logOut" text="Logout" />
+>>>>>>> fb4d296c8ef316ca4d9d66dda6a1433f629eee48
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="598.0" style="-fx-background-color: #000039#000039;">
@@ -33,7 +37,11 @@
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e9ecee" height="117.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="530.0" />
                         <Text layoutX="300.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The ultimate movie  trivia game" wrappingWidth="91.8955078125" />
+<<<<<<< HEAD
                         <Button layoutX="411.0" layoutY="21.0" mnemonicParsing="false" onAction="#_gameStart" prefHeight="72.0" prefWidth="92.0" style="-fx-background-color: F1DEAC F1DEAC;" text="Play Now!" textAlignment="CENTER">
+=======
+                        <Button fx:id="moviePlayNow" layoutX="411.0" layoutY="21.0" mnemonicParsing="false" onAction="#_gameStart" prefHeight="72.0" prefWidth="92.0" style="-fx-background-color: F1DEAC F1DEAC;" text="Play Now!" textAlignment="CENTER">
+>>>>>>> fb4d296c8ef316ca4d9d66dda6a1433f629eee48
                            <font>
                               <Font size="14.0" />
                            </font>

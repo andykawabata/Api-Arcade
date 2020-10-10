@@ -16,7 +16,10 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
+<<<<<<< HEAD
 import javafx.scene.control.Button;
+=======
+>>>>>>> fb4d296c8ef316ca4d9d66dda6a1433f629eee48
 import models.User;
 
 /**
@@ -33,11 +36,15 @@ public class RegisterController implements Initializable {
     @FXML
     JFXPasswordField password;
     
-    @FXML
     JFXPasswordField confirmPassword;
     
-    @FXML
     Label lblErrorMessage;
+    @FXML
+    private JFXPasswordField confirmPassowrd;
+    @FXML
+    private Label errorMessage;
+    @FXML
+    private Label _lblXOut;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -91,7 +98,11 @@ public class RegisterController implements Initializable {
     }
 
     @FXML
+<<<<<<< HEAD
     private void _backBtn(ActionEvent event) throws IOException {
+=======
+    private void _btnBack(ActionEvent event) throws IOException {
+>>>>>>> fb4d296c8ef316ca4d9d66dda6a1433f629eee48
         RunApp.showLoginView();
     }
     

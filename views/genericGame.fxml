@@ -10,7 +10,11 @@
 <?import javafx.scene.text.Font?>
 
 
+<<<<<<< HEAD
 <AnchorPane id="AnchorPane" prefHeight="433.0" prefWidth="600.0" style="-fx-background-color: #000039#000039;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="controllers.GenericGameController">
+=======
+<AnchorPane id="AnchorPane" prefHeight="433.0" prefWidth="600.0" style="-fx-background-color: #000039#000039;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="views.GenericGameController">
+>>>>>>> fb4d296c8ef316ca4d9d66dda6a1433f629eee48
    <children>
       <Button fx:id="_nxtQuestion" layoutX="252.0" layoutY="332.0" mnemonicParsing="false" text="Next Question" />
       <Button fx:id="_submitBtn" layoutX="408.0" layoutY="295.0" mnemonicParsing="false" text="Submit" />

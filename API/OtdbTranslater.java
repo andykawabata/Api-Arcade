@@ -19,7 +19,11 @@ import org.json.JSONObject;
  *
  * @author Francisco
  */
+<<<<<<< HEAD
 public class OtdbTranslater implements TriviaInterface {
+=======
+public class OtdbTranslater implements MovieAndTriviaAPIInterface {
+>>>>>>> fb4d296c8ef316ca4d9d66dda6a1433f629eee48
 
     String baseUrl = "https://opentdb.com/api.php";
     String numOfQuestions = "?amount=10";
@@ -31,7 +35,11 @@ public class OtdbTranslater implements TriviaInterface {
     JSONObject obj;
 
     @Override
+<<<<<<< HEAD
     public JSONObject ResonseBody() throws Exception {
+=======
+    public JSONObject ResonseBody() throws Exception{
+>>>>>>> fb4d296c8ef316ca4d9d66dda6a1433f629eee48
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse response = httpClient.send(HttpRequest.newBuilder()
@@ -45,7 +53,10 @@ public class OtdbTranslater implements TriviaInterface {
 
     @Override
     public String Question(JSONObject obj) throws Exception {
+<<<<<<< HEAD
 
+=======
+>>>>>>> fb4d296c8ef316ca4d9d66dda6a1433f629eee48
         this.obj = obj;
         JSONArray arr = obj.getJSONArray("results");
         quest = arr.getJSONObject(0).getString("question");
@@ -55,7 +66,10 @@ public class OtdbTranslater implements TriviaInterface {
 
     @Override
     public String Answer(JSONObject obj) throws Exception {
+<<<<<<< HEAD
 
+=======
+>>>>>>> fb4d296c8ef316ca4d9d66dda6a1433f629eee48
         this.obj = obj;
         JSONArray arr = obj.getJSONArray("results");
         quest = arr.getJSONObject(0).getString("correct_anwser");
@@ -69,4 +83,8 @@ public class OtdbTranslater implements TriviaInterface {
         String actualString = new String(actualByte);
         return actualString;
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> fb4d296c8ef316ca4d9d66dda6a1433f629eee48
 }

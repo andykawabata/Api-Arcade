@@ -11,7 +11,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -21,7 +20,6 @@ import javafx.stage.Stage;
 public class RunApp extends Application{
     private static Stage primaryStage;
     private static AnchorPane mainLayout;
-    private BorderPane sideLayout;
     /**
      * @param args the command line arguments
      */
@@ -72,4 +70,12 @@ public class RunApp extends Application{
         primaryStage.show();
     }
     
+    public static void showgenericGame() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(RunApp.class.getResource("/views/genericGame.fxml"));
+        AnchorPane genGame = loader.load();
+        Scene scene = new Scene(genGame);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package views;
 
 import apiarcade.RunApp;
 import java.io.IOException;
@@ -14,20 +14,27 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
  *
- * @author Francisco
+ * @author cisco
  */
-public class MainGameController implements Initializable {
+public class GenericGameController implements Initializable {
 
     @FXML
-    private Label userID;
+    private Button _nxtQuestion;
     @FXML
-    private Button moviePlayNow;
+    private Button _submitBtn;
     @FXML
-    private Label highScore;
+    private TextField _answerInput;
+    @FXML
+    private Label _gameTitle;
+    @FXML
+    private Label _questionText;
+    @FXML
+    private Label _resultDisplay;
 
     /**
      * Initializes the controller class.
@@ -38,13 +45,8 @@ public class MainGameController implements Initializable {
     }    
 
     @FXML
-    private void _logOut(ActionEvent event) throws IOException {
-        RunApp.showLoginView();
-    }
-
-    @FXML
-    private void _gameStart(ActionEvent event) throws IOException {
-        RunApp.showgenericGame();
+    private void _backBtn(ActionEvent event) throws IOException {
+        RunApp.showMainGame();
     }
     
 }

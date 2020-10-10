@@ -53,7 +53,7 @@ public class RunApp extends Application{
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-    
+
     public static void showRegister() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(RunApp.class.getResource("/views/register.fxml"));
@@ -62,7 +62,7 @@ public class RunApp extends Application{
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-    
+
     public static void showPassRecovery() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(RunApp.class.getResource("/views/forgotPassword.fxml"));
@@ -71,5 +71,13 @@ public class RunApp extends Application{
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-    
+
+    public static void showgenericGame() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(RunApp.class.getResource("/views/genericGame.fxml"));
+        AnchorPane genGame = loader.load();
+        Scene scene = new Scene(genGame);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
 }

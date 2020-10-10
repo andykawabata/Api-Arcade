@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="433.0" prefWidth="600.0" style="-fx-background-color: #000039#000039;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="controllers.GenericGameController">
+   <children>
+      <Button fx:id="_nxtQuestion" layoutX="252.0" layoutY="332.0" mnemonicParsing="false" text="Next Question" />
+      <Button fx:id="_submitBtn" layoutX="408.0" layoutY="295.0" mnemonicParsing="false" text="Submit" />
+      <TextField fx:id="_answerInput" layoutX="220.0" layoutY="295.0" />
+      <HBox alignment="TOP_CENTER" layoutX="75.0" layoutY="67.0" prefHeight="157.0" prefWidth="450.0" style="-fx-background-color: E0A406;">
+         <children>
+            <ImageView fitHeight="130.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="130.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="130.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+         <opaqueInsets>
+            <Insets top="1.0" />
+         </opaqueInsets>
+      </HBox>
+      <Label fx:id="_gameTitle" layoutX="192.0" layoutY="23.0" text="Generic Game" textFill="WHITE">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Label fx:id="_questionText" alignment="CENTER" layoutX="220.0" layoutY="241.0" prefHeight="37.0" prefWidth="161.0" style="-fx-background-color: E0A406;" text="Label" textAlignment="JUSTIFY" textFill="WHITE" />
+      <Label fx:id="_resultDisplay" alignment="CENTER" layoutX="220.0" layoutY="375.0" prefHeight="17.0" prefWidth="161.0" style="-fx-background-color: E0A406;" text="Question Result" textAlignment="CENTER" textFill="WHITE" />
+      <Button layoutX="20.0" layoutY="23.0" mnemonicParsing="false" onAction="#_backBtn" style="-fx-background-color: E0A406;" text="Back" textFill="WHITE" />
+   </children>
+</AnchorPane>

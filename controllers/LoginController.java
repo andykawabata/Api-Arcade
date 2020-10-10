@@ -6,6 +6,7 @@
 package controllers;
 
 import apiarcade.RunApp;
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,6 +30,8 @@ public class LoginController implements Initializable {
     
     @FXML
     private Label _lblXOut;
+    @FXML
+    private JFXButton logGuest;
 
     /**
      * Initializes the controller class.

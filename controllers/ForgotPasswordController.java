@@ -35,11 +35,6 @@ public class ForgotPasswordController implements Initializable {
         // TODO
     }
     
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
     
     @FXML
     private void _btnCancel(ActionEvent event) throws IOException {

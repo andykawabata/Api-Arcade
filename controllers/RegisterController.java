@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import apiarcade.RunApp;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -14,6 +15,8 @@ import javafx.scene.control.Label;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
+import javafx.scene.control.Button;
 import models.User;
 
 /**
@@ -86,13 +89,10 @@ public class RegisterController implements Initializable {
         }
             
     }
-    
-    
-    
-    
-   
+
     @FXML
-    private void _btnSignUp(ActionEvent event) {
+    private void _backBtn(ActionEvent event) throws IOException {
+        RunApp.showLoginView();
     }
     
 }

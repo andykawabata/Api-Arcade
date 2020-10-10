@@ -38,11 +38,6 @@ public class MainGameController implements Initializable {
     @FXML
 
     private void _userLogOut(ActionEvent event) throws IOException {
-        
-    }
-
-    private void _logOut(ActionEvent event) throws IOException {
-
         RunApp.showLoginView();
     }
 

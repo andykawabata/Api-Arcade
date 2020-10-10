@@ -29,29 +29,21 @@
                         <Font size="28.0" />
                     </font>
                 </Label>
-<<<<<<< HEAD
             <Button layoutX="215.0" layoutY="14.0" mnemonicParsing="false" onAction="#_backBtn" prefHeight="48.0" prefWidth="51.0" style="-fx-background-color: E0A406;" text="X" textFill="WHITE">
-=======
-            <Button layoutX="210.0" layoutY="16.0" mnemonicParsing="false" onAction="#_btnBack" prefHeight="46.0" prefWidth="43.0" style="-fx-background-color: E0A406 E0A406;" text="X" textFill="WHITE">
->>>>>>> fb4d296c8ef316ca4d9d66dda6a1433f629eee48
                <font>
                   <Font name="System Bold" size="28.0" />
                </font>
             </Button>
-                
             </children>
          <effect>
             <Blend />
          </effect>
         </AnchorPane>
-<<<<<<< HEAD
-=======
-        
+
               <Label fx:id="_lblXOut" alignment="CENTER" layoutX="16.0" layoutY="28.0" prefHeight="39.0" prefWidth="43.0" text="X" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="28.0" />
             </font>
         </Label>
->>>>>>> fb4d296c8ef316ca4d9d66dda6a1433f629eee48
     </children>
 </AnchorPane>

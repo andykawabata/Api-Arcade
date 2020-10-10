@@ -99,10 +99,6 @@ public class RegisterController implements Initializable {
     @FXML
 
     private void _backBtn(ActionEvent event) throws IOException {
-        
-    }
-
-    private void _btnBack(ActionEvent event) throws IOException {
         RunApp.showLoginView();
     }
     

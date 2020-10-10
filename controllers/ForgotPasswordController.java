@@ -39,7 +39,7 @@ public class ForgotPasswordController implements Initializable {
     @FXML
     private void _btnCancel(ActionEvent event) throws IOException {
         System.out.println("Clicked Forgot Password");
-        run.showLoginView();
+        RunApp.showLoginView();
     }
 
     @FXML

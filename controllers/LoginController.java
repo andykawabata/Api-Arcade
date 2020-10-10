@@ -49,7 +49,7 @@ public class LoginController implements Initializable {
 
     @FXML
     private void _hyplnkForgotPassword(ActionEvent event) throws IOException{
-        run.showPassRecovery();
+        RunApp.showPassRecovery();
         System.out.println("Clicked Forgot Password");
     }
 
@@ -58,13 +58,13 @@ public class LoginController implements Initializable {
     */
     @FXML
     private void _btnSignUp(ActionEvent event) throws IOException{
-        run.showRegister();
+        RunApp.showRegister();
         System.out.println("Clicked Sign Up");
     }
 
     @FXML
      private void guestLogin(ActionEvent event) throws IOException{
-          run.showMainGame();
+          RunApp.showMainGame();
           System.out.println("Clicked Guest login");
     }
 }

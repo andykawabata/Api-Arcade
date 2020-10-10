@@ -18,6 +18,7 @@ import javafx.stage.Stage;
  * @author Francisco
  */
 public class RunApp extends Application{
+
     private static Stage primaryStage;
     private static AnchorPane mainLayout;
     /**

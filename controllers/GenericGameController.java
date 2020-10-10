@@ -5,7 +5,7 @@
  */
 package controllers;
 
-<<<<<<< HEAD
+
 import apiarcade.RunApp;
 import java.io.IOException;
 import java.net.URL;
@@ -16,11 +16,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-=======
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
->>>>>>> fb4d296c8ef316ca4d9d66dda6a1433f629eee48
+
 
 /**
  * FXML Controller class
@@ -29,7 +29,7 @@ import javafx.fxml.Initializable;
  */
 public class GenericGameController implements Initializable {
 
-<<<<<<< HEAD
+
     @FXML
     private Button _nxtQuestion;
     @FXML
@@ -43,8 +43,7 @@ public class GenericGameController implements Initializable {
     @FXML
     private Label _resultDisplay;
 
-=======
->>>>>>> fb4d296c8ef316ca4d9d66dda6a1433f629eee48
+
     /**
      * Initializes the controller class.
      */
@@ -52,13 +51,12 @@ public class GenericGameController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-<<<<<<< HEAD
+
 
     @FXML
     private void _backBtn(ActionEvent event) throws IOException {
         RunApp.showMainGame();
     }
-=======
->>>>>>> fb4d296c8ef316ca4d9d66dda6a1433f629eee48
+
     
 }

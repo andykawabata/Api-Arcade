@@ -35,15 +35,15 @@ public class RegisterController implements Initializable {
     @FXML
     JFXPasswordField password;
     
+    @FXML
     JFXPasswordField confirmPassword;
+
+    @FXML
+    private Label lblErrorMessage;
     
-    Label lblErrorMessage;
-    @FXML
-    private JFXPasswordField confirmPassowrd;
-    @FXML
-    private Label errorMessage;
     @FXML
     private Label _lblXOut;
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

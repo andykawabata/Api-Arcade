@@ -20,12 +20,12 @@ public class DataStoreAdapter {
     
     private static final DBConnectorInterface connector = new CSVConnector();
     
-    public static Boolean createObject(Map<String, String> obj, String _table) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, NoSuchFieldException, Exception {
+    public static Boolean createObject(Map<String, String> map, String _table) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, NoSuchFieldException, Exception {
         // Send name-value pairs to the connector class. This class should
         // return a generated id number.
-        int id = connector.createObject(obj, _table);
+        int id = connector.createObject(map, _table);
         String idString = String.valueOf(id);
-        obj.put("id", idString);
+        map.put("id", idString);
         return (id != 0);
     }
     

@@ -22,17 +22,23 @@ import java.util.logging.Logger;
  * @author andyk
  */
 public class CSVConnector implements DBConnectorInterface {
+    
+    ///////////////////////////////////////////////////////////////////////////
+    //    CRUD METHODS
+    /////////////////////////////////////////////////////////////////////////
+    
+    
+    
      /*
     *Takes in key and value (ex "username": "user123")
     *Returns all key value pairs in row
-    *ex:
+    *for example:
     *{
     *id: 3
     *uuid: 12343
     *username: user123
     *password: 123445
     */
- 
      public Map<String, String> readObject(Map<String, String> _keyValuePair, String _table) {
          
          Set keySet = _keyValuePair.keySet();
@@ -68,6 +74,27 @@ public class CSVConnector implements DBConnectorInterface {
         
     }
     
+     @Override
+    public Boolean updateObject(Map<String, String> _keyValuePairs, String _uuid, String _table) {
+        return true;
+    }
+
+    @Override
+    public Boolean deleteObject(String uuid) {
+        return true;
+    }
+    
+    
+    
+    
+    /////////////////////////////////////////////////////////////////////////////
+    //    HELPER METHODS
+    ///////////////////////////////////////////////////////////////////////////
+    
+    
+    
+    
+    
     private String[] getColumnNames(String _table) throws FileNotFoundException, IOException{
         String line = "";
         String[] columnNames = new String[0];
@@ -99,15 +126,7 @@ public class CSVConnector implements DBConnectorInterface {
     }
 
    
-    @Override
-    public Boolean updateObject(Map<String, String> _keyValuePairs, String _uuid, String _table) {
-        return true;
-    }
-
-    @Override
-    public Boolean deleteObject(String uuid) {
-        return true;
-    }
+   
 
     
 

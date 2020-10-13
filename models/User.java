@@ -5,7 +5,9 @@
  */
 package models;
 
+import db.DataFactory;
 import db.DataObject;
+import db.DataStoreAdapter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -26,17 +28,43 @@ public class User extends DataObject {
         return username;
     }
     
-    
-    public String loadByUsername(String username){
+    public Map<String, String> loadByUsername(){
                 
-       HashMap<String, Object> map = new HashMap<>();
-       map.put("username", username);
-       this.loadByCondition(map, this.TABLE);
+       if(this.username == null)
+           return null;
+       Map<String, String> keyValue = new HashMap<>();
+       keyValue.put("username", username);
        
-       return"";
+       Map<String, String> userInfo = DataStoreAdapter.readObject(keyValue, User.TABLE);
+       return userInfo;
+       
     }
     
-    
+    public Boolean save(){
+        
+        Map<String, String> userProperties = new HashMap<>();
+        Map<String, String> parentProperties = new HashMap<>();
+        if(this.username != null)
+            userProperties.put("username", this.username);
+        if(this.password != null)
+            userProperties.put("password", this.password);
+        parentProperties = super.createMap();
+        userProperties.putAll(parentProperties);
+        
+        if (this.id == 0) {
+            try {
+                return DataStoreAdapter.createObject(userProperties, User.TABLE);
+            } catch (Exception e) {
+            }
+        } else {/*
+            try {
+                // This is an exisitng object in the database, just update the object.
+                return DataStoreAdapter.updateObject(this);
+            } catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException | NoSuchFieldException ex) {
+            }*/
+        }
+        return false;
+    }
     
     
     

@@ -33,7 +33,7 @@ public class CSVConnector implements DBConnectorInterface {
     *password: 123445
     */
  
-     public HashMap<String, Object> readObject(Map<String,Object> _keyValuePair, String _table) {
+     public Map<String, String> readObject(Map<String, String> _keyValuePair, String _table) {
          
          Set keySet = _keyValuePair.keySet();
          String key = keySet.toString();
@@ -41,7 +41,7 @@ public class CSVConnector implements DBConnectorInterface {
          
          //DO SOME STUFF
          
-         return new HashMap<String, Object>();
+         return new HashMap<String, String>();
          
      }
     
@@ -50,8 +50,8 @@ public class CSVConnector implements DBConnectorInterface {
     public int createObject(Map<String, String> _keyValuePairs, String _table) throws IOException{
        
       
-        String newId = getNextId(_table);
-        _keyValuePairs.put("id", newId);
+        String newId = getNextId(_table);  //find value that the new id should be
+        _keyValuePairs.put("id", newId);   
         String[] columnNames = getColumnNames(_table);
         String[] newRow = buildRow(columnNames, _keyValuePairs);
    

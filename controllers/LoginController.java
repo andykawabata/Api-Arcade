@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//ADD ERROR MESSAGE BUTTON TO VIEW
 package controllers;
 
 import apiarcade.RunApp;
@@ -20,6 +16,7 @@ import javafx.scene.*;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import models.LoginSession;
 import models.User;
 
 /**
@@ -47,22 +44,35 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
+    
+    /**
+     * Signs in user given username and password
+     * or prints error message if unable to sign in
+     * @param event
+     * @throws Exception 
+     */
     @FXML
-    private void _btnSignIn(ActionEvent event) {
+    private void _btnSignIn(ActionEvent event) throws Exception {
         
-        //HOW TO SET UUID???
-        String givenUsername = this.username.getText();
-        String givenPassword = this.password.getText();
-        User user = User.loadByUsername(givenUsername);
-        if(user == null)
-            System.out.println("bad");
+        
+        String givenUsername = username.getText();
+        String givenPassword = password.getText();
+        User user = User.loadByUsername(givenUsername); //if succesful, sets uuid
+        if(user == null){
+            System.out.println("Username doesn't exist"); //Should update view instead of printing
+            return;
+        }
         if(user.passwordMatches(givenPassword)){
             user.login();
+            System.out.println("User Logged in");
         }
-            
         else
-            System.out.println("bad");
+            System.out.println("Incorrect Password"); //Should update view instead of printing
+        
+        System.out.println("id: " + LoginSession.currentUser.getId());
+        System.out.println("uuid: " + LoginSession.currentUser.getUuid());
+        System.out.println("username: " + LoginSession.currentUser.getUsername());
+        System.out.println("password: " + LoginSession.currentUser.getPassword());
         
         
     }

@@ -11,7 +11,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
@@ -28,10 +30,10 @@ public class CSVConnector implements DBConnectorInterface {
     /////////////////////////////////////////////////////////////////////////
     
     
-    
      /*
-    *Takes in key and value (ex "username": "user123")
-    *Returns all key value pairs in row
+    *Takes in query as one or more key value pairs (ex "username": "user123")
+    *Returns maps representing the rows that match the query
+    *Returns null if no rows match query
     *for example:
     *{
     *id: 3
@@ -39,18 +41,79 @@ public class CSVConnector implements DBConnectorInterface {
     *username: user123
     *password: 123445
     */
-     public Map<String, String> readObject(Map<String, String> _keyValuePair, String _table) {
+     public List<Map<String, String>> readObject(Map<String, String> _keyValuePairs, String _table)throws Exception{
          
-         Set keySet = _keyValuePair.keySet();
-         String key = keySet.toString();
-         
-         
-         //DO SOME STUFF
-         
-         return new HashMap<String, String>();
+         //INITIALIZE LIST FOR ROWS THAT MATCH QUERY
+        ArrayList<String[]> matchingRows = new ArrayList<>();
+        
+        //EXTRACT THE FIRST CONDITION FROM QUERY AND REMOVE FROM MAP
+        String firstKey = (String) _keyValuePairs.keySet().toArray()[0];
+        String firstValue = _keyValuePairs.get(firstKey);
+        _keyValuePairs.remove(firstKey);
+        
+        
+        
+        //GET ROWS THAT MATCH FIRST CONDITION AND ADD TO ARRAYLIST
+        String[] columnNames = getColumnNames(_table);
+        int keyIndex = indexOf(columnNames, firstKey);
+        if(keyIndex == -1){
+            //KEY NOT FOUND IN COLUMN NAMES
+            return null;
+        }
+        BufferedReader br = new BufferedReader(new FileReader(_table));
+        String line = "";
+        String[] currentRow;
+        br.readLine(); //skip first line (column names)
+        while((line = br.readLine()) != null) {
+            currentRow = line.split(",");
+            if(currentRow[keyIndex].equals(firstValue)) //if row matches query condition
+                matchingRows.add(currentRow);   
+        }
+        if(matchingRows.size() == 0) //if no rows matched query
+            return null;
+        
+        
+        
+        //IF THERE IS MORE THAN ONE QUERY CONDITION (MORE THAN ONE KEY VALUE PAIR)
+        //REMOVE ROWS THAT DON'T MATCH THE ADDITIONAL QUERYS
+        for (Map.Entry<String, String> entry : _keyValuePairs.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            keyIndex = indexOf(columnNames, key);
+            //Iterate over array list
+            ArrayList<Integer> indiciesToRemove = new ArrayList<>();
+            int index = 0;
+            for(String[] row: matchingRows){
+                if(row[keyIndex] != value){
+                    indiciesToRemove.add(index);
+                    index++;
+                }
+            }
+            for(Integer idx : indiciesToRemove){
+                matchingRows.remove(idx);
+            }
+         }
+        
+        
+        
+        
+        //CREATE MAPS THAT REPRESENT THE MATCHING ROWS AND PUT THEM INTO ARRAY LIST
+        List<Map<String,String>> maps = new ArrayList<>();
+        for(String[] row : matchingRows){
+            Map<String, String> map = new HashMap<>();
+            int index = 0;
+            for(String value : row){
+                String key = columnNames[index];
+                map.put(key, value);
+                index++;
+            }
+            maps.add(map);
+        }
+        return maps;
          
      }
-    
+     
+ 
 
     @Override
     public int createObject(Map<String, String> _keyValuePairs, String _table) throws IOException{
@@ -125,6 +188,13 @@ public class CSVConnector implements DBConnectorInterface {
         return "1";
     }
 
+    private static int indexOf(String[] arr, String targetString){
+        for(int i = 0; i<arr.length; i++){
+            if(arr[i].equals(targetString))
+                return i;
+        }
+        return -1;
+    }
    
    
 

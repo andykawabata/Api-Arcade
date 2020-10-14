@@ -9,6 +9,7 @@ package models;
 import db.DataObject;
 import db.DataStoreAdapter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -27,45 +28,49 @@ public class User extends DataObject {
     public String getUsername() {
         return username;
     }
-    
-    public static User loadByUsername(String _username){
+    /**
+     * uses "readObject()" method to load a user into a User object, give the username
+     * @param _username: String
+     * @return User object with all properties filled. Null if username was not found. 
+     * @throws Exception 
+     */
+    public static User loadByUsername(String _username) throws Exception{
                 
-       if(_username == null)
-           return null;
        Map<String, String> keyValue = new HashMap<>();
        keyValue.put("username", _username);
-       Map<String, String> userInfo = DataStoreAdapter.readObject(keyValue, User.TABLE);
+       List<Map<String, String>> response = DataStoreAdapter.readObject(keyValue, User.TABLE);
+       if(response == null)// IF USER DIDN'T EXIST IN DB
+           return null;
+       Map<String, String> userInfo = response.get(0);
        User user = new User();
        user.username = userInfo.get("username");
        user.password = userInfo.get("password");
        user.uuid = userInfo.get("uuid");
+       user.id = Integer.valueOf(userInfo.get("id"));
        return user;
-       
     }
     
     public Boolean passwordMatches(String _password){
-         if(this.password == password)
+         if(this.password.equals(_password))
              return true;
          return false;
     }
     
-    public Boolean isValid(){
-        Map<String, String> response = this.loadByUsername();
-        if(response == null)
-            return false;
-        String actualPassword = response.get("password");
-        if(actualPassword == this.password)
-            return true;
-        
-        return false;
+ 
+    /**
+     * Updates LoginSession to reflect new user
+     */
+    public void login(){
+        LoginSession.currentUser = this;
     }
     
-    public Map<String, String> login(){
-        
-    }
     
+    /**
+     *uses User properties to either create new User or update current user,
+     * depending of if the user is in the table already (id != 0)
+     * @return true if user was saved, false if error
+     */
     public Boolean save(){
-        
         Map<String, String> userProperties = new HashMap<>();
         Map<String, String> parentProperties = new HashMap<>();
         if(this.username != null)

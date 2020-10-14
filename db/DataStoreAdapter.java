@@ -7,6 +7,7 @@ package db;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +30,7 @@ public class DataStoreAdapter {
         return (id != 0);
     }
     
-    public static Map<String, String> readObject(Map<String, String> _map, String _table) {
+    public static List<Map<String, String>> readObject(Map<String, String> _map, String _table) throws Exception {
         
         return connector.readObject(_map, _table);
     }

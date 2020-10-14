@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -93,9 +94,14 @@ public class CSVConnector implements DBConnectorInterface {
      * @return  String representation of next user id number
      * for example if there are 10 entries in the table it should return "11"
      */
-    private String getNextId(String _table) {
-        
-        return "1";
+    private String getNextId(String _table) throws FileNotFoundException {
+        int count = 1;
+        Scanner br = new Scanner(new FileReader(_table));
+        while(br.hasNextLine()){
+            count++;
+        }
+        String nextId = Integer.toString(count);
+        return nextId;
     }
 
    

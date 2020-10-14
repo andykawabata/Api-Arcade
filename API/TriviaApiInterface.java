@@ -14,11 +14,12 @@ import org.json.JSONArray;
  *
  * @author Francisco
  */
-public interface TriviaInterface {
+public interface TriviaApiInterface {
 
     public JSONObject ResonseBody() throws Exception;
 
     public String Question(JSONObject obj) throws Exception;
 
     public String Answer(JSONObject obj) throws Exception;
+    
 }

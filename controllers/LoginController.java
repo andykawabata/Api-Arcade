@@ -7,6 +7,8 @@ package controllers;
 
 import apiarcade.RunApp;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,6 +20,7 @@ import javafx.scene.*;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import models.User;
 
 /**
  * FXML Controller class
@@ -32,6 +35,10 @@ public class LoginController implements Initializable {
     private Label _lblXOut;
     @FXML
     private JFXButton logGuest;
+    @FXML
+    private JFXTextField username;
+    @FXML
+    private JFXPasswordField password;
 
     /**
      * Initializes the controller class.
@@ -43,8 +50,21 @@ public class LoginController implements Initializable {
 
     @FXML
     private void _btnSignIn(ActionEvent event) {
-        System.out.println("Clicked Sign In");
-        //transfer to main game view if user exists
+        
+        //HOW TO SET UUID???
+        String givenUsername = this.username.getText();
+        String givenPassword = this.password.getText();
+        User user = User.loadByUsername(givenUsername);
+        if(user == null)
+            System.out.println("bad");
+        if(user.passwordMatches(givenPassword)){
+            user.login();
+        }
+            
+        else
+            System.out.println("bad");
+        
+        
     }
 
     @FXML

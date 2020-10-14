@@ -5,7 +5,7 @@
  */
 package models;
 
-import db.DataFactory;
+
 import db.DataObject;
 import db.DataStoreAdapter;
 import java.util.HashMap;
@@ -28,16 +28,40 @@ public class User extends DataObject {
         return username;
     }
     
-    public Map<String, String> loadByUsername(){
+    public static User loadByUsername(String _username){
                 
-       if(this.username == null)
+       if(_username == null)
            return null;
        Map<String, String> keyValue = new HashMap<>();
-       keyValue.put("username", username);
-       
+       keyValue.put("username", _username);
        Map<String, String> userInfo = DataStoreAdapter.readObject(keyValue, User.TABLE);
-       return userInfo;
+       User user = new User();
+       user.username = userInfo.get("username");
+       user.password = userInfo.get("password");
+       user.uuid = userInfo.get("uuid");
+       return user;
        
+    }
+    
+    public Boolean passwordMatches(String _password){
+         if(this.password == password)
+             return true;
+         return false;
+    }
+    
+    public Boolean isValid(){
+        Map<String, String> response = this.loadByUsername();
+        if(response == null)
+            return false;
+        String actualPassword = response.get("password");
+        if(actualPassword == this.password)
+            return true;
+        
+        return false;
+    }
+    
+    public Map<String, String> login(){
+        
     }
     
     public Boolean save(){

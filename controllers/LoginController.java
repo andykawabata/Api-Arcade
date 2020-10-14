@@ -1,12 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//ADD ERROR MESSAGE BUTTON TO VIEW
 package controllers;
 
 import apiarcade.RunApp;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,6 +16,8 @@ import javafx.scene.*;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import models.LoginSession;
+import models.User;
 
 /**
  * FXML Controller class
@@ -32,6 +32,10 @@ public class LoginController implements Initializable {
     private Label _lblXOut;
     @FXML
     private JFXButton logGuest;
+    @FXML
+    private JFXTextField username;
+    @FXML
+    private JFXPasswordField password;
 
     /**
      * Initializes the controller class.
@@ -40,11 +44,37 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
+    
+    /**
+     * Signs in user given username and password
+     * or prints error message if unable to sign in
+     * @param event
+     * @throws Exception 
+     */
     @FXML
-    private void _btnSignIn(ActionEvent event) {
-        System.out.println("Clicked Sign In");
-        //transfer to main game view if user exists
+    private void _btnSignIn(ActionEvent event) throws Exception {
+        
+        
+        String givenUsername = username.getText();
+        String givenPassword = password.getText();
+        User user = User.loadByUsername(givenUsername); //if succesful, sets uuid
+        if(user == null){
+            System.out.println("Username doesn't exist"); //Should update view instead of printing
+            return;
+        }
+        if(user.passwordMatches(givenPassword)){
+            user.login();
+            System.out.println("User Logged in");
+        }
+        else
+            System.out.println("Incorrect Password"); //Should update view instead of printing
+        
+        System.out.println("id: " + LoginSession.currentUser.getId());
+        System.out.println("uuid: " + LoginSession.currentUser.getUuid());
+        System.out.println("username: " + LoginSession.currentUser.getUsername());
+        System.out.println("password: " + LoginSession.currentUser.getPassword());
+        
+        
     }
 
     @FXML

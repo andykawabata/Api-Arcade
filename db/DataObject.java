@@ -6,6 +6,8 @@
 package db;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,41 +15,27 @@ import java.util.logging.Logger;
  *
  * @author 
  */
-public class DataObject extends DataFactory {
+public class DataObject {
     
     protected final String dataTable = "";
     protected int id = 0;
     protected String uuid;
     
+  
     public DataObject() {
         this.setUuid(generateUuid());
     }
-    
-    public Boolean save() throws Exception {
-        // Has this object already been created?
-        if (this.id == 0) {
-            try {
-                return DataStoreAdapter.createObject(this);
-            } catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException | NoSuchFieldException ex) {
-
-            }
-        } else {/*
-            try {
-                // This is an exisitng object in the database, just update the object.
-                return DataStoreAdapter.updateObject(this);
-            } catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException | NoSuchFieldException ex) {
-
-            }*/
-        }
-        return false;
+ 
+    //Builds map of instance's current properties
+    public Map<String, String> createMap(){
+        Map<String, String> map = new HashMap<>();
+        map.put("id", String.valueOf(this.id));
+        if(uuid != null)
+            map.put("uuid", uuid);
+        return map;
     }
     
-    
-    
-    
-    
-    
-    
+ 
     public String generateUuid(){
         return "sg7e4s2";
     }

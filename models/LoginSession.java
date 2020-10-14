@@ -9,9 +9,8 @@ package models;
  *
  * @author andyk
  */
-public class Scores {
+public class LoginSession {
     
-    private int scores;
+    public static User currentUser;
     
-
 }

@@ -20,7 +20,7 @@ import org.json.JSONObject;
  * @author Francisco
  */
 
-public class OtdbTranslater implements TriviaInterface {
+public class OtdbTranslator implements TriviaApiInterface {
 
     String baseUrl = "https://opentdb.com/api.php";
     String numOfQuestions = "?amount=10";

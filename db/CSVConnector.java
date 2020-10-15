@@ -5,6 +5,7 @@
  */
 package db;
 
+import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -184,11 +185,12 @@ public class CSVConnector implements DBConnectorInterface {
      * @return  String representation of next user id number
      * for example if there are 10 entries in the table it should return "11"
      */
-    private String getNextId(String _table) throws FileNotFoundException {
-        int count = 1;
-        Scanner br = new Scanner(new FileReader(_table));
-        while(br.hasNextLine()){
-            count++;
+    private String getNextId(String _table) throws FileNotFoundException, IOException {
+        int count = 0;
+        BufferedReader sr = new BufferedReader(new FileReader(_table));
+        String line;
+        while((line = sr.readLine())!= null){
+             count++;
         }
         String nextId = Integer.toString(count);
         return nextId;

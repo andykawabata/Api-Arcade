@@ -35,7 +35,9 @@ public class DataStoreAdapter {
         return connector.readObject(_map, _table);
     }
 
-    
+    public static Boolean updateObject(Map<String, String> map, String _table){
+        return true;
+    }
     
     
 }

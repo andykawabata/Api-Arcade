@@ -11,9 +11,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: #000039;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
     <children>
-        <AnchorPane layoutX="504.0" layoutY="58.0" prefHeight="321.0" prefWidth="226.0" style="-fx-background-color: E0A406;" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="502.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="65.0">
+        <AnchorPane layoutX="504.0" layoutY="58.0" prefHeight="351.0" prefWidth="282.0" style="-fx-background-color: E0A406;" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="502.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="65.0">
             <children>
-                <JFXTextField fx:id="username" layoutX="15.0" layoutY="103.0" prefHeight="25.0" prefWidth="252.0" promptText="username" unFocusColor="WHITE" />
+                <JFXTextField fx:id="username" layoutX="22.0" layoutY="104.0" prefHeight="25.0" prefWidth="252.0" promptText="username" unFocusColor="WHITE" />
                 <JFXPasswordField fx:id="password" layoutX="22.0" layoutY="169.0" prefHeight="25.0" prefWidth="252.0" promptText="password" unFocusColor="WHITE" />
                 <JFXButton layoutX="15.0" layoutY="241.0" onAction="#_btnSignIn" prefHeight="25.0" prefWidth="252.0" style="-fx-background-color: F1DEAC;" text="Submit" textFill="#6b6b6b">
                     <font>
@@ -33,12 +33,6 @@
             <JFXButton layoutX="84.0" layoutY="208.0" onAction="#_hyplnkForgotPassword" text="forgot password?" textFill="#6b6b6b" underline="true" />
             </children>
         </AnchorPane>
-
-        <Label fx:id="_lblXOut" alignment="CENTER" layoutX="744.0" layoutY="14.0" prefHeight="38.0" prefWidth="42.0" text="X" textFill="WHITE">
-            <font>
-                <Font name="System Bold" size="28.0" />
-            </font>
-        </Label>
         <JFXButton layoutX="502.0" layoutY="34.0" onAction="#_btnSignUp" prefHeight="25.0" prefWidth="119.0" style="-fx-background-color: F1DEAC;" text="Sign Up" textFill="#6b6b6b" />
         <Label blendMode="SRC_ATOP" layoutX="33.0" layoutY="395.0" text="Where the fun has no end" textFill="WHITE">
             <font>

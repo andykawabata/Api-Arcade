@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.UUID;
 
 /**
  *
@@ -35,9 +36,8 @@ public class DataObject {
         return map;
     }
     
- 
     public String generateUuid(){
-        return "sg7e4s2";
+        return UUID.randomUUID().toString();
     }
     
     // ================================ GETTERS ====================================

@@ -4,41 +4,43 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainGameController">
+<AnchorPane id="AnchorPane" prefHeight="467.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainGameController">
    <children>
       <SplitPane dividerPositions="0.26884422110552764" orientation="VERTICAL" prefHeight="401.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #000039 #000039;" SplitPane.resizableWithParent="false">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="104.0" prefWidth="598.0" style="-fx-background-color: #000039 #000039;" SplitPane.resizableWithParent="false">
                <children>
-                  <Text fill="WHITE" layoutX="190.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="API ARCADE" textAlignment="CENTER" wrappingWidth="217.22900390625">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Text>
-                  <Hyperlink layoutX="31.0" layoutY="33.0" text="Leaderboards" />
-                  <Hyperlink layoutX="476.0" layoutY="48.0" text="View Profile" />
-                  <Label fx:id="userID" layoutX="481.0" layoutY="23.0" prefHeight="17.0" prefWidth="71.0" text="Hello, user" textFill="WHITE" />
-                  <Hyperlink layoutX="476.0" layoutY="79.0" onAction="#_userLogOut" text="Logout" />
+                  <ImageView fitHeight="136.0" fitWidth="611.0" layoutX="-7.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <image>
+                        <Image url="@../images/API%20Arcade%20Banner.png" />
+                     </image>
+                  </ImageView>
+                  <Hyperlink layoutX="22.0" layoutY="39.0" text="Leaderboards" />
+                  <Hyperlink layoutX="493.0" layoutY="66.0" text="View Profile" />
+                  <Label fx:id="userID" layoutX="493.0" layoutY="42.0" prefHeight="17.0" prefWidth="71.0" text="Hello, user" textFill="WHITE" />
+                  <Hyperlink layoutX="493.0" layoutY="94.0" onAction="#_userLogOut" text="Logout" />
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="290.0" prefWidth="598.0" style="-fx-background-color: #000039#000039;">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="376.0" prefWidth="598.0" style="-fx-background-color: #000039#000039;">
                <children>
                   <Pane layoutX="34.0" layoutY="54.0" prefHeight="117.0" prefWidth="530.0" style="-fx-background-color: E0A406 E0A406;">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e9ecee" height="117.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="530.0" />
-                        <Text layoutX="300.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The ultimate movie  trivia game" wrappingWidth="91.8955078125" />
+                        <Text layoutX="300.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The ultimate movie trivia game" wrappingWidth="91.8955078125" />
                         <Button layoutX="411.0" layoutY="21.0" mnemonicParsing="false" onAction="#_gameStart" prefHeight="72.0" prefWidth="92.0" style="-fx-background-color: F1DEAC F1DEAC;" text="Play Now!" textAlignment="CENTER">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Label layoutX="23.0" layoutY="8.0" prefHeight="51.0" prefWidth="239.0" text="Movie Trivia: The Game">
+                        <Label layoutX="14.0" layoutY="8.0" prefHeight="51.0" prefWidth="281.0" text="Movie Trivia: The Game" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font>
@@ -51,6 +53,23 @@
                         <Font size="24.0" />
                      </font>
                   </Text>
+                  <Pane layoutX="34.0" layoutY="189.0" prefHeight="117.0" prefWidth="530.0" style="-fx-background-color: E0A406 E0A406;">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e9ecee" height="117.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="530.0" />
+                        <Text layoutX="300.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The penultimate movie trivia game" wrappingWidth="91.8955078125" />
+                        <Button layoutX="411.0" layoutY="21.0" mnemonicParsing="false" onAction="#_gameStart" prefHeight="72.0" prefWidth="92.0" style="-fx-background-color: F1DEAC F1DEAC;" text="Play Now!" textAlignment="CENTER">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="14.0" layoutY="8.0" prefHeight="51.0" prefWidth="281.0" text="The other game" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="highScore1" layoutX="23.0" layoutY="84.0" text="High Score: 0" />
+                     </children>
+                  </Pane>
                </children>
             </AnchorPane>
         </items>

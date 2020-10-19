@@ -17,7 +17,7 @@ import models.User;
  *
  * @author andyk
  */
-public class DataStoreAdapter {
+public class DataStoreAdapter  {
     
     private static final DBConnectorInterface connector = new CSVConnector();
     
@@ -35,7 +35,7 @@ public class DataStoreAdapter {
         return connector.readObject(_map, _table);
     }
 
-    public static Boolean updateObject(Map<String, String> map, String _table){
+    public static Boolean updateObject(Map<String, String> map, String uuid, String _table){
         return true;
     }
     

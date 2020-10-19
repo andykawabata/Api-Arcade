@@ -16,7 +16,10 @@ import javafx.scene.control.Label;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import db.DataStoreAdapter;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -54,20 +57,25 @@ public class ForgotPasswordController implements Initializable {
 
     //The reset password button
     @FXML
-    private void _btnUpdateInfoAndReturn() throws IOException {
+    private void _btnUpdateInfoAndReturn() throws IOException, Exception {
+        //STILL NEEDS TO HANDLE USERNAME NOT EXISTING
+        
         System.out.println("Reset Password clicked");
-        String newPass = "";
-        String givenUsername = "";
+        String newPass = newPassword.getText();
+        String newPassConfirm = confirmPassword.getText();
+        String givenUsername = username.getText();
         
-        if(confirmPassword.getText().equals(newPassword.getText()))
-            newPass = newPassword.getText();
-        givenUsername = username.getText();
+        if(!newPassConfirm.equals(newPass)){
+            System.out.println("Passwords Dont Match");
+            return;
+        }
         
-        User newUser = new User();
-        newUser.setUsername(givenUsername);
-        newUser.setPassword(newPass);
+        User user = User.loadByUsername(givenUsername);
+        String uuid = user.getUuid();
+        Map<String, String> newPasswordMap = new HashMap<>();
+        newPasswordMap.put("password", newPass);
         
-        //DataStoreAdapter.updateObject(newUser, User.TABLE);
+        DataStoreAdapter.updateObject(newPasswordMap, uuid, User.TABLE);
         RunApp.showLoginView();
     }
 

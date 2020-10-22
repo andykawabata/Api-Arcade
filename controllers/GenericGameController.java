@@ -7,6 +7,7 @@ package controllers;
 
 
 import apiarcade.RunApp;
+import factories.GameFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,8 +19,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.HBox;
+import models.Game;
 
 
 /**
@@ -42,6 +47,8 @@ public class GenericGameController implements Initializable {
     private Label _questionText;
     @FXML
     private Label _resultDisplay;
+    @FXML
+    private HBox _imageContainer;
 
 
     /**
@@ -49,10 +56,60 @@ public class GenericGameController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        Game currentGame = GameFactory.getCurrentGameInstance();
+        currentGame.initialize();
+        Map<String, Object> data = currentGame.createMap();
+        updateView(data);
     }    
+    
+   @FXML
+    private void _newQuestion(ActionEvent event) {
+        Game currentGame = GameFactory.getCurrentGameInstance();
+        currentGame.newQuestion();
+        Map<String, Object> data = currentGame.createMap();
+        updateView(data);
+       
+    }
+    
+    @FXML
+    private void _submitAnswer(ActionEvent event) {
+        //ADD CODE TO CHECK IF GAME OVER
+        Game currentGame = GameFactory.getCurrentGameInstance();
+        currentGame.processAnswer(_answerInput.getText());
+        Map<String, Object> data = currentGame.createMap();
+        updateView(data);
+    }
+    
 
-
+       
+    /*
+    data:
+        {
+        gameTitle: String,
+        questionText: String,
+        images: ArrayList<String>,
+        result: String,
+        currentScore: String,
+        currentQuestionNumber: String
+        }
+     */
+    private void updateView(Map<String, Object> data){
+        if(data.containsKey("gameTitle")){
+            String title = (String) data.get("gameTitle");
+            this._gameTitle.setText(title);
+        }
+        if(data.containsKey("questionText")){
+            String text = (String) data.get("questionText");
+            this._questionText.setText(text);
+         }
+        if(data.containsKey("images")){
+            ArrayList<String> images = (ArrayList<String>) data.get("images");
+            for(String image : images){
+                //append image to container
+            }
+        }
+    }
+    
     @FXML
     private void _backBtn(ActionEvent event) throws IOException {
         RunApp.showMainGame();

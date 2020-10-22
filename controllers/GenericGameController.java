@@ -24,6 +24,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import models.Game;
 
 
@@ -48,6 +49,12 @@ public class GenericGameController implements Initializable {
     @FXML
     private Label _resultDisplay;
     @FXML
+    private Text _currentQuestionNumber;
+    @FXML
+    private Text _totalQuestions;
+    @FXML
+    private Text _currentScore;
+    @FXML
     private HBox _imageContainer;
 
 
@@ -56,6 +63,7 @@ public class GenericGameController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         Game currentGame = GameFactory.getCurrentGameInstance();
         currentGame.initialize();
         Map<String, Object> data = currentGame.createMap();
@@ -93,20 +101,36 @@ public class GenericGameController implements Initializable {
         currentQuestionNumber: String
         }
      */
-    private void updateView(Map<String, Object> data){
-        if(data.containsKey("gameTitle")){
-            String title = (String) data.get("gameTitle");
+    private void updateView(Map<String, Object> _data){
+        if(_data.containsKey("gameTitle")){
+            String title = (String) _data.get("gameTitle");
             this._gameTitle.setText(title);
         }
-        if(data.containsKey("questionText")){
-            String text = (String) data.get("questionText");
+        if(_data.containsKey("questionText")){
+            String text = (String) _data.get("questionText");
             this._questionText.setText(text);
          }
-        if(data.containsKey("images")){
-            ArrayList<String> images = (ArrayList<String>) data.get("images");
+        if(_data.containsKey("images")){
+            ArrayList<String> images = (ArrayList<String>) _data.get("images");
             for(String image : images){
-                //append image to container
+                //append images to container
             }
+        }
+        if(_data.containsKey("result")){
+            String result = (String) _data.get("result");
+            this._resultDisplay.setText(result);
+        }
+        if(_data.containsKey("currentScore")){
+            String currentScore = (String) _data.get("currentScore");
+            this._currentScore.setText(currentScore);
+        }
+        if(_data.containsKey("currentQuestionNumber")){
+            String currentQuestionNumber = (String) _data.get("currentQuestionNumber");
+            this._currentQuestionNumber.setText(currentQuestionNumber);
+        }
+        if(_data.containsKey("totalQuestions")){
+            String currentQuestionNumber = (String) _data.get("totalQuestions");
+            this._totalQuestions.setText(currentQuestionNumber);
         }
     }
     

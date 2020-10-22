@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package prototypes.gameDesign;
+package models;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +30,7 @@ public abstract class Game {
     
     public abstract void newQuestion();
     
-    public abstract void processAnswer();
+    public abstract void processAnswer(String givenAnswer);
     
     public Map<String, Object> createMap(){
         
@@ -52,8 +52,5 @@ public abstract class Game {
         return data;
         
     }
+    
 }
-    
-   
-    
-

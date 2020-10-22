@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package prototypes.gameDesign;
+package models;
 
 /**
  *
  * @author andyk
  */
-public class GameOne extends Game {
+public class MovieGame extends Game {
 
     @Override
     public void initialize() {
@@ -20,9 +20,7 @@ public class GameOne extends Game {
     }
 
     @Override
-    public void processAnswer() {
+    public void processAnswer(String answer) {
     }
-    
-    
     
 }

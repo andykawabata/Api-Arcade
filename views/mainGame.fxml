@@ -35,7 +35,7 @@
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e9ecee" height="117.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="530.0" />
                         <Text layoutX="300.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The ultimate movie trivia game" wrappingWidth="91.8955078125" />
-                        <Button layoutX="411.0" layoutY="21.0" mnemonicParsing="false" onAction="#_gameStart" prefHeight="72.0" prefWidth="92.0" style="-fx-background-color: F1DEAC F1DEAC;" text="Play Now!" textAlignment="CENTER">
+                        <Button layoutX="411.0" layoutY="21.0" mnemonicParsing="false" onAction="#_gameOneStart" prefHeight="72.0" prefWidth="92.0" style="-fx-background-color: F1DEAC F1DEAC;" text="Play Now!" textAlignment="CENTER">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -57,7 +57,7 @@
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e9ecee" height="117.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="530.0" />
                         <Text layoutX="300.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The penultimate movie trivia game" wrappingWidth="91.8955078125" />
-                        <Button layoutX="411.0" layoutY="21.0" mnemonicParsing="false" onAction="#_gameStart" prefHeight="72.0" prefWidth="92.0" style="-fx-background-color: F1DEAC F1DEAC;" text="Play Now!" textAlignment="CENTER">
+                        <Button layoutX="411.0" layoutY="21.0" mnemonicParsing="false" onAction="#_gameTwoStart" prefHeight="72.0" prefWidth="92.0" style="-fx-background-color: F1DEAC F1DEAC;" text="Play Now!" textAlignment="CENTER">
                            <font>
                               <Font size="14.0" />
                            </font>

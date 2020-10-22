@@ -6,6 +6,7 @@
 package controllers;
 
 import apiarcade.RunApp;
+import factories.GameFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,7 +43,14 @@ public class MainGameController implements Initializable {
     }
 
     @FXML
-    private void _gameStart(ActionEvent event) throws IOException {
+    private void _gameOneStart(ActionEvent event) throws IOException {
+        GameFactory.setCurrentGame(GameFactory.GAME_ONE);
+        RunApp.showgenericGame();
+    }
+    
+    @FXML
+    private void _gameTwoStart(ActionEvent event) throws IOException {
+        GameFactory.setCurrentGame(GameFactory.GAME_TWO);
         RunApp.showgenericGame();
     }
     

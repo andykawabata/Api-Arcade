@@ -21,5 +21,4 @@ public interface TriviaApiInterface {
     public String Question(JSONObject obj) throws Exception;
 
     public String Answer(JSONObject obj) throws Exception;
-    
 }

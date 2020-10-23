@@ -19,5 +19,4 @@ public interface MovieApiInterface {
     public String[] getPostersOfSimilarById(int id, int numPosters)throws Exception;
     
     
-    
 }

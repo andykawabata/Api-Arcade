@@ -33,11 +33,11 @@ public class MovieApiAdapter implements MovieApiInterface {
     
     
     /**
-     * 
+     *
      * @param id
      * @param numPosters
      * @return String[]: list of poster image URLs
-     * @throws Exception 
+     * @throws Exception
      */
     public String[] getPostersOfSimilarById(int id, int numPosters) throws Exception {
         

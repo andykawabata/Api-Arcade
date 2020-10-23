@@ -8,6 +8,7 @@ package models;
 import API.MovieApiAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.logging.Level;
@@ -30,6 +31,7 @@ public class MovieGame extends Game {
     static Integer currentQuestionNumber = 1
     static Integer totalQuestions
     */
+    public final int NUM_FALSE_MOVIES = 4;
     MovieApiAdapter api = new MovieApiAdapter();
 
     public MovieGame(){
@@ -40,18 +42,75 @@ public class MovieGame extends Game {
     @Override
     public void initialize() {
         
-        //GENERATE RANDOM ID
         int movieId = generateRandomId(2000);
+        String description = "";
+        String posterUrl = "";
+        int correctIndexInt = 0;
+        String[] similarPosterUrls = new String[NUM_FALSE_MOVIES];
+        String[] allPosterUrls = new String[NUM_FALSE_MOVIES + 1];
+        ArrayList<HashMap<String ,String>> posterList = new ArrayList<>();
+        
+        
         try {
-            Map<String, String> descriptionPoster = api.getPosterAndDescriptionById(movieId);
-            System.out.println(descriptionPoster.get("posterUrl"));
+            //GET CORRECT POSTER AND DESCRIPTION
+            Map<String, String> descriptionAndPoster = api.getPosterAndDescriptionById(movieId);
+            description = descriptionAndPoster.get("description");
+            posterUrl = descriptionAndPoster.get("posterUrl");
+            
+            //EXTRACT FIRST SENTENCE OF DESCRIPTION
+            String[] sentences = description.split("\\.");
+            String firstSentence = sentences[0] + ".";
+            description = firstSentence;
+            
+            //GET SIMILAR POSTERS
+            similarPosterUrls = api.getPostersOfSimilarById(movieId, this.NUM_FALSE_MOVIES);
+            
+            //GET ALL POSTERS INTO SINGLE ARRAY
+            allPosterUrls[0] = posterUrl;
+            for(int i = 0; i < allPosterUrls.length -1; i++){
+                allPosterUrls[i+1] = similarPosterUrls[i];
+            }
+            
+            
+            
+            //SHUFFLE ARRAY, GET CORRECT INDEX, ADD TO ARRAYLIST
+            correctIndexInt = this.shufflePosters(allPosterUrls);
+            for(int i = 0; i < allPosterUrls.length; i++){
+                HashMap<String,String> imageAndLabel = new HashMap<>();
+                imageAndLabel.put("image", allPosterUrls[i]);
+                imageAndLabel.put("label", String.valueOf(i+1));
+                posterList.add(imageAndLabel);
+            }
+            
+            //SET FIELDS
+            this.correctAnswer = String.valueOf(correctIndexInt);
+            this.questionText = description;
+            this.imageLabelPairs = posterList;
+            
+            
+            
             
         } catch (Exception ex) {
             System.out.println("exception!");
         }
         
     }
+    
+    private int shufflePosters(String[] _posterUrls){
+        Random rand = new Random();
+        int correctIndex = rand.nextInt(this.NUM_FALSE_MOVIES)+1;
+        swap(_posterUrls, correctIndex, 0);
+        String correctAnswer = String.valueOf(correctIndex + 1);
+        return correctIndex;
+        
+        
+    }
 
+    public void swap(String[] posters, int i, int j){
+        String temp = posters[i];
+        posters[i] = posters[j];
+        posters[j] = temp;
+    }
     @Override
     public void newQuestion() {
     }

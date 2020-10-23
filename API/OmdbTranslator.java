@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -36,20 +37,29 @@ public class OmdbTranslator implements MovieApiInterface {
     public Map<String, String> getPosterAndDescriptionById(int id) throws Exception {
           
             String movieID = String.valueOf(id);
-            String description = "";
-            
+            String description = null;
+            String posterPath = null;
             String requestUrl = baseURL + movieID + "?api_key=" + apiKey;
-            
+            System.out.println(requestUrl);
             HttpClient httpClient = HttpClient.newHttpClient();
             HttpResponse response;
-        
-            response = httpClient.send(HttpRequest.newBuilder()
+            
+            boolean success = false;
+            JSONObject obj = null;
+            
+            while(!success){
+                response = httpClient.send(HttpRequest.newBuilder()
                     .GET()
                     .uri(URI.create(requestUrl))
                     .build(), HttpResponse.BodyHandlers.ofString());
-            JSONObject obj = new JSONObject(response.body().toString());
-            String overview = (String) obj.get("overview");
-            String posterPath = (String) obj.get("poster_path");
+                obj = new JSONObject(response.body().toString());
+                //INCREMENT MOVIEID IN CASES THIS MOVIE DIDN'T HAVE DESCRPTION OR POSTER
+                success = !obj.has("success");
+                movieID = String.valueOf(Integer.valueOf(movieID) + 1);
+                requestUrl = baseURL + movieID + "?api_key=" + apiKey;
+            }
+            description = (String) obj.get("overview");
+            posterPath = (String) obj.get("poster_path");
             String posterUrl = imageBaseURL + size + posterPath;
             
             Map<String, String> data = new HashMap<>();
@@ -65,15 +75,40 @@ public class OmdbTranslator implements MovieApiInterface {
      * @param id
      * @param numPosters
      * @return 
+     * @throws java.io.IOException 
      */
     //STUB
     @Override
-    public String[] getPostersOfSimilarById(int id, int numPosters) {
+    public String[] getPostersOfSimilarById(int id, int numPosters) throws IOException, InterruptedException, JSONException {
         
-        String[] posters = {"www.picture.com", "www.dot.com"};
-        return posters;
+        String movieID = String.valueOf(id);
+        String[] posterUrls = new String[numPosters];
+        String requestUrl = baseURL + movieID + "/similar" + "?api_key=" + apiKey;
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpResponse response;
+        
+        boolean success = false;
+        JSONObject obj = null;
+        while(!success){
+            response = httpClient.send(HttpRequest.newBuilder()
+                        .GET()
+                        .uri(URI.create(requestUrl))
+                        .build(), HttpResponse.BodyHandlers.ofString());
+
+            obj = new JSONObject(response.body().toString());
+            success = !obj.has("success");
+            movieID = String.valueOf(Integer.valueOf(movieID) + 1);
+            requestUrl = baseURL + movieID + "/similar" + "?api_key=" + apiKey;
+        }
+        JSONArray results = (JSONArray) obj.get("results");
+        
+        for(int i=0; i < posterUrls.length; i++){
+            JSONObject result = (JSONObject) results.get(i);
+            String posterPath = (String) result.get("poster_path");
+            String posterURL = imageBaseURL + size + posterPath;
+            posterUrls[i] = posterURL;
+        }
+        return posterUrls;
     }
-    
-    
     
 }

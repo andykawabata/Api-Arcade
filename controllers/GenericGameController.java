@@ -20,10 +20,15 @@ import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import models.Game;
 
@@ -65,8 +70,16 @@ public class GenericGameController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         Game currentGame = GameFactory.getCurrentGameInstance();
+        if(currentGame == null)
+            return;
         currentGame.initialize();
         Map<String, Object> data = currentGame.createMap();
+        
+        for (Map.Entry<String, Object> entry : data.entrySet()) {
+            String key = entry.getKey().toString();
+            Object value = entry.getValue();
+            System.out.println("key, " + key + " value " + value);
+        }
         updateView(data);
     }    
     
@@ -110,11 +123,9 @@ public class GenericGameController implements Initializable {
             String text = (String) _data.get("questionText");
             this._questionText.setText(text);
          }
-        if(_data.containsKey("images")){
-            ArrayList<String> images = (ArrayList<String>) _data.get("images");
-            for(String image : images){
-                //append images to container
-            }
+        if(_data.containsKey("imageLabelPairs")){
+            ArrayList<HashMap<String,String>>  imageLabelPairs = (ArrayList<HashMap<String,String>>) _data.get("imageLabelPairs");
+            this.addImagesToView(imageLabelPairs);
         }
         if(_data.containsKey("result")){
             String result = (String) _data.get("result");
@@ -131,6 +142,31 @@ public class GenericGameController implements Initializable {
         if(_data.containsKey("totalQuestions")){
             String currentQuestionNumber = (String) _data.get("totalQuestions");
             this._totalQuestions.setText(currentQuestionNumber);
+        }
+    }
+    
+    private void addImagesToView(ArrayList<HashMap<String,String>> _imageLabelPairs){
+        this._imageContainer.getChildren().clear();
+        int index = 0;
+        for(HashMap<String, String> imageLabelaPair : _imageLabelPairs){
+            
+            //CREATE JAVAFX ELEMENTS
+            VBox vbox = new VBox();
+            vbox.setAlignment(Pos.CENTER);
+            ImageView imageView = new ImageView();
+            Label label = new Label();
+            Image image = new Image(_imageLabelPairs.get(index).get("image"));
+            
+            //INSERT CONTENT
+            label.setText(_imageLabelPairs.get(index).get("label"));
+            imageView.setImage(image);
+            vbox.getChildren().add(imageView);
+            vbox.getChildren().add(label);
+            
+            //ADD NEW IMAGE WITH LABEL TO VIEW
+            this._imageContainer.getChildren().add(vbox);
+            
+            index++;
         }
     }
     

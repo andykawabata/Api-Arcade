@@ -18,7 +18,7 @@ public abstract class Game {
     //Instance Variables
     public String gameTitle;
     public String questionText;
-    public ArrayList<String> images;
+    public ArrayList<HashMap<String,String>> imageLabelPairs;
     public String result;
     
     //State variables
@@ -40,8 +40,8 @@ public abstract class Game {
             data.put("gameTitle", this.gameTitle);
         if (this.questionText != null)
             data.put("questionText", this.questionText);
-        if(this.images != null)
-            data.put("images", this.images);
+        if(this.imageLabelPairs != null)
+            data.put("imageLabelPairs", this.imageLabelPairs);
         if(this.result != null)
             data.put("result", this.result);
         if(this.currentScore != null) {

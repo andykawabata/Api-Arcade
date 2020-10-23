@@ -15,7 +15,7 @@ public class TriviaGame extends Game {
     PARENT FEILDS:
     String gameTitle
     String questionText
-    ArrayList<String> images
+    ArrayList<HashMap<String, String> imageLabelPairs
     String result
     
     static Integer currentScore = 0

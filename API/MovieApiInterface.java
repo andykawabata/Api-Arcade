@@ -1,22 +1,21 @@
 package API;
-
+/*
+*Last updated on 10/24/20
+*
+*An interface that allows a given adapter to get a poster and description in a map of
+*two strings by ID. Also allows getting similar posters to a specific movie by ID.
+*
+*
+*Contributing authors
+*@author Andy
+*/
 import java.util.Map;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author andyk
- */
 public interface MovieApiInterface {
-    
+
     public Map<String, String> getPosterAndDescriptionById(int id) throws Exception;
-    
+
     public String[] getPostersOfSimilarById(int id, int numPosters)throws Exception;
-    
-    
+
+
 }

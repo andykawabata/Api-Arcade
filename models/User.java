@@ -9,21 +9,19 @@ package models;
 import db.DataObject;
 import db.DataStoreAdapter;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 //Get Rid of hardcoded password
 public class User extends DataObject {
-    
+
     private String username;
     private String password;
     public static String TABLE = "src/storage/users.csv";
 
-    
+
     public User(){}
 
-   
+
 
     public String getUsername() {
         return username;
@@ -31,40 +29,42 @@ public class User extends DataObject {
     /**
      * uses "readObject()" method to load a user into a User object, give the username
      * @param _username: String
-     * @return User object with all properties filled. Null if username was not found. 
-     * @throws Exception 
+     * @param _password: String
+     * @return User object with all properties filled. Null if username was not found.
+     * @throws Exception
      */
-    public static User loadByUsername(String _username) throws Exception{
-                
+    public static User loadByUsername(String _username, String _password) throws Exception{
+
        Map<String, String> keyValue = new HashMap<>();
        keyValue.put("username", _username);
-       List<Map<String, String>> response = DataStoreAdapter.readObject(keyValue, User.TABLE);
+       keyValue.put("password", _password);
+       Map<String, String> response = DataStoreAdapter.readObject(keyValue, User.TABLE);
        if(response == null)// IF USER DIDN'T EXIST IN DB
            return null;
-       Map<String, String> userInfo = response.get(0);
        User user = new User();
-       user.username = userInfo.get("username");
-       user.password = userInfo.get("password");
-       user.uuid = userInfo.get("uuid");
-       user.id = Integer.valueOf(userInfo.get("id"));
+       user.id = Integer.valueOf(response.get("id"));
+       user.uuid = response.get("uuid");
+       user.username = response.get("username");
+       user.password = response.get("password");
+
        return user;
     }
-    
+
     public Boolean passwordMatches(String _password){
          if(this.password.equals(_password))
              return true;
          return false;
     }
-    
- 
+
+
     /**
      * Updates LoginSession to reflect new user
      */
     public void login(){
         LoginSession.currentUser = this;
     }
-    
-    
+
+
     /**
      *uses User properties to either create new User or update current user,
      * depending of if the user is in the table already (id != 0)
@@ -79,7 +79,7 @@ public class User extends DataObject {
             userProperties.put("password", this.password);
         parentProperties = super.createMap();
         userProperties.putAll(parentProperties);
-        
+
         if (this.id == 0) {
             try {
                 return DataStoreAdapter.createObject(userProperties, User.TABLE);
@@ -94,8 +94,8 @@ public class User extends DataObject {
         }
         return false;
     }
-    
-    
+
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -106,7 +106,12 @@ public class User extends DataObject {
 
     public void setPassword(String password) {
         this.password = password;
-    } 
-    
-  
+    }
+
+    public static boolean usernameExists(String givenUsername) throws Exception{
+       Map<String, String> keyValue = new HashMap<>();
+       keyValue.put("username", givenUsername);
+       return DataStoreAdapter.findObject(keyValue, User.TABLE);
+    }
+
 }

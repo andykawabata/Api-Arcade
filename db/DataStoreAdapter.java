@@ -9,7 +9,6 @@ package db;
 *@author Andy
 */
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 import java.util.Map;
 
 public class DataStoreAdapter {
@@ -25,13 +24,13 @@ public class DataStoreAdapter {
         return (id != 0);
     }
 
-    public static List<Map<String, String>> readObject(Map<String, String> _map, String _table) throws Exception {
+    public static Map<String, String> readObject(Map<String, String> _map, String _table) throws Exception {
         return connector.readObject(_map, _table);
     }
 
     // ================================ STUBS ==================================== //
 
-    public static Boolean updateObject(Map<String, String> map, String uuid, String _table){
+    public static Boolean updateObject(Map<String, String> map, String uuid, String _table) {
         return false;
     }
 
@@ -39,5 +38,8 @@ public class DataStoreAdapter {
         return false;
     }
 
+    public static boolean findObject(Map<String, String> _keyValue, String _table) throws Exception {
+        return connector.findObject(_keyValue, _table);
+    }
 
 }

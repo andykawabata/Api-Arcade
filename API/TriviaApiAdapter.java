@@ -1,33 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package API;
-
+/*
+*Last updated on 10/24/20
+*
+*This is an adapter class that has an otdb translator object and uses the
+*trivia interface to return a JSONObject, the answer, or the question
+*
+*Contributing authors
+*@author Francisco
+*@author Ryan
+*/
 import org.json.JSONObject;
 
-/**
- *
- * @author Francisco
- */
 public class TriviaApiAdapter implements TriviaApiInterface {
 
     public static final TriviaApiInterface triviaApiTranslator = new OtdbTranslator();
 
+    //=================  GETTERS ===============//
+
     @Override
-    public JSONObject ResonseBody() throws Exception {
-        return triviaApiTranslator.ResonseBody();
+    public JSONObject getResponseBody() throws Exception {
+        return triviaApiTranslator.getResponseBody();
     }
 
     @Override
-    public String Question(JSONObject obj) throws Exception {
-        return triviaApiTranslator.Question(obj);
+    public String getQuestion(JSONObject obj) throws Exception {
+        return triviaApiTranslator.getQuestion(obj);
     }
 
     @Override
-    public String Answer(JSONObject obj) throws Exception {
-        return triviaApiTranslator.Answer(obj);
+    public String getAnswer(JSONObject obj) throws Exception {
+        return triviaApiTranslator.getAnswer(obj);
     }
-    
 }

@@ -9,6 +9,7 @@ package models;
 import db.DataObject;
 import db.DataStoreAdapter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 //Get Rid of hardcoded password
@@ -38,22 +39,21 @@ public class User extends DataObject {
        Map<String, String> keyValue = new HashMap<>();
        keyValue.put("username", _username);
        keyValue.put("password", _password);
-       Map<String, String> response = DataStoreAdapter.readObject(keyValue, User.TABLE);
-       if(response == null)// IF USER DIDN'T EXIST IN DB
+       List<Map<String, String>> response = DataStoreAdapter.readObject(keyValue, User.TABLE);
+       // IF USER DIDN'T EXIST IN DB
+       if(response == null)
            return null;
        User user = new User();
-       user.id = Integer.valueOf(response.get("id"));
-       user.uuid = response.get("uuid");
-       user.username = response.get("username");
-       user.password = response.get("password");
+       user.id = Integer.valueOf(response.get(0).get("id"));
+       user.uuid = response.get(0).get("uuid");
+       user.username = response.get(0).get("username");
+       user.password = response.get(0).get("password");
 
        return user;
     }
 
     public Boolean passwordMatches(String _password){
-         if(this.password.equals(_password))
-             return true;
-         return false;
+         return this.password.equals(_password);
     }
 
 
@@ -63,7 +63,6 @@ public class User extends DataObject {
     public void login(){
         LoginSession.currentUser = this;
     }
-
 
     /**
      *uses User properties to either create new User or update current user,
@@ -111,7 +110,7 @@ public class User extends DataObject {
     public static boolean usernameExists(String givenUsername) throws Exception{
        Map<String, String> keyValue = new HashMap<>();
        keyValue.put("username", givenUsername);
-       return DataStoreAdapter.findObject(keyValue, User.TABLE);
+       return DataStoreAdapter.findObjectByUsername(keyValue, User.TABLE);
     }
 
 }

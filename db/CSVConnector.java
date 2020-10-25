@@ -18,6 +18,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CSVConnector implements DBConnectorInterface {
@@ -38,21 +40,21 @@ public class CSVConnector implements DBConnectorInterface {
     *password: 123445
     */
      @Override
-     public Map<String, String> readObject(Map<String, String> _keyValuePairs, String _table)throws Exception {
+     public List<Map<String, String>> readObject(Map<String, String> _keyValuePairs, String _table)throws Exception {
 
         //INITIALIZE LIST FOR ROWS THAT MATCH QUERY
         ArrayList<String[]> matchingRows;
-        Map<String, String> succeededLogin;
-        String usernameKey, usernameValue;
+        List<Map<String, String>> maps = new ArrayList<>();
+        String firstKey, firstValue;
         String[] columnNames;
         BufferedReader br = new BufferedReader(new FileReader(_table));
 
-        //EXTRACT THE USERNAME[1] CONDITION FROM QUERY
-        usernameKey = _keyValuePairs.keySet().toArray()[1].toString();
-        usernameValue = _keyValuePairs.get(usernameKey);
+        //EXTRACT THE FIRST CONDITION FROM QUERY
+        firstKey = (String) _keyValuePairs.keySet().toArray()[0].toString();
+        firstValue = _keyValuePairs.get(firstKey);
 
         columnNames = getColumnNames(_table);
-        int keyIndex = indexOf(columnNames, usernameKey);
+        int keyIndex = indexOf(columnNames, firstKey);
         //if key not found in column names
         if(keyIndex == -1)
             return null;
@@ -61,12 +63,28 @@ public class CSVConnector implements DBConnectorInterface {
         //IF THERE IS MORE THAN ONE QUERY CONDITION (MORE THAN ONE KEY VALUE PAIR)
         //REMOVE ROWS THAT DON'T MATCH THE ADDITIONAL QUERYS
         br.readLine();
-        matchingRows = populateMatchingRows(br, keyIndex, usernameValue);
+        matchingRows = populateMatchingRows(br, keyIndex, firstValue);
         if(matchingRows.isEmpty())
             return null;
-        succeededLogin = removeUnmatchedRows(_keyValuePairs, matchingRows);
 
-        return succeededLogin;
+        /*This method takes multiple rows in the case of a login of non-distinct username
+        *and reduces it to the one that the password matches
+        *also it returns Map<String, String> but it can easily be changed to List<Map<String, String>>
+        */
+        //if(_table.equals(User.TABLE))
+            //maps = removeUnmatchedRows(_keyValuePairs, matchingRows, _table);
+
+        for(String[] row : matchingRows){
+            Map<String, String> map = new HashMap<>();
+            int index = 0;
+            for(String value : row){
+                String key = columnNames[index];
+                map.put(key, value);
+                index++;
+            }
+            maps.add(map);
+        }
+        return maps;
      }
 
     @Override
@@ -96,7 +114,7 @@ public class CSVConnector implements DBConnectorInterface {
     }
 
     @Override
-    public boolean findObject(Map<String, String> _usernameKeyValue, String _table)throws Exception {
+    public boolean findObjectByUsername(Map<String, String> _usernameKeyValue, String _table)throws Exception {
         BufferedReader br = new BufferedReader(new FileReader(_table));
         String columnName = "username";
         String givenUsername = _usernameKeyValue.get(columnName);
@@ -118,27 +136,28 @@ public class CSVConnector implements DBConnectorInterface {
     //    HELPER METHODS
     ///////////////////////////////////////////////////////////////////////////
 
-    private Map<String, String> removeUnmatchedRows(Map<String, String> _keyValuePairs, ArrayList<String[]> matchingRows) {
-        //populate keyValuePairs with correct row using matchingRows
+    private List<Map<String, String>> removeUnmatchedRows(Map<String, String> _keyValuePairs, ArrayList<String[]> matchingRows, String _table) throws IOException {
+        //populate finalHashMap with _keyValuePairs and find correct row using matchingRows
         String enteredPassword = _keyValuePairs.values().toArray()[0].toString();
-        //take out "= _keyValuePairs"
-        Map<String, String> succeededLogin =  _keyValuePairs;
+        List<Map<String, String>> finalHashMap = null;
+        finalHashMap.add(_keyValuePairs);
         _keyValuePairs.clear();
+
         String[] matchedTuple;
         int correctTuple = -1;
-        String[] keys = {"id", "uuid","username", "password"};
+        String[] columnNames = getColumnNames(_table);
         for(int i = 0; i < matchingRows.size(); i++){
             matchedTuple = matchingRows.get(i);
             for (int j = 0; j < matchedTuple.length; j++) {
                 //if password entered by user = matchedTuple password
                 if(enteredPassword.equals(matchedTuple[3])){
-                    _keyValuePairs.put(keys[j], matchedTuple[j]);
+                    _keyValuePairs.put(columnNames[j], matchedTuple[j]);
                     correctTuple = i;
                 }
             }
         }
         if(correctTuple > -1)
-            return succeededLogin;
+            return finalHashMap;
         return null;
     }
 

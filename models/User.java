@@ -34,11 +34,10 @@ public class User extends DataObject {
      * @return User object with all properties filled. Null if username was not found.
      * @throws Exception
      */
-    public static User loadByUsername(String _username, String _password) throws Exception{
+    public static User loadByUsername(String _username) throws Exception{
 
        Map<String, String> keyValue = new HashMap<>();
        keyValue.put("username", _username);
-       keyValue.put("password", _password);
        List<Map<String, String>> response = DataStoreAdapter.readObject(keyValue, User.TABLE);
        // IF USER DIDN'T EXIST IN DB
        if(response == null)

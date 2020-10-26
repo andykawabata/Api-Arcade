@@ -63,7 +63,7 @@ public class ForgotPasswordController implements Initializable {
             return;
         }
 
-        User user = User.loadByUsername(givenUsername, newPass);
+        User user = User.loadByUsername(givenUsername);
         String uuid = user.getUuid();
         Map<String, String> newPasswordMap = new HashMap<>();
         newPasswordMap.put("password", newPass);

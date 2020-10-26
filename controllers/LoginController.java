@@ -54,37 +54,35 @@ public class LoginController implements Initializable {
      */
     @FXML
     private void _btnSignIn(ActionEvent event) throws Exception {
-        String givenUsername;
-        String givenPassword;
-        boolean unfilledTextField = false;
-        if(username.getText().isBlank() || password.getText().isBlank())
-            unfilledTextField = true;
-        givenUsername = username.getText();
-        givenPassword = password.getText();
-
-        User user = User.loadByUsername(givenUsername, givenPassword);
-        if(unfilledTextField)
+        
+        String givenUsername = username.getText();
+        String givenPassword = password.getText();
+        
+        //IF FIELDS ARE BLANK
+        if(username.getText().isBlank() || password.getText().isBlank()){
             errorLabel.setText("Please fill out all text fields");
-        else if(user == null){
-            if(User.usernameExists(givenUsername) == false){
-                System.out.println("Username doesn't exist");
-                errorLabel.setText("Username doesn't exist");
-            }
-            else{
-                System.out.println("Password doesn't exist with username " + givenUsername);
-                errorLabel.setText("Password doesn't exist with username " + givenUsername);
-            }
+            return;
         }
-        //if login is a success
-        else if(user.passwordMatches(givenPassword)){
-            user.login();
-            System.out.println("User Logged in");
-            RunApp.showMainGame();
-            System.out.println("id: " + LoginSession.currentUser.getId());
-            System.out.println("uuid: " + LoginSession.currentUser.getUuid());
-            System.out.println("username: " + LoginSession.currentUser.getUsername());
-            System.out.println("password: " + LoginSession.currentUser.getPassword());
+
+        User user = User.loadByUsername(givenUsername);
+        
+        //IF USER NOT IN DATABASE   
+        if(user == null){
+            errorLabel.setText("Username doesn't exist");
+            return;
         }
+        
+        //IF INCORRECT PASSWORD
+        if(!user.passwordMatches(givenPassword)){
+            errorLabel.setText("Incorrect Password");
+            return;
+        }
+        
+        user.login();
+        System.out.println("User Logged in");
+        RunApp.showMainGame();
+        System.out.println("id: " + LoginSession.currentUser.getId());
+        
     }
 
     @FXML

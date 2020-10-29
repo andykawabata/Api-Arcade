@@ -12,10 +12,7 @@ package models;
 public class LoginSession {
 
     public static User currentUser;
-
-
-    public static boolean isGuest(){
-        return (currentUser.getUsername().equals("guest"));
+    public LoginSession(){
+        
     }
-
 }

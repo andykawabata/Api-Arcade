@@ -30,7 +30,6 @@ public class User extends DataObject {
     /**
      * uses "readObject()" method to load a user into a User object, give the username
      * @param _username: String
-     * @param _password: String
      * @return User object with all properties filled. Null if username was not found.
      * @throws Exception
      */

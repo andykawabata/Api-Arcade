@@ -13,8 +13,9 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import models.LoginSession;
+import models.User;
 
 /**
  * FXML Controller class
@@ -28,17 +29,20 @@ public class MainGameController implements Initializable {
     @FXML
     private Label highScore;
 
+    private User user = LoginSession.currentUser;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
 
     private void _userLogOut(ActionEvent event) throws IOException {
+        System.out.println("User logged out");
         RunApp.showLoginView();
     }
 
@@ -47,11 +51,16 @@ public class MainGameController implements Initializable {
         GameFactory.setCurrentGame(GameFactory.GAME_ONE);
         RunApp.showgenericGame();
     }
-    
+
     @FXML
     private void _gameTwoStart(ActionEvent event) throws IOException {
         GameFactory.setCurrentGame(GameFactory.GAME_TWO);
         RunApp.showgenericGame();
     }
-    
+
+    @FXML
+    void _leaderboardLink(ActionEvent event) throws IOException {
+        System.out.println("User went to leaderboards");
+        RunApp.showLeaderboardsView();
+    }
 }

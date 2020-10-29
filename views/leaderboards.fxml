@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="600.0" style="-fx-background-color: #000039#000039;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="controllers.LeaderboardController">
+   <children>
+      <AnchorPane prefHeight="135.0" prefWidth="600.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="600.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/API%20Arcade%20Banner.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="499.0" layoutY="34.0" text="Hello, User" textFill="WHITE" />
+            <Hyperlink layoutX="21.0" layoutY="32.0" onAction="#_mainGamesLink" text="Return to Games" />
+            <Hyperlink layoutX="493.0" layoutY="56.0" onAction="#_viewProfile" text="View Profile" />
+            <Hyperlink layoutX="506.0" layoutY="85.0" onAction="#_userLogOut" text="Logout" />
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="430.0" fitWidth="600.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/LeaderboardBkg.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="16.0" layoutY="205.0" prefHeight="141.0" prefWidth="568.0" style="-fx-background-color: 660039;" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="205.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#420027" height="130.0" layoutX="-6.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="568.0" />
+            <Label layoutY="6.0" prefHeight="49.0" prefWidth="523.0" text="Movie Trivia: The Game" textFill="WHITE">
+               <font>
+                  <Font name="Cooper Black" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="54.0" layoutY="51.0" text="User1" textFill="WHITE" />
+            <Label layoutX="54.0" layoutY="75.0" text="User2" textFill="WHITE" />
+            <Label layoutX="54.0" layoutY="98.0" text="User3" textFill="WHITE" />
+            <Label layoutX="424.0" layoutY="50.0" text="Score1" textFill="WHITE" />
+            <Label layoutX="424.0" layoutY="74.0" text="Score2" textFill="WHITE" />
+            <Label layoutX="424.0" layoutY="97.0" text="Score3" textFill="WHITE" />
+            <Line endX="127.0" layoutX="261.0" layoutY="59.0" startX="-139.0" stroke="WHITE" />
+            <Line endX="127.0" layoutX="261.0" layoutY="83.0" startX="-139.0" stroke="WHITE" />
+            <Line endX="127.0" layoutX="261.0" layoutY="106.0" startX="-139.0" stroke="WHITE" />
+         </children>
+      </Pane>
+      <Pane layoutX="14.0" layoutY="358.0" prefHeight="141.0" prefWidth="568.0" style="-fx-background-color: 330039;" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="355.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#210027" height="130.0" layoutX="-5.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" width="568.0" />
+            <Label prefHeight="49.0" prefWidth="523.0" text="General Trivia: The Other Game" textFill="WHITE">
+               <font>
+                  <Font name="Cooper Black" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="52.0" layoutY="48.0" text="User1" textFill="WHITE" />
+            <Label layoutX="52.0" layoutY="72.0" text="User2" textFill="WHITE" />
+            <Label layoutX="52.0" layoutY="95.0" text="User3" textFill="WHITE" />
+            <Label layoutX="424.0" layoutY="48.0" text="Score1" textFill="WHITE" />
+            <Label layoutX="424.0" layoutY="72.0" text="Score2" textFill="WHITE" />
+            <Label layoutX="424.0" layoutY="95.0" text="Score3" textFill="WHITE" />
+            <Line endX="127.0" layoutX="267.0" layoutY="56.0" startX="-139.0" stroke="WHITE" />
+            <Line endX="127.0" layoutX="267.0" layoutY="80.0" startX="-139.0" stroke="WHITE" />
+            <Line endX="127.0" layoutX="267.0" layoutY="103.0" startX="-139.0" stroke="WHITE" />
+         </children>
+      </Pane>
+      <JFXButton fx:id="_btnPlayNow" layoutX="218.0" layoutY="476.0" onAction="#_mainGamesPlayNow" text="PLAY NOW!">
+         <font>
+            <Font name="Cooper Black" size="22.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

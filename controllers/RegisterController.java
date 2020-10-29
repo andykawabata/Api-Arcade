@@ -6,19 +6,15 @@
 package controllers;
 
 import apiarcade.RunApp;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
-import java.io.IOException;
-
-import javafx.scene.control.Button;
-
 import models.User;
 
 /**
@@ -28,39 +24,39 @@ import models.User;
  * @author AndyK
  */
 public class RegisterController implements Initializable {
-    
+
     @FXML
     JFXTextField username;
-    
+
     @FXML
     JFXPasswordField password;
-    
+
     @FXML
     JFXPasswordField confirmPassword;
 
     @FXML
     private Label lblErrorMessage;
-    
+
     @FXML
     private Label _lblXOut;
 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    }    
-    
-    
+    }
+
+
     /*
     First checks password == confirmPassword and sets the error message
     Then checks if either username or password have not been entered because
         that message is more important
-    
+
     @param event - click on button and check fields entered
     */
     @FXML
     private void _btnRegister(ActionEvent event) throws Exception {
 
-        
+
         String newUsername = username.getText();
         String newPassword = password.getText();
         String newConfirmPassword = confirmPassword.getText();
@@ -74,8 +70,8 @@ public class RegisterController implements Initializable {
             lblErrorMessage.setText("Enter username and password");
             return;
         }
-        
-        
+
+
         //Checks if password is confirmed before making User
         //if user exists --> error
         //If user is new --> create
@@ -93,13 +89,12 @@ public class RegisterController implements Initializable {
         else{
             lblErrorMessage.setText("Username already taken");
         }
-            
+
     }
 
     @FXML
-
     private void _backBtn(ActionEvent event) throws IOException {
         RunApp.showLoginView();
     }
-    
+
 }

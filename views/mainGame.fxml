@@ -23,7 +23,7 @@
                         <Image url="@../images/API%20Arcade%20Banner.png" />
                      </image>
                   </ImageView>
-                  <Hyperlink layoutX="22.0" layoutY="39.0" text="Leaderboards" />
+                  <Hyperlink layoutX="22.0" layoutY="39.0" onAction="#_leaderboardLink" text="Leaderboards" />
                   <Hyperlink layoutX="493.0" layoutY="66.0" text="View Profile" />
                   <Label fx:id="userID" layoutX="493.0" layoutY="42.0" prefHeight="17.0" prefWidth="71.0" text="Hello, user" textFill="WHITE" />
                   <Hyperlink layoutX="493.0" layoutY="94.0" onAction="#_userLogOut" text="Logout" />

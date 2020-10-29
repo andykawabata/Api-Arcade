@@ -5,7 +5,6 @@
  */
 package apiarcade;
 
-import java.io.File;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -44,7 +43,7 @@ public class RunApp extends Application{
         primaryStage.show();
     }
 
-    public static void showMainGame() throws IOException {
+    public static void showMainGameView() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(RunApp.class.getResource("/views/mainGame.fxml"));
         AnchorPane mainGame = loader.load();
@@ -53,7 +52,7 @@ public class RunApp extends Application{
         primaryStage.show();
     }
 
-    public static void showRegister() throws IOException {
+    public static void showRegisterView() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(RunApp.class.getResource("/views/register.fxml"));
         AnchorPane register = loader.load();
@@ -62,7 +61,25 @@ public class RunApp extends Application{
         primaryStage.show();
     }
 
-    public static void showPassRecovery() throws IOException {
+    public static void showLeaderboardsView() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(RunApp.class.getResource("/views/leaderboards.fxml"));
+        AnchorPane leaderboards = loader.load();
+        Scene scene = new Scene(leaderboards);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+//    public static void showProfileView() throws IOException {
+//        FXMLLoader loader = new FXMLLoader();
+//        loader.setLocation(RunApp.class.getResource("/views/profile.fxml"));
+//        AnchorPane profile = loader.load();
+//        Scene scene = new Scene(profile);
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
+//    }
+
+    public static void showPassRecoveryView() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(RunApp.class.getResource("/views/forgotPassword.fxml"));
         AnchorPane passReco = loader.load();

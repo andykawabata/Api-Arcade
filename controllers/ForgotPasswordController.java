@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import models.User;
 
@@ -29,6 +30,8 @@ public class ForgotPasswordController implements Initializable {
     private JFXTextField confirmPassword;
     @FXML
     private JFXButton _btnResetPassword;
+    @FXML
+    private Label _errorLabel;
 
     private RunApp run;
     @Override
@@ -54,11 +57,22 @@ public class ForgotPasswordController implements Initializable {
         String givenUsername = username.getText();
 
         if(!newPassConfirm.equals(newPass)){
-            System.out.println("Passwords Dont Match");
+            _errorLabel.setText("Passwords Dont Match");
             return;
         }
 
+        //IF USER NOT IN DATABASE
         User user = User.loadByUsername(givenUsername);
+        if(user == null){
+            _errorLabel.setText("Username doesn't exist");
+            return;
+        }
+
+        //IF INCORRECT PASSWORD
+        if(!user.passwordMatches(newPass)){
+            _errorLabel.setText("Incorrect Password");
+            return;
+        }
         String uuid = user.getUuid();
         Map<String, String> newPasswordMap = new HashMap<>();
         newPasswordMap.put("password", newPass);

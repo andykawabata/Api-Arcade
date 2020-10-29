@@ -10,7 +10,9 @@ package models;
 *@author Andy
 */
 public class LoginSession {
-    
-    public static User currentUser;
 
+    public static User currentUser;
+    public LoginSession(){
+        
+    }
 }

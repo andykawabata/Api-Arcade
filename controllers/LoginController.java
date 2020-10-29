@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import models.Guest;
 import models.LoginSession;
 import models.User;
 
@@ -101,8 +102,10 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-     private void guestLogin(ActionEvent event) throws IOException{
+     private void guestLogin(ActionEvent event) throws IOException, Exception{
         System.out.println("Clicked Guest login");
+        User user = new Guest();
+        user.login();
         RunApp.showMainGameView();
     }
 }

@@ -8,6 +8,7 @@ package API;
 *@author Francisco
 *@author Ryan
 */
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -23,8 +24,18 @@ public class OtdbTranslator implements TriviaApiInterface {
     String questionCategory = "&category=" + 11;
     String questionDiff     = "&difficulty=" + "easy";
     String qustionType      = "&type=boolean";
+    //String sessionToken     = "&token=";
     String urlString        = baseUrl + numOfQuestions + questionCategory + questionDiff + qustionType + "&encode=base64";
     String quest;
+
+    // Need to implement to avoid getting the same question twice in one session
+    public String resetToken() throws Exception {
+        return "";
+    }
+    // Same as above
+    public String getToken() throws Exception{
+        return "";
+    }
 
     @Override
     public JSONObject getResponseBody() throws Exception {
@@ -51,7 +62,7 @@ public class OtdbTranslator implements TriviaApiInterface {
     public String getAnswer(JSONObject obj) throws Exception {
 
         JSONArray results = obj.getJSONArray("results");
-        quest = results.getJSONObject(0).getString("correct_anwser");
+        quest = results.getJSONObject(0).getString("correct_answer");
         String TriviaAnswer = Decode(quest);
         return TriviaAnswer;
     }

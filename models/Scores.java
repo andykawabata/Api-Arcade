@@ -1,17 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package models;
-
-/**
- *
- * @author andyk
- */
+/*
+*Last updated on 10/28/20
+*
+*Generic game score tracker
+*
+*Contributing authors
+*@author Francisco
+*@author Ryan
+*@author Andy
+*/
 public class Scores {
-    
+
     private int scores;
-    
+    // work in progress
+    public int updateScore(boolean _ans) {
+        if(_ans != false) {
+            return scores++;
+        }
+        return scores;
+    }
 
 }

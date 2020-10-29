@@ -1,11 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package models;
-
-
+/*
+*Last updated on 10/28/20
+*
+*Inherits the DataOject class to create a User for later use.
+*
+*Contributing authors
+*@author Francisco
+*@author Ryan
+*@author Andy
+*/
 import db.DataObject;
 import db.DataStoreAdapter;
 import java.util.HashMap;
@@ -20,9 +23,8 @@ public class User extends DataObject {
     public static String TABLE = "src/storage/users.csv";
 
 
-    public User(){}
-
-
+    public User() {
+    }
 
     public String getUsername() {
         return username;
@@ -33,7 +35,7 @@ public class User extends DataObject {
      * @return User object with all properties filled. Null if username was not found.
      * @throws Exception
      */
-    public static User loadByUsername(String _username) throws Exception{
+    public static User loadByUsername(String _username) throws Exception {
 
        Map<String, String> keyValue = new HashMap<>();
        keyValue.put("username", _username);
@@ -50,15 +52,14 @@ public class User extends DataObject {
        return user;
     }
 
-    public Boolean passwordMatches(String _password){
+    public Boolean passwordMatches(String _password) {
          return this.password.equals(_password);
     }
-
 
     /**
      * Updates LoginSession to reflect new user
      */
-    public void login(){
+    public void login() {
         LoginSession.currentUser = this;
     }
 
@@ -67,7 +68,7 @@ public class User extends DataObject {
      * depending of if the user is in the table already (id != 0)
      * @return true if user was saved, false if error
      */
-    public Boolean save(){
+    public Boolean save() {
         Map<String, String> userProperties = new HashMap<>();
         Map<String, String> parentProperties = new HashMap<>();
         if(this.username != null)
@@ -92,23 +93,24 @@ public class User extends DataObject {
         return false;
     }
 
-
-    public void setUsername(String username) {
-        this.username = username;
+    public static boolean usernameExists(String _givenUsername) throws Exception {
+       Map<String, String> keyValue = new HashMap<>();
+       keyValue.put("username", _givenUsername);
+       return DataStoreAdapter.findObjectByUsername(keyValue, User.TABLE);
     }
 
+    //=================  GETTERS ===============
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    //=================  SETTERS ===============
+    public void setUsername(String _username) {
+        this.username = _username;
     }
 
-    public static boolean usernameExists(String givenUsername) throws Exception{
-       Map<String, String> keyValue = new HashMap<>();
-       keyValue.put("username", givenUsername);
-       return DataStoreAdapter.findObjectByUsername(keyValue, User.TABLE);
+    public void setPassword(String _password) {
+        this.password = _password;
     }
 
 }

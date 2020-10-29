@@ -7,6 +7,7 @@ package factories;
 
 import models.Game;
 import models.MovieGame;
+import models.TriviaGame;
 
 /**
  *
@@ -32,7 +33,7 @@ public class GameFactory {
         if(currentGame == GAME_ONE)
             return new MovieGame();
         else if(currentGame == GAME_TWO)
-            return null;
+            return new TriviaGame();
         else if(currentGame == GAME_THREE)
             return null;
         return null;

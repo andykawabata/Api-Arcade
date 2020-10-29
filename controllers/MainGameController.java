@@ -15,7 +15,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import models.LoginSession;
-import models.User;
 
 /**
  * FXML Controller class
@@ -36,7 +35,8 @@ public class MainGameController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // Works to display the username but breaks guest login
+        userID.setText("Hello! " + LoginSession.currentUser.getUsername());
     }
 
     @FXML
@@ -57,6 +57,7 @@ public class MainGameController implements Initializable {
         GameFactory.setCurrentGame(GameFactory.GAME_TWO);
         RunApp.showgenericGame();
     }
+
 
     @FXML
     void _leaderboardLink(ActionEvent event) throws IOException {

@@ -54,10 +54,10 @@ public class LoginController implements Initializable {
      */
     @FXML
     private void _btnSignIn(ActionEvent event) throws Exception {
-        
+
         String givenUsername = username.getText();
         String givenPassword = password.getText();
-        
+
         //IF FIELDS ARE BLANK
         if(username.getText().isBlank() || password.getText().isBlank()){
             errorLabel.setText("Please fill out all text fields");
@@ -65,30 +65,30 @@ public class LoginController implements Initializable {
         }
 
         User user = User.loadByUsername(givenUsername);
-        
-        //IF USER NOT IN DATABASE   
+
+        //IF USER NOT IN DATABASE
         if(user == null){
             errorLabel.setText("Username doesn't exist");
             return;
         }
-        
+
         //IF INCORRECT PASSWORD
         if(!user.passwordMatches(givenPassword)){
             errorLabel.setText("Incorrect Password");
             return;
         }
-        
+
         user.login();
         System.out.println("User Logged in");
-        RunApp.showMainGame();
+        RunApp.showMainGameView();
         System.out.println("id: " + LoginSession.currentUser.getId());
-        
+
     }
 
     @FXML
     private void _hyplnkForgotPassword(ActionEvent event) throws IOException{
         System.out.println("Clicked Forgot Password");
-        RunApp.showPassRecovery();
+        RunApp.showPassRecoveryView();
     }
 
     /*
@@ -97,12 +97,12 @@ public class LoginController implements Initializable {
     @FXML
     private void _btnSignUp(ActionEvent event) throws IOException{
         System.out.println("Clicked Sign Up");
-        RunApp.showRegister();
+        RunApp.showRegisterView();
     }
 
     @FXML
      private void guestLogin(ActionEvent event) throws IOException{
         System.out.println("Clicked Guest login");
-        RunApp.showMainGame();
+        RunApp.showMainGameView();
     }
 }

@@ -13,7 +13,6 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import models.LoginSession;
 
@@ -29,6 +28,8 @@ public class MainGameController implements Initializable {
     @FXML
     private Label highScore;
 
+    private User user = LoginSession.currentUser;
+
     /**
      * Initializes the controller class.
      */
@@ -41,6 +42,7 @@ public class MainGameController implements Initializable {
     @FXML
 
     private void _userLogOut(ActionEvent event) throws IOException {
+        System.out.println("User logged out");
         RunApp.showLoginView();
     }
 
@@ -56,4 +58,10 @@ public class MainGameController implements Initializable {
         RunApp.showgenericGame();
     }
 
+
+    @FXML
+    void _leaderboardLink(ActionEvent event) throws IOException {
+        System.out.println("User went to leaderboards");
+        RunApp.showLeaderboardsView();
+    }
 }

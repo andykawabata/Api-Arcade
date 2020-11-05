@@ -104,7 +104,18 @@ public class CSVConnector implements DBConnectorInterface {
     }
 
      @Override
-    public Boolean updateObject(Map<String, String> _keyValuePairs, String _uuid, String _table) {
+    public Boolean updateObject(Map<String, String> _keyValuePairs, String _uuid, String _table) throws FileNotFoundException, IOException {
+        BufferedReader br = new BufferedReader(new FileReader(_table));
+        if (br.readLine().contains(_uuid)){
+            //save which line it is
+        }
+
+        //write new password into line
+        try(CSVWriter writer = new CSVWriter(new FileWriter(_table, true))) {
+            writer.writeNext(newRow, false);
+        }catch(Exception e){
+            newId = "0";
+        }
         return true;
     }
 

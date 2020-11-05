@@ -8,6 +8,8 @@ package db;
 *@author Andy
 *@author Ryan
 */
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +19,7 @@ public interface DBConnectorInterface {
 
     public abstract List<Map<String, String>> readObject(Map<String,String> _keyValuePairs, String _table) throws Exception;
 
-    public abstract Boolean updateObject(Map<String,String> _keyValuePairs, String _uuid, String _table);
+    public abstract Boolean updateObject(Map<String,String> _keyValuePairs, String _uuid, String _table)  throws FileNotFoundException, IOException;
 
     public abstract Boolean deleteObject(String uuid);
 

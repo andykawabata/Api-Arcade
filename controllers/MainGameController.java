@@ -32,16 +32,17 @@ public class MainGameController implements Initializable {
     private User user = LoginSession.currentUser;
 
     /**
-     * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Works to display the username but breaks guest login
+        // Works to display the username
         userID.setText("Hello! " + LoginSession.currentUser.getUsername());
     }
 
     @FXML
-
     private void _userLogOut(ActionEvent event) throws IOException {
         System.out.println("User logged out");
         RunApp.showLoginView();

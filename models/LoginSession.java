@@ -13,6 +13,7 @@ public class LoginSession {
 
     public static User currentUser;
     public LoginSession(){
-        
+
+//        protected getUsername();
     }
 }

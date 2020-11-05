@@ -31,8 +31,8 @@ public class DataStoreAdapter {
 
     // ================================ STUBS ==================================== //
 
-    public static Boolean updateObject(Map<String, String> map, String uuid, String _table) {
-        return false;
+    public static Boolean updateObject(Map<String, String> _map, String uuid, String _table) {
+        return connector.updateObject(_map, uuid, _table);
     }
 
     public Boolean deleteObject(String uuid) {

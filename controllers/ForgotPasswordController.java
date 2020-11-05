@@ -69,8 +69,8 @@ public class ForgotPasswordController implements Initializable {
         }
 
         //IF INCORRECT PASSWORD
-        if(!user.passwordMatches(newPass)){
-            _errorLabel.setText("Incorrect Password");
+        if(user.passwordMatches(newPass)){
+            _errorLabel.setText("Password already in use");
             return;
         }
         String uuid = user.getUuid();

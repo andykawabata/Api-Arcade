@@ -77,7 +77,10 @@
                      </font>
                   </Label>
                   <TextField fx:id="_answerInput" alignment="CENTER" layoutX="326.0" layoutY="88.0" />
-                  <Label fx:id="_resultDisplay" alignment="CENTER" layoutX="326.0" layoutY="189.0" prefHeight="17.0" prefWidth="161.0" style="-fx-background-color: E0A406;" text="Question Result" textAlignment="CENTER" textFill="WHITE" />
+                  <Label fx:id="_resultDisplay" alignment="CENTER" layoutX="326.0" layoutY="189.0" prefHeight="17.0" prefWidth="161.0" style="-fx-background-color: E0A406;" text="Question Result" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font></Label>
                </children>
             </Pane>
          </children>

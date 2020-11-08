@@ -70,13 +70,10 @@ public class GenericGameController implements Initializable {
             return;
         currentGame.initialize();
         Map<String, Object> data = currentGame.createMap();
-
-        for (Map.Entry<String, Object> entry : data.entrySet()) {
-            String key = entry.getKey().toString();
-            Object value = entry.getValue();
-            System.out.println("key, " + key + " value " + value);
-        }
         updateView(data);
+        this._resultDisplay.setText("");
+        this._nxtQuestion.setDisable(true);
+        this._submitBtn.setDisable(false);
     }
 
    @FXML
@@ -85,7 +82,9 @@ public class GenericGameController implements Initializable {
         currentGame.newQuestion();
         Map<String, Object> data = currentGame.createMap();
         updateView(data);
-
+        this._resultDisplay.setText("");
+        this._nxtQuestion.setDisable(true);
+        this._submitBtn.setDisable(false);
     }
 
     @FXML
@@ -95,6 +94,18 @@ public class GenericGameController implements Initializable {
         currentGame.processAnswer(_answerInput.getText());
         Map<String, Object> data = currentGame.createMap();
         updateView(data);
+        this._answerInput.setText("");
+        if(!currentGame.gameOver){
+            this._submitBtn.setDisable(true);
+            this._nxtQuestion.setDisable(false);
+        }
+        else{
+            this._submitBtn.setDisable(true);
+            this._nxtQuestion.setDisable(true);
+        }
+        
+        
+       
     }
 
 

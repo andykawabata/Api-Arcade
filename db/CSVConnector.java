@@ -105,7 +105,7 @@ public class CSVConnector implements DBConnectorInterface {
 
      @Override
     public Boolean updateObject(Map<String, String> _keyValuePairs, String _uuid, String _table) throws FileNotFoundException, IOException {
-        BufferedReader br = new BufferedReader(new FileReader(_table));
+    /*    BufferedReader br = new BufferedReader(new FileReader(_table));
         if (br.readLine().contains(_uuid)){
             //save which line it is
         }
@@ -116,6 +116,7 @@ public class CSVConnector implements DBConnectorInterface {
         }catch(Exception e){
             newId = "0";
         }
+        */
         return true;
     }
 

@@ -20,6 +20,7 @@ public abstract class Game {
     public String questionText;
     public ArrayList<HashMap<String,String>> imageLabelPairs;
     public String result;
+    public boolean gameOver = false;
 
     //State variables
     public static Integer currentScore = 0;

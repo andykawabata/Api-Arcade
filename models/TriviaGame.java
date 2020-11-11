@@ -29,7 +29,7 @@ public class TriviaGame extends Game {
     static Integer totalQuestions
     */
     TriviaApiAdapter api = new TriviaApiAdapter();
-    Scores scr = new Scores();
+    Score scr = new Score();
 
     public TriviaGame() {
         this.totalQuestions = 5;

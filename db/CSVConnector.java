@@ -107,6 +107,7 @@ public class CSVConnector implements DBConnectorInterface {
 
     @Override
     public Boolean updateObject(Map<String, String> _keyValuePairs, String _uuid, String _table) throws FileNotFoundException, IOException {
+
         int updateIndex = -1;
         String[] _columnNames = getColumnNames(_table);
         String[] selectedRow = new String[_columnNames.length];
@@ -137,6 +138,7 @@ public class CSVConnector implements DBConnectorInterface {
                 writer.writeNext(element.split(","), true);
 
         }
+        
         return true;
     }
 

@@ -41,7 +41,25 @@ public class MovieGame extends Game {
 
     @Override
     public void initialize() {
+        
+        this.setNewQuestion();
+    }
 
+    private int shufflePosters(String[] _posterUrls) {
+        Random rand = new Random();
+        int correctIndex = rand.nextInt(this.NUM_FALSE_MOVIES)+1;
+        swap(_posterUrls, correctIndex, 0);
+        return correctIndex + 1;
+
+    }
+
+    public void swap(String[] _posters, int i, int j) {
+        String temp = _posters[i];
+        _posters[i] = _posters[j];
+        _posters[j] = temp;
+    }
+    
+    public void setNewQuestion(){
         int movieId = generateRandomId(2000);
         String description = "";
         String posterUrl = "";
@@ -87,29 +105,45 @@ public class MovieGame extends Game {
         } catch (Exception ex) {
             System.out.println("exception!");
         }
-
     }
-
-    private int shufflePosters(String[] _posterUrls) {
-        Random rand = new Random();
-        int correctIndex = rand.nextInt(this.NUM_FALSE_MOVIES)+1;
-        swap(_posterUrls, correctIndex, 0);
-        String correctAnswer = String.valueOf(correctIndex + 1);
-        return correctIndex;
-
-    }
-
-    public void swap(String[] _posters, int i, int j) {
-        String temp = _posters[i];
-        _posters[i] = _posters[j];
-        _posters[j] = temp;
-    }
+    
     @Override
     public void newQuestion() {
+        this.currentQuestionNumber += 1;
+        setNewQuestion();
     }
 
     @Override
-    public void processAnswer(String _givenAnswer) {
+    public void processAnswer(String _givenAnswer)  {
+        
+        //CHECK IF ANSWER IS CORRECT AND UPDATE RESULT/SCORE
+        if(_givenAnswer.equals(this.correctAnswer)){
+            this.result = "Correct";
+            this.currentScore += 1;
+        }
+        else{
+            this.result = "Incorrect";
+        }
+        
+        //IF GAMES IS OVER APPEND "GAMEOVER" TO RESULT
+        //ELSE INCRAMENT  QUESTION NUMBER
+        if(checkGameOver()){
+            this.gameOver = true;
+            this.result = this.result + " - GAME OVER";
+            Score finalScore = new Score(this.currentScore, this.totalQuestions);
+            try {
+                finalScore.save();
+            } catch (Exception ex) {
+                System.out.println("Score Not Saved!");
+            }
+        }
+        
+    }
+    
+    private boolean checkGameOver(){
+        //RETURN TRUE IF GAME IS OVER
+        return !(this.currentQuestionNumber < this.totalQuestions);
+        
     }
 
     private int generateRandomId(int _range) {

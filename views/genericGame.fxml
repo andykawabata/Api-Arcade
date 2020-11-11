@@ -6,56 +6,84 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="800.0" style="-fx-background-color: #000039#000039;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GenericGameController">
+<AnchorPane id="AnchorPane" style="-fx-background-color: #000039#000039;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GenericGameController">
    <children>
-      <Button fx:id="_nxtQuestion" layoutX="355.0" layoutY="543.0" mnemonicParsing="false" onAction="#_newQuestion" text="Next Question" />
-      <Button fx:id="_submitBtn" layoutX="518.0" layoutY="491.0" mnemonicParsing="false" onAction="#_submitAnswer" text="Submit" />
-      <TextField fx:id="_answerInput" alignment="CENTER" layoutX="320.0" layoutY="491.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="320.0" />
-      <HBox fx:id="_imageContainer" alignment="CENTER" layoutY="140.0" prefHeight="159.0" prefWidth="800.0" style="-fx-background-color: E0A406;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <opaqueInsets>
-            <Insets top="1.0" />
-         </opaqueInsets>
-      </HBox>
-      <Label fx:id="_gameTitle" alignment="CENTER" layoutX="192.0" layoutY="36.0" text="Generic Game" textFill="WHITE" AnchorPane.leftAnchor="192.0" AnchorPane.rightAnchor="192.0">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <Label fx:id="_questionText" alignment="CENTER" layoutX="220.0" layoutY="331.0" prefHeight="119.0" prefWidth="361.0" style="-fx-background-color: E0A406;" text="Question Text" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true" AnchorPane.rightAnchor="219.0" />
-      <Label fx:id="_resultDisplay" alignment="CENTER" layoutX="321.0" layoutY="608.0" prefHeight="17.0" prefWidth="161.0" style="-fx-background-color: E0A406;" text="Question Result" textAlignment="CENTER" textFill="WHITE" />
-      <Button layoutX="20.0" layoutY="23.0" mnemonicParsing="false" onAction="#_backBtn" style="-fx-background-color: E0A406;" text="Back" textFill="WHITE" />
-      <Text fx:id="_currentQuestionNumber" fill="WHITE" layoutX="119.0" layoutY="552.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Text>
-      <Text fx:id="_totalQuestions" fill="WHITE" layoutX="172.0" layoutY="552.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Text>
-      <Text fx:id="_currentScore" fill="WHITE" layoutX="666.0" layoutY="551.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Text>
-      <Label layoutX="117.0" layoutY="483.0" text="Question" textFill="WHITE">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="649.0" layoutY="478.0" text="Score" textFill="WHITE">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="149.0" layoutY="527.0" prefHeight="32.0" prefWidth="12.0" text="/" textFill="WHITE">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
+      <VBox minHeight="0.0">
+         <children>
+            <Pane prefHeight="106.0" prefWidth="800.0">
+               <children>
+                  <Button layoutX="71.0" layoutY="41.0" mnemonicParsing="false" onAction="#_backBtn" style="-fx-background-color: E0A406;" text="Back" textFill="WHITE" />
+                  <Label fx:id="_gameTitle" alignment="CENTER" layoutX="288.0" layoutY="25.0" text="Generic Game" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <HBox fx:id="_imageContainer" alignment="CENTER" minHeight="0.0" minWidth="0.0" style="-fx-background-color: E0A406;">
+               <opaqueInsets>
+                  <Insets top="1.0" />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="_questionText" alignment="CENTER" minHeight="-Infinity" prefWidth="361.0" style="-fx-background-color: E0A406;" text="Question Text" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </HBox>
+            <Pane prefHeight="220.0" prefWidth="800.0">
+               <children>
+                  <Button fx:id="_nxtQuestion" layoutX="354.0" layoutY="144.0" mnemonicParsing="false" onAction="#_newQuestion" text="Next Question" />
+                  <Button fx:id="_submitBtn" layoutX="487.0" layoutY="88.0" mnemonicParsing="false" onAction="#_submitAnswer" text="Submit" />
+                  <Text fx:id="_currentQuestionNumber" fill="WHITE" layoutX="145.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="_totalQuestions" fill="WHITE" layoutX="196.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="_currentScore" fill="WHITE" layoutX="609.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Text>
+                  <Label layoutX="142.0" layoutY="87.0" text="Question" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="592.0" layoutY="87.0" text="Score" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="172.0" layoutY="114.0" prefHeight="32.0" prefWidth="12.0" text="/" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="_answerInput" alignment="CENTER" layoutX="326.0" layoutY="88.0" />
+                  <Label fx:id="_resultDisplay" alignment="CENTER" layoutX="326.0" layoutY="189.0" prefHeight="17.0" prefWidth="161.0" style="-fx-background-color: E0A406;" text="Question Result" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font></Label>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

@@ -95,7 +95,6 @@ public class OmdbTranslator implements MovieApiInterface {
 
             String movieID = String.valueOf(id);
             String requestUrl = baseURL + movieID + "?api_key=" + apiKey;
-            System.out.println(requestUrl);
             HttpClient httpClient = HttpClient.newHttpClient();
             JSONObject obj;
 

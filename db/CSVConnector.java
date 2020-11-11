@@ -119,8 +119,6 @@ public class CSVConnector implements DBConnectorInterface {
         BufferedReader br = new BufferedReader(new FileReader(_table));
         String line;
         
-        
-        
         while((line = br.readLine()) != null)
               csvElements.add(line);
         br.close();

@@ -1,4 +1,4 @@
 id,uuid,username,game,score,maxscore,percent
-4,43bfa197-d997-4e7f-87ea-e0de200cc45c,Guest,1,1,5,20
-5,e8944814-89ff-4b0c-bf90-6785375cc358,Guest,1,2,5,40
-6,6fb4a804-fb1a-4c75-8e0f-3bd9faa9521c,Guest,1,1,5,20
+1,43bfa197-d997-4e7f-87ea-e0de200cc45c,Guest,1,3,5,100
+2,e8944814-89ff-4b0c-bf90-6785375cc358,Guest,1,2,5,40
+3,6fb4a804-fb1a-4c75-8e0f-3bd9faa9521c,Guest,1,1,5,20

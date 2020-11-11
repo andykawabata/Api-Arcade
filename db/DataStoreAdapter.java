@@ -1,4 +1,5 @@
 package db;
+
 /*
 *Last updated on 10/24/20
 *
@@ -8,6 +9,7 @@ package db;
 *Contributing authors
 *@author Andy
 */
+
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -32,7 +34,7 @@ public class DataStoreAdapter {
 
     // ================================ STUBS ==================================== //
 
-    public static Boolean updateObject(Map<String, String> _map, String uuid, String _table) throws Exception {
+    public static Boolean updateObject(Map<String, String> _map, String uuid, String _table) throws IOException {
         return connector.updateObject(_map, uuid, _table);
     }
 

@@ -19,7 +19,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -132,7 +131,7 @@ public class CSVConnector implements DBConnectorInterface {
 
         //Attempt to add new info into csvElements and print to new file
         try (CSVWriter writer = new CSVWriter(new FileWriter(_table, false))) {
-            csvElements.add(updateIndex, Arrays.toString(selectedRow));
+            csvElements.add(updateIndex, selectedRow.toString());
             for(String element : csvElements)
                 writer.writeNext(element.split(","), true);
 

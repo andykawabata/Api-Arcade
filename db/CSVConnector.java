@@ -14,11 +14,15 @@ package db;
  */
 import com.opencsv.CSVWriter;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -108,12 +112,15 @@ public class CSVConnector implements DBConnectorInterface {
     public Boolean updateObject(Map<String, String> _keyValuePairs, String _uuid, String _table) throws FileNotFoundException, IOException {
 
         int updateIndex = -1;
-        String[] _columnNames = getColumnNames(_table);
-        String[] selectedRow = new String[_columnNames.length];
+        String[] columnNames = getColumnNames(_table);
+        String[] selectedRow = new String[columnNames.length];
 
         ArrayList<String> csvElements = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader(_table));
         String line;
+        
+        
+        
         while((line = br.readLine()) != null)
               csvElements.add(line);
         br.close();
@@ -128,18 +135,38 @@ public class CSVConnector implements DBConnectorInterface {
         }
 
         //alter line
-        selectedRow = alterRow(_columnNames, selectedRow, updateIndex, _keyValuePairs);
-
-        //Attempt to add new info into csvElements and print to new file
-        try (CSVWriter writer = new CSVWriter(new FileWriter(_table, false))) {
-            csvElements.add(updateIndex, selectedRow.toString());
-            for(String element : csvElements)
-                writer.writeNext(element.split(","), true);
-
+        selectedRow = alterRow(columnNames, selectedRow, updateIndex, _keyValuePairs);
+        
+        //Id of row will be its index in arrayList
+        int rowId = Integer.valueOf(selectedRow[0]);
+        
+        //Convert row back to string
+        String newRow = "";
+        for (String value : selectedRow){
+            newRow = newRow + value + ",";
         }
+        newRow = newRow.substring(0, newRow.length() - 1);
+        
+        //Update row in csvElements
+        csvElements.set(rowId, newRow);
+        
+        //addTempFile
+        File updatedFile = new File("src/storage/temporary.csv");
+        File oldFile = new File(_table);
+        
+        //write to temp file
+        PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(updatedFile)));
+        for(String row : csvElements){
+            writer.println(row);
+        }
+        writer.close();
+        oldFile.delete();
+        updatedFile.renameTo(new File(_table));
         
         return true;
     }
+    
+    
 
     @Override
     public Boolean deleteObject(String uuid) {
@@ -266,12 +293,13 @@ public class CSVConnector implements DBConnectorInterface {
         //updateIndex is the row of tableRows to be edited
         int keyIndex = -1;
         for(int i = 0; i < _columnNames.length; i++){
-           if(_keyValuePairs.containsKey(_columnNames[i]))
+            if(_keyValuePairs.containsKey(_columnNames[i]))
                keyIndex = i;
+                if(keyIndex > -1)
+                    selectedRow[keyIndex] = _keyValuePairs.get(_columnNames[keyIndex]);
         }
         //replace (key) in selectedRow with (value)
-        if(keyIndex > -1)
-            selectedRow[keyIndex] = _keyValuePairs.get(_columnNames[keyIndex]);
+        
         return selectedRow;
     }
 

@@ -52,15 +52,5 @@ public class Score extends DataObject{
         return DataStoreAdapter.createObject(scoreProperties, Score.TABLE);
 
     }
-    
-            
-            /*
-    // work in progress
-    public int updateScore(boolean _ans) {
-        if(_ans != false) {
-            return score++;
-        }
-        return scores;
-    }*/
 
 }

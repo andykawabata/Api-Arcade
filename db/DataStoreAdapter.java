@@ -28,22 +28,19 @@ public class DataStoreAdapter {
         return (id != 0);
     }
 
-    public static List<Map<String, String>> readObject(Map<String, String> _map, String _table) throws Exception {
-        return connector.readObject(_map, _table);
+    public static List<Map<String, String>> readObject(Map<String, String> _keyValue, String _table) throws Exception {
+        return connector.readObject(_keyValue, _table);
     }
 
-    // ================================ STUBS ==================================== //
-
-    public static Boolean updateObject(Map<String, String> _map, String uuid, String _table) throws IOException {
-        return connector.updateObject(_map, uuid, _table);
+    public static Boolean updateObject(Map<String, String> _keyValue, String uuid, String _table) throws IOException {
+        return connector.updateObject(_keyValue, uuid, _table);
     }
 
-    public Boolean deleteObject(String uuid) {
-        return false;
+    public Boolean deleteObject(String _uuid, String _table) throws IOException {
+        return  connector.deleteObject(_uuid, _table);
     }
 
     public static boolean findObjectByUsername(Map<String, String> _keyValue, String _table) throws Exception {
         return connector.findObjectByUsername(_keyValue, _table);
     }
-
 }

@@ -22,7 +22,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,8 +76,6 @@ public class CSVConnector implements DBConnectorInterface {
         *and reduces it to the one that the password matches
         *also it returns Map<String, String> but it can easily be changed to List<Map<String, String>>
          */
-        //if(_table.equals(User.TABLE))
-        //maps = removeUnmatchedRows(_keyValuePairs, matchingRows, _table);
         for (String[] row : matchingRows) {
             Map<String, String> map = new HashMap<>();
             int index = 0;
@@ -111,64 +108,62 @@ public class CSVConnector implements DBConnectorInterface {
     @Override
     public Boolean updateObject(Map<String, String> _keyValuePairs, String _uuid, String _table) throws FileNotFoundException, IOException {
 
-        int updateIndex = -1;
         String[] columnNames = getColumnNames(_table);
         String[] selectedRow = new String[columnNames.length];
 
         ArrayList<String> csvElements = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader(_table));
         String line;
-        
-        while((line = br.readLine()) != null)
-              csvElements.add(line);
+
+        while ((line = br.readLine()) != null) {
+            csvElements.add(line);
+        }
         br.close();
 
         //read file
         for (String csvElement : csvElements) {
-            if(csvElement.contains(_uuid)){
-                updateIndex = csvElements.indexOf(csvElement);
+            if (csvElement.contains(_uuid)) {
                 selectedRow = csvElement.split(",");
                 break;
             }
         }
 
         //alter line
-        selectedRow = alterRow(columnNames, selectedRow, updateIndex, _keyValuePairs);
-        
+        selectedRow = alterRow(columnNames, selectedRow, _keyValuePairs);
+
         //Id of row will be its index in arrayList
         int rowId = Integer.valueOf(selectedRow[0]);
-        
+
         //Convert row back to string
         String newRow = "";
-        for (String value : selectedRow){
+        for (String value : selectedRow) {
             newRow = newRow + value + ",";
         }
         newRow = newRow.substring(0, newRow.length() - 1);
-        
+
         //Update row in csvElements
         csvElements.set(rowId, newRow);
-        
-        //addTempFile
-        File updatedFile = new File("src/storage/temporary.csv");
-        File oldFile = new File(_table);
-        
-        //write to temp file
-        PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(updatedFile)));
-        for(String row : csvElements){
-            writer.println(row);
-        }
-        writer.close();
-        oldFile.delete();
-        updatedFile.renameTo(new File(_table));
-        
-        return true;
+
+        //update files in storage
+        return updateFile(csvElements, _table);
+
     }
-    
-    
 
     @Override
-    public Boolean deleteObject(String uuid) {
-        return true;
+    public Boolean deleteObject(String _uuid, String _table) throws FileNotFoundException, IOException {
+
+        ArrayList<String> csvElements = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader(_table));
+        String line;
+
+        //add all lines into ArrayList<String> unless uuid matches uuidToDelete
+        while ((line = br.readLine()) != null) {
+            if(!line.contains(_uuid))
+                csvElements.add(line);
+        }
+        br.close();
+
+        return updateFile(csvElements, _table);
     }
 
     @Override
@@ -287,18 +282,37 @@ public class CSVConnector implements DBConnectorInterface {
         return matchingRows;
     }
 
-    private String[] alterRow(String[] _columnNames, String[] selectedRow, int updateIndex, Map<String, String> _keyValuePairs) {
+    private String[] alterRow(String[] _columnNames, String[] selectedRow, Map<String, String> _keyValuePairs) {
         //updateIndex is the row of tableRows to be edited
         int keyIndex = -1;
-        for(int i = 0; i < _columnNames.length; i++){
-            if(_keyValuePairs.containsKey(_columnNames[i]))
-               keyIndex = i;
-                if(keyIndex > -1)
-                    selectedRow[keyIndex] = _keyValuePairs.get(_columnNames[keyIndex]);
+        for (int i = 0; i < _columnNames.length; i++) {
+            if (_keyValuePairs.containsKey(_columnNames[i]))
+                keyIndex = i;
+            if (keyIndex > -1) {
+                selectedRow[keyIndex] = _keyValuePairs.get(_columnNames[keyIndex]);
+            }
         }
         //replace (key) in selectedRow with (value)
-        
+
         return selectedRow;
+    }
+
+    private Boolean updateFile(ArrayList<String> csvElements, String _table) throws IOException {
+
+        //add temp file
+        File updatedFile = new File("src/storage/temporary.csv");
+        File oldFile = new File(_table);
+
+        //write to temp file
+        PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(updatedFile)));
+        for (String row : csvElements) {
+            writer.println(row);
+        }
+        writer.close();
+        oldFile.delete();
+        return updatedFile.renameTo(new File(_table));
+        
+
     }
 
 }

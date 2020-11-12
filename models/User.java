@@ -12,6 +12,7 @@ package models;
 import db.DataObject;
 import db.DataStoreAdapter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 //Get Rid of hardcoded password
@@ -29,6 +30,28 @@ public class User extends DataObject {
         return username;
     }
 
+    /**
+     * uses "readObject()" method to load a user into a User object, give the username
+     * @param _username: String
+     * @return User object with all properties filled. Null if username was not found.
+     * @throws Exception
+     */
+    public static User loadByUsername(String _username) throws Exception {
+
+       Map<String, String> keyValue = new HashMap<>();
+       keyValue.put("username", _username);
+       List<Map<String, String>> response = DataStoreAdapter.readObject(keyValue, User.TABLE);
+       // IF USER DIDN'T EXIST IN DB
+       if(response == null)
+           return null;
+       User user = new User();
+       user.id = Integer.valueOf(response.get(0).get("id"));
+       user.uuid = response.get(0).get("uuid");
+       user.username = response.get(0).get("username");
+       user.password = response.get(0).get("password");
+
+       return user;
+    }
 
     public Boolean passwordMatches(String _password) {
          return this.password.equals(_password);

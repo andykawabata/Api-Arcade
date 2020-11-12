@@ -13,7 +13,7 @@ import java.util.Map;
 
 public interface MovieApiInterface {
 
-    public Map<String, String> getPosterAndDescriptionById(int id) throws Exception;
+    public Map<String, String> getPosterTitleDescriptionById(int id) throws Exception;
 
     public String[] getPostersOfSimilarById(int id, int numPosters)throws Exception;
 

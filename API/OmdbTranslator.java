@@ -65,7 +65,9 @@ public class OmdbTranslator implements MovieApiInterface {
         return true;
     }
 
-    private JSONObject generateValidJsonObject(HttpClient httpClient, String requestUrl, String movieID, boolean similar) throws IOException, InterruptedException, JSONException {
+    private JSONObject getResponse(String requestUrl, String movieID, boolean similar) throws IOException, InterruptedException, JSONException {
+        
+        HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse response;
         boolean success = false;
         JSONObject obj = new JSONObject();
@@ -89,22 +91,26 @@ public class OmdbTranslator implements MovieApiInterface {
         return obj;
     }
 
-                        //=================  GETTERS ===============//
     @Override
-    public Map<String, String> getPosterAndDescriptionById(int id) throws Exception {
+    public Map<String, String> getPosterTitleDescriptionById(int id) throws Exception {
 
-            String movieID = String.valueOf(id);
-            String requestUrl = baseURL + movieID + "?api_key=" + apiKey;
-            HttpClient httpClient = HttpClient.newHttpClient();
-            JSONObject obj;
+        String movieID = String.valueOf(id);
+        String requestUrl = baseURL + movieID + "?api_key=" + apiKey;
+        JSONObject obj;
 
-            obj = generateValidJsonObject(httpClient, requestUrl, movieID, false);
+        obj = getResponse(requestUrl, movieID, false);
+        
+        String overview = (String) obj.get("overview");
+        String imgPath = (String) obj.get("poster_path");
+        String title = (String) obj.get("title");
+        String imgUrl = imageBaseURL + size + imgPath;
 
-            //Create datamap to return
-            Map<String, String> data = new HashMap<>();
-            data.put("description", getSanitizedDescription(obj));
-            data.put("posterUrl", imageBaseURL + size + obj.getString("poster_path"));
-            return data;
+        //Create datamap to return
+        Map<String, String> data = new HashMap<>();
+        data.put("description", overview);
+        data.put("posterUrl", imgUrl);
+        data.put("title", title);
+        return data;
     }
 
     @Override
@@ -118,7 +124,7 @@ public class OmdbTranslator implements MovieApiInterface {
         boolean success = false;
         JSONObject obj;
 
-        obj = generateValidJsonObject(httpClient, requestUrl, movieID, true);
+        obj = getResponse(requestUrl, movieID, true);
         JSONArray results = obj.getJSONArray("results");
 
         for(int i=0; i < posterUrls.length; i++){
@@ -130,22 +136,19 @@ public class OmdbTranslator implements MovieApiInterface {
         return posterUrls;
     }
 
-    public String getSanitizedDescription(JSONObject obj) throws JSONException {
+    public String sanitizedDescription(String _title, String _description) throws JSONException {
         //first get title to major words then replace
-        String description, title;
+
         boolean cleanTitleEmpty = true;
 
-        description = (String) obj.get("overview");
-        title = (String) obj.get("title");
-
         //clean title to remove punctuation and small words (the, a, as)
-        String[] titleArray = title.split(" ");
+        String[] titleArray = _title.split(" ");
         removePunctuation(titleArray);
         trimSmallWords(titleArray);
         if (isStringArrayEmpty(titleArray))
-            return description;
+            return _description;
 
-        String[] descArray = description.split(" ");
+        String[] descArray = _description.split(" ");
         for(String t : titleArray){
             for (int i = 0; i < descArray.length; i++) {
                     descArray[i] = descArray[i].replaceAll("\\p{Punct}", "");

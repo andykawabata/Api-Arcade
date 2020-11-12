@@ -9,6 +9,7 @@ package API;
 *@author Francisco
 *@author Ryan
 */
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class TriviaApiAdapter implements TriviaApiInterface {
@@ -18,17 +19,17 @@ public class TriviaApiAdapter implements TriviaApiInterface {
     //=================  GETTERS ===============//
 
     @Override
-    public JSONObject getResponseBody() throws Exception {
-        return triviaApiTranslator.getResponseBody();
+    public JSONArray getGameQuestions() throws Exception {
+        return triviaApiTranslator.getGameQuestions();
     }
 
     @Override
-    public String getQuestion(JSONObject obj) throws Exception {
-        return triviaApiTranslator.getQuestion(obj);
+    public String getCurrentQuestion(int _counter) throws Exception {
+        return triviaApiTranslator.getCurrentQuestion(_counter);
     }
 
     @Override
-    public String getAnswer(JSONObject obj) throws Exception {
-        return triviaApiTranslator.getAnswer(obj);
+    public String getCurrentAnswer(int _counter) throws Exception {
+        return triviaApiTranslator.getCurrentAnswer(_counter);
     }
 }

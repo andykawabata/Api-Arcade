@@ -18,9 +18,10 @@ public interface TriviaApiInterface {
 
     //=================  GETTERS ===============//
 
-    public JSONObject getResponseBody() throws Exception;
 
-    public String getQuestion(JSONObject obj) throws Exception;
+    public JSONArray getGameQuestions() throws Exception;
 
-    public String getAnswer(JSONObject obj) throws Exception;
+    public String getCurrentQuestion(int _counter) throws Exception;
+
+    public String getCurrentAnswer(int _counter) throws Exception;
 }

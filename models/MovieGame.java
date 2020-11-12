@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.JSONException;
 
 public class MovieGame extends Game {
     /*
@@ -63,6 +64,7 @@ public class MovieGame extends Game {
         int movieId = generateRandomId(2000);
         String description = "";
         String posterUrl = "";
+        String title = "";
         int correctIndexInt = 0;
         String[] similarPosterUrls = new String[NUM_FALSE_MOVIES];
         String[] allPosterUrls = new String[NUM_FALSE_MOVIES + 1];
@@ -70,14 +72,16 @@ public class MovieGame extends Game {
 
         try {
             //GET CORRECT POSTER AND DESCRIPTION
-            Map<String, String> descriptionAndPoster = api.getPosterAndDescriptionById(movieId);
-            description = descriptionAndPoster.get("description");
-            posterUrl = descriptionAndPoster.get("posterUrl");
+            Map<String, String> descriptionTitlePoster = api.getPosterTitleDescriptionById(movieId);
+            title = descriptionTitlePoster.get("title");
+            description = descriptionTitlePoster.get("description");
+            posterUrl = descriptionTitlePoster.get("posterUrl");
 
             //EXTRACT FIRST SENTENCE OF DESCRIPTION
             String[] sentences = description.split("\\.");
             String firstSentence = sentences[0] + ".";
             description = firstSentence;
+            description = this.sanitizeDescription(title, description);
 
             //GET SIMILAR POSTERS
             similarPosterUrls = api.getPostersOfSimilarById(movieId, this.NUM_FALSE_MOVIES);
@@ -151,5 +155,56 @@ public class MovieGame extends Game {
         int id = rand.nextInt(_range) + 1;
         return id;
     }
+    
+    public String sanitizeDescription(String _title, String _description) throws JSONException {
+        //first get title to major words then replace
+
+        boolean cleanTitleEmpty = true;
+
+        //clean title to remove punctuation and small words (the, a, as)
+        String[] titleArray = _title.split(" ");
+        removePunctuation(titleArray);
+        trimSmallWords(titleArray);
+        if (isStringArrayEmpty(titleArray))
+            return _description;
+
+        String[] descArray = _description.split(" ");
+        for(String t : titleArray){
+            for (int i = 0; i < descArray.length; i++) {
+                    descArray[i] = descArray[i].replaceAll("\\p{Punct}", "");
+                if (descArray[i].toLowerCase().equals(t.toLowerCase())) {
+                    descArray[i] = "[CENSORED]";
+                }
+            }
+        }
+
+        String copy = "";
+        for(String i : descArray)
+            copy += i + " ";
+        return copy.trim();
+    }
+    
+    //returns true if array has only empty elements
+    public boolean isStringArrayEmpty(String[] array) {
+        for (String i : array)
+            if(i.length() > 0)
+                return false;
+        return true;
+    }
+    //Get rid of small words then sort array
+    public String[] trimSmallWords(String[] array) {
+        for (int i = 0; i < array.length; i++)
+            array[i] = array[i].replaceAll("\\b\\w{1,4}\\b\\s?", "");
+        return array;
+    }
+    
+    //delete punctuation from elements in String array using regex
+    public String[] removePunctuation(String[] array) {
+        for(int i = 0; i < array.length; i++){
+            array[i] = array[i].replaceAll("\\p{Punct}", "");
+        }
+        return array;
+    }
+
 
 }

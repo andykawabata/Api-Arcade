@@ -29,6 +29,7 @@ public class User extends DataObject {
     public String getUsername() {
         return username;
     }
+
     /**
      * uses "readObject()" method to load a user into a User object, give the username
      * @param _username: String

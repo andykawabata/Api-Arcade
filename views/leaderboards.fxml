@@ -21,7 +21,7 @@
                   <Image url="@../images/API%20Arcade%20Banner.png" />
                </image>
             </ImageView>
-            <Label layoutX="499.0" layoutY="34.0" text="Hello, User" textFill="WHITE" />
+            <Label fx:id="userID" layoutX="499.0" layoutY="34.0" text="Hello, user" textFill="WHITE" />
             <Hyperlink layoutX="21.0" layoutY="32.0" onAction="#_mainGamesLink" text="Return to Games" />
             <Hyperlink layoutX="493.0" layoutY="56.0" onAction="#_viewProfile" text="View Profile" />
             <Hyperlink layoutX="506.0" layoutY="85.0" onAction="#_userLogOut" text="Logout" />
@@ -52,6 +52,11 @@
             <Line endX="127.0" layoutX="261.0" layoutY="59.0" startX="-139.0" stroke="WHITE" />
             <Line endX="127.0" layoutX="261.0" layoutY="83.0" startX="-139.0" stroke="WHITE" />
             <Line endX="127.0" layoutX="261.0" layoutY="106.0" startX="-139.0" stroke="WHITE" />
+            <Label fx:id="currentGame1Score" layoutX="401.0" layoutY="24.0" text="Your Score: 0" textFill="WHITE">
+               <font>
+                  <Font name="Cooper Black" size="12.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Pane layoutX="14.0" layoutY="358.0" prefHeight="141.0" prefWidth="568.0" style="-fx-background-color: 330039;" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="355.0">
@@ -60,7 +65,7 @@
          </opaqueInsets>
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#210027" height="130.0" layoutX="-5.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" width="568.0" />
-            <Label prefHeight="49.0" prefWidth="523.0" text="General Trivia: The Other Game" textFill="WHITE">
+            <Label prefHeight="49.0" prefWidth="523.0" text="Trivia: Text Edition" textFill="WHITE">
                <font>
                   <Font name="Cooper Black" size="24.0" />
                </font>
@@ -74,6 +79,11 @@
             <Line endX="127.0" layoutX="267.0" layoutY="56.0" startX="-139.0" stroke="WHITE" />
             <Line endX="127.0" layoutX="267.0" layoutY="80.0" startX="-139.0" stroke="WHITE" />
             <Line endX="127.0" layoutX="267.0" layoutY="103.0" startX="-139.0" stroke="WHITE" />
+            <Label fx:id="currentGame2Score" layoutX="406.0" layoutY="21.0" text="Your Score: 0" textFill="WHITE">
+               <font>
+                  <Font name="Cooper Black" size="12.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <JFXButton fx:id="_btnPlayNow" layoutX="218.0" layoutY="476.0" onAction="#_mainGamesPlayNow" text="PLAY NOW!">

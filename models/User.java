@@ -52,7 +52,7 @@ public class User extends DataObject {
 
        return user;
     }
-
+    
     public Boolean passwordMatches(String _password) {
          return this.password.equals(_password);
     }
@@ -84,22 +84,17 @@ public class User extends DataObject {
                 return DataStoreAdapter.createObject(userProperties, User.TABLE);
             } catch (Exception e) {
             }
-        } else {/*
-            try {
-                // This is an exisitng object in the database, just update the object.
-                return DataStoreAdapter.updateObject(this);
-            } catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException | NoSuchFieldException ex) {
-            }*/
         }
         return false;
     }
 
+    /*
     public static boolean usernameExists(String _givenUsername) throws Exception {
        Map<String, String> keyValue = new HashMap<>();
        keyValue.put("username", _givenUsername);
        return DataStoreAdapter.findObjectByUsername(keyValue, User.TABLE);
     }
-
+    */
     //=================  GETTERS ===============
     public String getPassword() {
         return password;

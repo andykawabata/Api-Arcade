@@ -40,7 +40,4 @@ public class DataStoreAdapter {
         return  connector.deleteObject(_uuid, _table);
     }
 
-    public static boolean findObjectByUsername(Map<String, String> _keyValue, String _table) throws Exception {
-        return connector.findObjectByUsername(_keyValue, _table);
-    }
 }

@@ -22,6 +22,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +55,7 @@ public class CSVConnector implements DBConnectorInterface {
         //EXTRACT THE FIRST CONDITION FROM QUERY
         firstKey = (String) _keyValuePairs.keySet().toArray()[0].toString();
         firstValue = _keyValuePairs.get(firstKey);
+        _keyValuePairs.remove(firstKey);
 
         columnNames = getColumnNames(_table);
         int keyIndex = indexOf(columnNames, firstKey);
@@ -61,21 +63,36 @@ public class CSVConnector implements DBConnectorInterface {
         if (keyIndex == -1) {
             return null;
         }
-
         //skip first line (column names)
         //IF THERE IS MORE THAN ONE QUERY CONDITION (MORE THAN ONE KEY VALUE PAIR)
         //REMOVE ROWS THAT DON'T MATCH THE ADDITIONAL QUERYS
         br.readLine();
         matchingRows = populateMatchingRows(br, keyIndex, firstValue);
+        br.close();
         if (matchingRows.isEmpty()) {
             return null;
         }
-        br.close();
 
-        /*This method takes multiple rows in the case of a login of non-distinct username
-        *and reduces it to the one that the password matches
-        *also it returns Map<String, String> but it can easily be changed to List<Map<String, String>>
-         */
+        //IF THERE IS MORE THAN ONE QUERY CONDITION (MORE THAN ONE KEY VALUE PAIR)
+        //REMOVE ROWS THAT DON'T MATCH THE ADDITIONAL QUERYS
+        for (Map.Entry<String, String> entry : _keyValuePairs.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            keyIndex = indexOf(columnNames, key);
+            //Iterate over array list
+            ArrayList<Integer> indiciesToRemove = new ArrayList<>();
+            int index = 0;
+            for(String[] row: matchingRows){
+                if(!row[keyIndex].equals(value)){
+                    indiciesToRemove.add(index);
+                    index++;
+                }
+            }
+            for(int i = indiciesToRemove.size()-1; i >= 0; i--){
+                matchingRows.remove((int)indiciesToRemove.get(i));
+            }
+         }
+
         for (String[] row : matchingRows) {
             Map<String, String> map = new HashMap<>();
             int index = 0;
@@ -86,6 +103,11 @@ public class CSVConnector implements DBConnectorInterface {
             }
             maps.add(map);
         }
+        
+        if (maps.isEmpty()) {
+            return null;
+        }
+        
         return maps;
     }
 
@@ -130,7 +152,6 @@ public class CSVConnector implements DBConnectorInterface {
 
         //alter line
         selectedRow = alterRow(columnNames, selectedRow, _keyValuePairs);
-
         //Id of row will be its index in arrayList
         int rowId = Integer.valueOf(selectedRow[0]);
 
@@ -164,28 +185,6 @@ public class CSVConnector implements DBConnectorInterface {
         br.close();
 
         return updateFile(csvElements, _table);
-    }
-
-    @Override
-    public boolean findObjectByUsername(Map<String, String> _usernameKeyValue, String _table) throws Exception {
-        BufferedReader br = new BufferedReader(new FileReader(_table));
-        String columnName = "username";
-        String givenUsername = _usernameKeyValue.get(columnName);
-        int keyIndex = indexOf(getColumnNames(_table), columnName);
-        String[] currentRow;
-        String line;
-        //ignore first line (column names)
-        br.readLine();
-        while ((line = br.readLine()) != null) {
-            currentRow = line.split(",");
-            if (currentRow.length - 1 >= keyIndex) {
-                if (currentRow[keyIndex].equals(givenUsername)) {
-                    return true;
-                }
-            }
-        }
-        br.close();
-        return false;
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -302,6 +301,8 @@ public class CSVConnector implements DBConnectorInterface {
         //add temp file
         File updatedFile = new File("src/storage/temporary.csv");
         File oldFile = new File(_table);
+        
+        
 
         //write to temp file
         PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(updatedFile)));

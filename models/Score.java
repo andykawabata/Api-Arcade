@@ -22,47 +22,59 @@ public class Score extends DataObject {
 
     //IF GAME DOES NOT HAVE MAX SCORE, MAXSCORE AND PERCENT ARE -1
     private Integer score;
-    private Integer maxScore;
-    private Integer percent;
+    public static final int DEFAULT_HIGH_SCORE = -1;
+    public static final int DEFAULT_LOW_SCORE = -1;
 
     public static String TABLE = "src/storage/scores.csv";
 
 
-    //CONSTRUCTOR FOR ANY GAME
-    public Score(){
-      score = 0;
-      maxScore = -1;
-      percent = -1;
-    }
-
-    //CONSTRUCTOR FOR SCORE WHERE GAME HAS NO MAX SCORE
+    //CONSTRUCTOR FOR HIGH AND LOW SCORE
     public Score(Integer _score) {
         this.score = _score;
     }
 
-    //CONSTRUCTOR FOR SCORE WHERE GAME HAS MAX SCORE
-    public Score(Integer _score, Integer _maxScore) {
-        this.score = _score;
-        this.maxScore = _maxScore;
-        this.percent = (int) ((_score * 100) / _maxScore);
-    }
-
+    /**
+     * 
+     * @return true if a new high score was saved, false if the score was not high
+     * @throws Exception 
+     */
     public boolean save() throws Exception {
-        Map<String, String> scoreProperties = new HashMap<>();
-        Map<String, String> parentProperties = new HashMap<>();
-        scoreProperties.put("score", String.valueOf(this.score));
-        scoreProperties.put("maxscore", String.valueOf(this.maxScore));
-        scoreProperties.put("percent", String.valueOf(this.percent));
-        scoreProperties.put("game", String.valueOf(GameFactory.currentGame));
-        scoreProperties.put("username", String.valueOf(LoginSession.currentUser.getUsername()));
-        parentProperties = super.createMap();
-        scoreProperties.putAll(parentProperties);
-
-        return DataStoreAdapter.createObject(scoreProperties, Score.TABLE);
-
+        
+        //get list of rows where the user is currentUser and game is currentGame
+        Map<String, String> usernameAndGame = new HashMap<>();
+        usernameAndGame.put("username", LoginSession.currentUser.getUsername());
+        usernameAndGame.put("game", String.valueOf(GameFactory.currentGame));
+        List<Map<String, String>> currentHighScoreRows = DataStoreAdapter.readObject(usernameAndGame, Score.TABLE);
+        
+        //if user doesn't have a score on this game yet, create one with current score
+        if(currentHighScoreRows == null){
+            
+            Map<String, String> scoreProperties = new HashMap<>();
+            Map<String, String> parentProperties = new HashMap<>();
+            scoreProperties.put("highscore", String.valueOf(this.score));
+            scoreProperties.put("game", String.valueOf(GameFactory.currentGame));
+            scoreProperties.put("username", String.valueOf(LoginSession.currentUser.getUsername()));
+            parentProperties = super.createMap();
+            scoreProperties.putAll(parentProperties);
+            DataStoreAdapter.createObject(scoreProperties, TABLE);
+            return true;
+        }
+        //else, check to see if the score they just got is higher than their highscore
+        else{
+            Map<String, String>  currentHighScoreRow = currentHighScoreRows.get(0);
+            int currentHighScore = Integer.valueOf(currentHighScoreRow.get("highscore"));
+            //if they got a new highscore, update their current entry
+            if(currentHighScore < this.score){
+                String uuid = currentHighScoreRow.get("uuid");
+                Map<String, String> newScoreMap = new HashMap<>();
+                newScoreMap.put(("highscore"), String.valueOf(this.score));
+                DataStoreAdapter.updateObject(newScoreMap, uuid, TABLE);
+                return true;
+            }
+            //if the score they just got was not the high score return false
+            return false;
+        }
     }
-
-///////////////////////////////////// GETTERS ///////////////////////////////////////////
 
     public static int getScore(String _uuid, int gameID) throws Exception {
         int resultingScore = -1;

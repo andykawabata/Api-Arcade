@@ -12,11 +12,8 @@ package models;
 import API.MovieApiAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.json.JSONException;
 
 public class MovieGame extends Game {
@@ -42,7 +39,7 @@ public class MovieGame extends Game {
 
     @Override
     public void initialize() {
-        
+
         this.setNewQuestion();
     }
 
@@ -59,7 +56,7 @@ public class MovieGame extends Game {
         _posters[i] = _posters[j];
         _posters[j] = temp;
     }
-    
+
     public void setNewQuestion(){
         int movieId = generateRandomId(2000);
         String description = "";
@@ -110,7 +107,7 @@ public class MovieGame extends Game {
             System.out.println("exception!");
         }
     }
-    
+
     @Override
     public void newQuestion() {
         this.currentQuestionNumber += 1;
@@ -119,7 +116,7 @@ public class MovieGame extends Game {
 
     @Override
     public void processAnswer(String _givenAnswer)  {
-        
+
         //CHECK IF ANSWER IS CORRECT AND UPDATE RESULT/SCORE
         if(_givenAnswer.equals(this.correctAnswer)){
             this.result = "Correct";
@@ -128,7 +125,7 @@ public class MovieGame extends Game {
         else{
             this.result = "Incorrect";
         }
-        
+
         //IF GAMES IS OVER APPEND "GAMEOVER" TO RESULT
         //ELSE INCRAMENT  QUESTION NUMBER
         if(checkGameOver()){
@@ -141,13 +138,13 @@ public class MovieGame extends Game {
                 System.out.println("Score Not Saved!");
             }
         }
-        
+
     }
-    
+
     private boolean checkGameOver(){
         //RETURN TRUE IF GAME IS OVER
         return !(this.currentQuestionNumber < this.totalQuestions);
-        
+
     }
 
     private int generateRandomId(int _range) {
@@ -155,7 +152,7 @@ public class MovieGame extends Game {
         int id = rand.nextInt(_range) + 1;
         return id;
     }
-    
+   
     public String sanitizeDescription(String _title, String _description) throws JSONException {
         //first get title to major words then replace
 
@@ -183,7 +180,7 @@ public class MovieGame extends Game {
             copy += i + " ";
         return copy.trim();
     }
-    
+
     //returns true if array has only empty elements
     public boolean isStringArrayEmpty(String[] array) {
         for (String i : array)
@@ -197,7 +194,7 @@ public class MovieGame extends Game {
             array[i] = array[i].replaceAll("\\b\\w{1,4}\\b\\s?", "");
         return array;
     }
-    
+
     //delete punctuation from elements in String array using regex
     public String[] removePunctuation(String[] array) {
         for(int i = 0; i < array.length; i++){

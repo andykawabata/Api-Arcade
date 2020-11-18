@@ -1,5 +1,6 @@
-id,uuid,username,game,score,maxscore,percent
-1,43bfa197-d997-4e7f-87ea-e0de200cc45c,Guest,1,3,5,60
-2,e8944814-89ff-4b0c-bf90-6785375cc358,Guest,1,2,5,40
-3,6fb4a804-fb1a-4c75-8e0f-3bd9faa9521c,Guest,1,1,5,20
-4,87825410-a79c-4fd0-9954-0c0d0fbba500,Ryan,1,1,5,20
+id,uuid,username,game,highscore
+1,f5a2f000-88cf-4ab4-b553-569e54d7e6ad,JIM,1,1
+2,0b4baddf-876b-4409-8a17-a41cfea60b0e,Guest,1,2
+3,06909958-41c6-4a4c-a6aa-13b20d9d92b0,jeff,1,1
+4,f2554350-ad87-4dc3-a41b-616c57762d90,Randy,1,2
+5,8a107007-bdfd-4df4-aec2-a3ab5ca80418,user123,1,1

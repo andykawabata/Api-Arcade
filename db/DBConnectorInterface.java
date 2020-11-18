@@ -23,5 +23,4 @@ public interface DBConnectorInterface {
 
     public abstract Boolean deleteObject(String _uuid, String _table) throws FileNotFoundException, IOException;
 
-    public boolean findObjectByUsername(Map<String, String> _keyValue, String _table)throws Exception;
 }

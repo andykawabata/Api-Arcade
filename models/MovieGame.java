@@ -33,7 +33,7 @@ public class MovieGame extends Game {
     MovieApiAdapter api = new MovieApiAdapter();
 
     public MovieGame() {
-        this.totalQuestions = 5;
+        this.totalQuestions = 3;
         this.gameTitle = "Movie Game";
     }
 
@@ -131,11 +131,11 @@ public class MovieGame extends Game {
         if(checkGameOver()){
             this.gameOver = true;
             this.result = this.result + " - GAME OVER";
-            Score finalScore = new Score(this.currentScore, this.totalQuestions);
+            Score finalScore = new Score(this.currentScore);
             try {
                 finalScore.save();
             } catch (Exception ex) {
-                System.out.println("Score Not Saved!");
+                ex.printStackTrace();
             }
         }
 
@@ -143,7 +143,9 @@ public class MovieGame extends Game {
 
     private boolean checkGameOver(){
         //RETURN TRUE IF GAME IS OVER
+
         return !(this.currentQuestionNumber < this.totalQuestions);
+
 
     }
 

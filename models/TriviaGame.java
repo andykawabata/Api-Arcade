@@ -1,6 +1,6 @@
 package models;
 /*
-*Last updated on 10/28/20
+*Last updated on 11/18/20
 *
 *Game based on the OTDB API.
 *
@@ -10,11 +10,8 @@ package models;
 *@author Andy
 */
 import API.TriviaApiAdapter;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class TriviaGame extends Game {
 
@@ -32,17 +29,20 @@ public class TriviaGame extends Game {
     */
     private final int SCORE_UP = 100;
     private final int SCORE_DOWN = 50;
+    private final int ZERO = 0;
+    private final int ONE = 1;
     public static int counter = 0;
     TriviaApiAdapter api = new TriviaApiAdapter();
 
     public TriviaGame() {
-        this.totalQuestions = 5;
+        this.totalQuestions = 10;
         this.gameTitle = "Trivia Game: Text Edition";
     }
 
     @Override
     public void initialize(){
         try {
+            resetGame();
             setGameQuestions();
             setNewQuestion();
         } catch (Exception ex) {
@@ -61,7 +61,6 @@ public class TriviaGame extends Game {
         String answer = "";
 
         try {
-            //System.out.print(game);
             question = api.getCurrentQuestion(counter);
             answer = api.getCurrentAnswer(counter);
             countUp();
@@ -97,18 +96,24 @@ public class TriviaGame extends Game {
         if(checkGameOver()){
             this.gameOver = true;
             this.result = this.result + " - GAME OVER";
-//            Score finalScore = new Score(this.currentScore, this.totalQuestions);
-//            try {
-//                finalScore.save();
-//            } catch (Exception ex) {
-//                System.out.println("Score Not Saved!");
-//            }
+            Score finalScore = new Score(this.currentScore);
+            try {
+                finalScore.save();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
     private boolean checkGameOver(){
         //RETURN TRUE IF GAME IS OVER
         return !(this.currentQuestionNumber < this.totalQuestions);
+    }
+
+    public void resetGame() {
+        counter = ZERO;
+        this.currentScore = ZERO;
+        this.currentQuestionNumber = ONE;
     }
 
     public int countUp() {

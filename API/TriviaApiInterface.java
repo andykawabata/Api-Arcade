@@ -9,9 +9,6 @@ package API;
 *@author Francisco
 *@author Ryan
 */
-import java.io.IOException;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.json.JSONArray;
 
 public interface TriviaApiInterface {

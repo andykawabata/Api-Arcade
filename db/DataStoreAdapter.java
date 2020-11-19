@@ -12,6 +12,7 @@ package db;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -38,6 +39,10 @@ public class DataStoreAdapter {
 
     public Boolean deleteObject(String _uuid, String _table) throws IOException {
         return  connector.deleteObject(_uuid, _table);
+    }
+
+    public static ArrayList<String> getTableRows(String _table) throws IOException {
+        return connector.getTableRows(_table);
     }
 
 }

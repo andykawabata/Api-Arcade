@@ -39,7 +39,7 @@ public class MovieGame extends Game {
 
     @Override
     public void initialize() {
-
+        resetGame();
         this.setNewQuestion();
     }
 
@@ -134,6 +134,8 @@ public class MovieGame extends Game {
             Score finalScore = new Score(this.currentScore);
             try {
                 finalScore.save();
+                //this.currentScore = 0;
+                //this.currentQuestionNumber = 1;
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -147,6 +149,11 @@ public class MovieGame extends Game {
         return !(this.currentQuestionNumber < this.totalQuestions);
 
 
+    }
+    
+    public void resetGame() {
+        this.currentScore = 0;
+        this.currentQuestionNumber = 1;
     }
 
     private int generateRandomId(int _range) {

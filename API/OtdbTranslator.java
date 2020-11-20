@@ -12,7 +12,6 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.ArrayList;
 import java.util.Base64;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,7 +20,7 @@ public class OtdbTranslator implements TriviaApiInterface {
 
     String baseUrl          = "https://opentdb.com/api.php";
     String numOfQuestions   = "?amount=" + 10;
-    String questionCategory = "&category=" + 11;
+    String questionCategory = ""; //&category=" + 11;
     String questionDiff     = "&difficulty=" + "easy";
     String qustionType      = "&type=boolean";
     String sessionToken     = "";
@@ -52,7 +51,6 @@ public class OtdbTranslator implements TriviaApiInterface {
     public JSONArray getGameQuestions() throws Exception{
         if(sessionToken.isEmpty()) {
             getToken();
-            System.out.println(getToken());
         }
         arr = apiCall(urlString).getJSONArray("results");
         return arr;

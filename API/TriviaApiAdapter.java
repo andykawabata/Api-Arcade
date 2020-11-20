@@ -10,7 +10,6 @@ package API;
 *@author Ryan
 */
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class TriviaApiAdapter implements TriviaApiInterface {
 

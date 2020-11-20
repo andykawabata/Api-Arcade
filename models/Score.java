@@ -22,8 +22,6 @@ public class Score extends DataObject {
 
     //IF GAME DOES NOT HAVE MAX SCORE, MAXSCORE AND PERCENT ARE -1
     private Integer score;
-    public static final int DEFAULT_HIGH_SCORE = -1;
-    public static final int DEFAULT_LOW_SCORE = -1;
 
     public static String TABLE = "src/storage/scores.csv";
 

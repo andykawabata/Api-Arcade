@@ -22,7 +22,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,16 +81,16 @@ public class CSVConnector implements DBConnectorInterface {
             //Iterate over array list
             ArrayList<Integer> indiciesToRemove = new ArrayList<>();
             int index = 0;
-            for(String[] row: matchingRows){
-                if(!row[keyIndex].equals(value)){
+            for (String[] row : matchingRows) {
+                if (!row[keyIndex].equals(value)) {
                     indiciesToRemove.add(index);
                     index++;
                 }
             }
-            for(int i = indiciesToRemove.size()-1; i >= 0; i--){
-                matchingRows.remove((int)indiciesToRemove.get(i));
+            for (int i = indiciesToRemove.size() - 1; i >= 0; i--) {
+                matchingRows.remove((int) indiciesToRemove.get(i));
             }
-         }
+        }
 
         for (String[] row : matchingRows) {
             Map<String, String> map = new HashMap<>();
@@ -103,11 +102,11 @@ public class CSVConnector implements DBConnectorInterface {
             }
             maps.add(map);
         }
-        
+
         if (maps.isEmpty()) {
             return null;
         }
-        
+
         return maps;
     }
 
@@ -133,22 +132,7 @@ public class CSVConnector implements DBConnectorInterface {
         String[] columnNames = getColumnNames(_table);
         String[] selectedRow = new String[columnNames.length];
 
-        ArrayList<String> csvElements = new ArrayList<>();
-        BufferedReader br = new BufferedReader(new FileReader(_table));
-        String line;
-
-        while ((line = br.readLine()) != null) {
-            csvElements.add(line);
-        }
-        br.close();
-
-        //read file
-        for (String csvElement : csvElements) {
-            if (csvElement.contains(_uuid)) {
-                selectedRow = csvElement.split(",");
-                break;
-            }
-        }
+        ArrayList<String> csvElements = getTableRows(_table);
 
         //alter line
         selectedRow = alterRow(columnNames, selectedRow, _keyValuePairs);
@@ -179,17 +163,34 @@ public class CSVConnector implements DBConnectorInterface {
 
         //add all lines into ArrayList<String> unless uuid matches uuidToDelete
         while ((line = br.readLine()) != null) {
-            if(!line.contains(_uuid))
+            if (!line.contains(_uuid)) {
                 csvElements.add(line);
+            }
         }
         br.close();
 
         return updateFile(csvElements, _table);
     }
 
+    @Override
+    public ArrayList<String> getTableRows(String _table) throws FileNotFoundException, IOException {
+
+        ArrayList<String> csvElements = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader(_table));
+        String line;
+
+        while ((line = br.readLine()) != null) {
+            csvElements.add(line);
+        }
+        br.close();
+
+        return csvElements;
+    }
+
     /////////////////////////////////////////////////////////////////////////////
     //    HELPER METHODS
     ///////////////////////////////////////////////////////////////////////////
+
     private List<Map<String, String>> removeUnmatchedRows(Map<String, String> _keyValuePairs, ArrayList<String[]> matchingRows, String _table) throws IOException {
         //populate finalHashMap with _keyValuePairs and find correct row using matchingRows
         String enteredPassword = _keyValuePairs.values().toArray()[0].toString();
@@ -285,8 +286,9 @@ public class CSVConnector implements DBConnectorInterface {
         //updateIndex is the row of tableRows to be edited
         int keyIndex = -1;
         for (int i = 0; i < _columnNames.length; i++) {
-            if (_keyValuePairs.containsKey(_columnNames[i]))
+            if (_keyValuePairs.containsKey(_columnNames[i])) {
                 keyIndex = i;
+            }
             if (keyIndex > -1) {
                 selectedRow[keyIndex] = _keyValuePairs.get(_columnNames[keyIndex]);
             }
@@ -301,8 +303,6 @@ public class CSVConnector implements DBConnectorInterface {
         //add temp file
         File updatedFile = new File("src/storage/temporary.csv");
         File oldFile = new File(_table);
-        
-        
 
         //write to temp file
         PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(updatedFile)));
@@ -312,8 +312,6 @@ public class CSVConnector implements DBConnectorInterface {
         writer.close();
         oldFile.delete();
         return updatedFile.renameTo(new File(_table));
-        
-
     }
 
 }

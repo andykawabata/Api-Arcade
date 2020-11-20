@@ -43,12 +43,12 @@
                   <Font name="Cooper Black" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="54.0" layoutY="51.0" text="User1" textFill="WHITE" />
-            <Label layoutX="54.0" layoutY="75.0" text="User2" textFill="WHITE" />
-            <Label layoutX="54.0" layoutY="98.0" text="User3" textFill="WHITE" />
-            <Label layoutX="424.0" layoutY="50.0" text="Score1" textFill="WHITE" />
-            <Label layoutX="424.0" layoutY="74.0" text="Score2" textFill="WHITE" />
-            <Label layoutX="424.0" layoutY="97.0" text="Score3" textFill="WHITE" />
+            <Label fx:id="game1user1" layoutX="54.0" layoutY="51.0" text="User1" textFill="WHITE" />
+            <Label fx:id="game1user2" layoutX="54.0" layoutY="75.0" text="User2" textFill="WHITE" />
+            <Label fx:id="game1user3" layoutX="54.0" layoutY="98.0" text="User3" textFill="WHITE" />
+            <Label fx:id="game1score1" layoutX="424.0" layoutY="50.0" text="Score1" textFill="WHITE" />
+            <Label fx:id="game1score2" layoutX="424.0" layoutY="74.0" text="Score2" textFill="WHITE" />
+            <Label fx:id="game1score3" layoutX="424.0" layoutY="97.0" text="Score3" textFill="WHITE" />
             <Line endX="127.0" layoutX="261.0" layoutY="59.0" startX="-139.0" stroke="WHITE" />
             <Line endX="127.0" layoutX="261.0" layoutY="83.0" startX="-139.0" stroke="WHITE" />
             <Line endX="127.0" layoutX="261.0" layoutY="106.0" startX="-139.0" stroke="WHITE" />
@@ -70,12 +70,12 @@
                   <Font name="Cooper Black" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="52.0" layoutY="48.0" text="User1" textFill="WHITE" />
-            <Label layoutX="52.0" layoutY="72.0" text="User2" textFill="WHITE" />
-            <Label layoutX="52.0" layoutY="95.0" text="User3" textFill="WHITE" />
-            <Label layoutX="424.0" layoutY="48.0" text="Score1" textFill="WHITE" />
-            <Label layoutX="424.0" layoutY="72.0" text="Score2" textFill="WHITE" />
-            <Label layoutX="424.0" layoutY="95.0" text="Score3" textFill="WHITE" />
+            <Label fx:id="game2user1" layoutX="52.0" layoutY="48.0" text="User1" textFill="WHITE" />
+            <Label fx:id="game2user2" layoutX="52.0" layoutY="72.0" text="User2" textFill="WHITE" />
+            <Label fx:id="game2user3" layoutX="52.0" layoutY="95.0" text="User3" textFill="WHITE" />
+            <Label fx:id="game2score1" layoutX="424.0" layoutY="48.0" text="Score1" textFill="WHITE" />
+            <Label fx:id="game2score2" layoutX="424.0" layoutY="72.0" text="Score2" textFill="WHITE" />
+            <Label fx:id="game2score3" layoutX="424.0" layoutY="95.0" text="Score3" textFill="WHITE" />
             <Line endX="127.0" layoutX="267.0" layoutY="56.0" startX="-139.0" stroke="WHITE" />
             <Line endX="127.0" layoutX="267.0" layoutY="80.0" startX="-139.0" stroke="WHITE" />
             <Line endX="127.0" layoutX="267.0" layoutY="103.0" startX="-139.0" stroke="WHITE" />

@@ -10,6 +10,7 @@ package db;
 */
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,5 +23,7 @@ public interface DBConnectorInterface {
     public abstract Boolean updateObject(Map<String,String> _keyValuePairs, String _uuid, String _table)  throws FileNotFoundException, IOException;
 
     public abstract Boolean deleteObject(String _uuid, String _table) throws FileNotFoundException, IOException;
+    
+    public abstract ArrayList<String> getTableRows(String _table) throws FileNotFoundException, IOException;
 
 }

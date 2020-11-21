@@ -1,8 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+*Last updated on 11/20/20
+*
+*Logic for the leaderboard controller
+*
+*
+*Contributing authors
+*@author Ryan
+*/
 package models;
 
 import db.DataStoreAdapter;

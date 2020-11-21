@@ -1,6 +1,6 @@
 package controllers;
 /*
-*Last updated on 10/29/20
+*Last updated on 11/21/20
 *
 *Controls the links and buttons of leaderboards fxml file
 *Yes there are two buttons to play game for the user's convenience
@@ -71,6 +71,8 @@ public class LeaderboardController  implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //get high scores
+        /*numOfLabels is the number of high scores to get
+        *which corresponds directly to the number of labels displayed*/
         int numOfLabels = 3;
         try{
         Map<String, Integer> highScoresGameOne = lb.getHighScores(lb.getGame1ID(), numOfLabels);
@@ -112,12 +114,16 @@ public class LeaderboardController  implements Initializable {
         //initialize personalized labels
         userID.setText("Hello! " + user.getUsername());
         try {
-            currentGame1Score.setText("Your Score: " + Score.getScoreByUsername(user.getUsername(), lb.getGame1ID()));
-            currentGame2Score.setText("Your Score: " + Score.getScoreByUsername(user.getUsername(), lb.getGame2ID()));
+            String score1 = (Score.getScoreByUsername(user.getUsername(), lb.getGame2ID()) + "");
+            String score2 = (Score.getScoreByUsername(user.getUsername(), lb.getGame2ID()) + "");
+            String displayedScore1 = (score1.equals("0") || score1.equals("-1")) ? "N/a" : score1;
+            String displayedScore2 = (score2.equals("0") || score2.equals("-1")) ? "N/a" : score2;
+
+            currentGame1Score.setText("Your Score: " + displayedScore1);
+            currentGame2Score.setText("Your Score: " + displayedScore2);
         } catch (Exception ex) {
             Logger.getLogger(LeaderboardController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        currentGame2Score.setText("Your Score: " + 0);
     }
 
     @FXML

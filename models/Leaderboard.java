@@ -1,8 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+*Last updated on 11/20/20
+*
+*Logic for the leaderboard controller
+*
+*
+*Contributing authors
+*@author Ryan
+*/
 package models;
 
 import db.DataStoreAdapter;
@@ -36,16 +40,18 @@ public class Leaderboard {
         //take off first row (columnNames)
         allTableRows.remove(0);
 
-        //id + uuid + two commas = username starts at character 39 ALWAYS
-        //cut down each row into just username, game, score
-        //then move score to beginning
+        //split up the row and rearrange into
         //SCORE, USERNAME, GAMEID
         int indexOfEntry;
         for(String entry : allTableRows){
             indexOfEntry = allTableRows.indexOf(entry);
-            entry = entry.substring(39);
-            entry = entry.substring(entry.lastIndexOf(',') + 1) + "," + entry.substring(0, entry.lastIndexOf(','));
-            allTableRows.set(indexOfEntry, entry);
+            if(!(entry.equals(""))){
+                String[] row = entry.split(",");
+                entry = row[4] + "," + row[2] + "," + row[3];
+                allTableRows.set(indexOfEntry, entry);
+            }
+            else
+                allTableRows.set(indexOfEntry, "error, error, error");
         }
 
         //sort by highest score first

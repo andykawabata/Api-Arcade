@@ -1,7 +1,7 @@
 package db;
 
 /*
-*Last updated on 10/25/20
+*Last updated on 11/21/20
 *
 *implements CRUD methods on CSV files User and Score based on their
 *table path string.
@@ -35,12 +35,29 @@ public class CSVConnector implements DBConnectorInterface {
     *Takes in query as one or more key value pairs (ex "username": "user123")
     *Returns maps representing the rows that match the query
     *Returns null if no rows match query
-    *for example {
+    *for example
     *id: 1
-    *uuid: sg7e4s2
+    *uuid: 53932bd4-ec30-4fec-970c-97c4dfa044e5
     *username: user123
-    *password: 123445
+    *password: 12345
      */
+
+    @Override
+    public int createObject(Map<String, String> _keyValuePairs, String _table) throws IOException {
+
+        String newId = getNextId(_table);  //find value that the new id should be
+        _keyValuePairs.put("id", newId);
+        String[] columnNames = getColumnNames(_table);
+        String[] newRow = buildRow(columnNames, _keyValuePairs);
+        //write row to file
+        try ( CSVWriter writer = new CSVWriter(new FileWriter(_table, true))) {
+            writer.writeNext(newRow, false);
+        } catch (Exception e) {
+            newId = "0";
+        }
+        return Integer.valueOf(newId);
+    }
+
     @Override
     public List<Map<String, String>> readObject(Map<String, String> _keyValuePairs, String _table) throws Exception {
 
@@ -55,6 +72,10 @@ public class CSVConnector implements DBConnectorInterface {
         firstKey = (String) _keyValuePairs.keySet().toArray()[0].toString();
         firstValue = _keyValuePairs.get(firstKey);
         _keyValuePairs.remove(firstKey);
+
+        //GUEST CHECK
+        if (_keyValuePairs.containsValue("Guest"))
+            return null;
 
         columnNames = getColumnNames(_table);
         int keyIndex = indexOf(columnNames, firstKey);
@@ -111,28 +132,16 @@ public class CSVConnector implements DBConnectorInterface {
     }
 
     @Override
-    public int createObject(Map<String, String> _keyValuePairs, String _table) throws IOException {
-
-        String newId = getNextId(_table);  //find value that the new id should be
-        _keyValuePairs.put("id", newId);
-        String[] columnNames = getColumnNames(_table);
-        String[] newRow = buildRow(columnNames, _keyValuePairs);
-        //write row to file
-        try ( CSVWriter writer = new CSVWriter(new FileWriter(_table, true))) {
-            writer.writeNext(newRow, false);
-        } catch (Exception e) {
-            newId = "0";
-        }
-        return Integer.valueOf(newId);
-    }
-
-    @Override
     public Boolean updateObject(Map<String, String> _keyValuePairs, String _uuid, String _table) throws FileNotFoundException, IOException {
 
         String[] columnNames = getColumnNames(_table);
         String[] selectedRow = new String[columnNames.length];
 
         ArrayList<String> csvElements = getTableRows(_table);
+        for(String row : csvElements){
+            if(row.contains(_uuid))
+                selectedRow = row.split(",");
+        }
 
         //alter line
         selectedRow = alterRow(columnNames, selectedRow, _keyValuePairs);
@@ -190,7 +199,7 @@ public class CSVConnector implements DBConnectorInterface {
     /////////////////////////////////////////////////////////////////////////////
     //    HELPER METHODS
     ///////////////////////////////////////////////////////////////////////////
-
+/*
     private List<Map<String, String>> removeUnmatchedRows(Map<String, String> _keyValuePairs, ArrayList<String[]> matchingRows, String _table) throws IOException {
         //populate finalHashMap with _keyValuePairs and find correct row using matchingRows
         String enteredPassword = _keyValuePairs.values().toArray()[0].toString();
@@ -216,7 +225,7 @@ public class CSVConnector implements DBConnectorInterface {
         }
         return null;
     }
-
+*/
     private String[] getColumnNames(String _table) throws FileNotFoundException, IOException {
         String line;
         String[] columnNames = new String[0];
@@ -284,17 +293,17 @@ public class CSVConnector implements DBConnectorInterface {
 
     private String[] alterRow(String[] _columnNames, String[] selectedRow, Map<String, String> _keyValuePairs) {
         //updateIndex is the row of tableRows to be edited
+        //keyIndex is the slot on that row to be updated (e.g. password)
         int keyIndex = -1;
         for (int i = 0; i < _columnNames.length; i++) {
             if (_keyValuePairs.containsKey(_columnNames[i])) {
                 keyIndex = i;
             }
+            //replace (key) in selectedRow with (value)
             if (keyIndex > -1) {
                 selectedRow[keyIndex] = _keyValuePairs.get(_columnNames[keyIndex]);
             }
         }
-        //replace (key) in selectedRow with (value)
-
         return selectedRow;
     }
 

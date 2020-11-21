@@ -1,6 +1,6 @@
 package models;
 /*
-*Last updated on 10/28/20
+*Last updated on 11/21/20
 *
 *Inherits the DataOject class to create a User for later use.
 *
@@ -23,7 +23,14 @@ public class User extends DataObject {
     public static String TABLE = "src/storage/users.csv";
 
 
-    public User() {
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(){
+        this.username = null;
+        this.password = null;
     }
 
     public String getUsername() {
@@ -38,6 +45,7 @@ public class User extends DataObject {
      */
     public static User loadByUsername(String _username) throws Exception {
 
+       _username = _username.toLowerCase();
        Map<String, String> keyValue = new HashMap<>();
        keyValue.put("username", _username);
        List<Map<String, String>> response = DataStoreAdapter.readObject(keyValue, User.TABLE);
@@ -52,7 +60,7 @@ public class User extends DataObject {
 
        return user;
     }
-    
+
     public Boolean passwordMatches(String _password) {
          return this.password.equals(_password);
     }
@@ -73,9 +81,9 @@ public class User extends DataObject {
         Map<String, String> userProperties = new HashMap<>();
         Map<String, String> parentProperties = new HashMap<>();
         if(this.username != null)
-            userProperties.put("username", this.username);
+            userProperties.put("username", this.username.toLowerCase());
         if(this.password != null)
-            userProperties.put("password", this.password);
+            userProperties.put("password", this.password.toLowerCase());
         parentProperties = super.createMap();
         userProperties.putAll(parentProperties);
 
@@ -87,6 +95,15 @@ public class User extends DataObject {
         }
         return false;
     }
+
+    public static String checkErrors(User user) throws Exception {
+        if(user.getUsername().toLowerCase().equals("guest"))
+            return "Illegal Username";
+        else if(loadByUsername(user.getUsername()) != null)
+            return "Username already taken";
+        return null;
+    }
+
 
     /*
     public static boolean usernameExists(String _givenUsername) throws Exception {

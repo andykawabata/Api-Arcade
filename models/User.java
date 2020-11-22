@@ -89,7 +89,7 @@ public class User extends DataObject {
 
         if (this.id == 0) {
             try {
-                return DataStoreAdapter.createObject(userProperties, User.TABLE);
+                return DataStoreAdapter.createObject(userProperties, TABLE);
             } catch (Exception e) {
             }
         }

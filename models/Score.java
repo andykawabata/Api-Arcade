@@ -1,12 +1,4 @@
 package models;
-
-import db.DataObject;
-import db.DataStoreAdapter;
-import factories.GameFactory;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /*
 *Last updated on 10/28/20
 *
@@ -17,6 +9,14 @@ import java.util.Map;
 *@author Ryan
 *@author Andy
  */
+import db.DataObject;
+import db.DataStoreAdapter;
+import factories.GameFactory;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
 public class Score extends DataObject {
 
 

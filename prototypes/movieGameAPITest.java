@@ -1,8 +1,11 @@
 /*
- *
- * API Prototype
- *
- */
+*Last updated on MM/DD/20
+*
+*
+*
+*Contributing authors
+*@author Francisco
+*/
 package prototypes;
 
 import java.io.IOException;
@@ -13,10 +16,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- *
- * @author Francisco
- */
 public class movieGameAPITest {
 
     /**
@@ -28,18 +27,18 @@ public class movieGameAPITest {
      * @throws InterruptedException
      * @throws JSONException
      */
-    
-    
+
+
     public static final int NUMOFQUESTIONS = 1;
     public static final String DIFFICULTY_EASY = "easy";
     public static final String DIFFICULTY_MED = "medium";
     public static final String DIFFICULTY_HARD = "hard";
-    
-        
+
+
     public static String movieQuestion() throws IOException, InterruptedException, JSONException {
         String questionDifficulty = movieGameAPITest.DIFFICULTY_EASY;
         int numQuestions = movieGameAPITest.NUMOFQUESTIONS;
-        
+
         String baseUrl = "https://opentdb.com/api.php";
         String numOfQuestions = "?amount=" + numQuestions;
         String questionCategory = "&category=11";

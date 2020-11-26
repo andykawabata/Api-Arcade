@@ -1,10 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controllers;
-
+/*
+*Last updated on 10/25/20
+*
+*FXML Controller class
+*
+*Contributing authors
+*@author Andy
+*@author Ryan
+*/
 import apiarcade.RunApp;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -17,12 +20,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import models.User;
 
-/**
- * FXML Controller class
- *
- * @author RyanC
- * @author AndyK
- */
 public class RegisterController implements Initializable {
 
     @FXML
@@ -48,8 +45,7 @@ public class RegisterController implements Initializable {
 
     /*
     First checks password == confirmPassword and sets the error message
-    Then checks if either username or password have not been entered because
-        that message is more important
+    Then checks if either username or password have not been entered
 
     @param event - click on button and check fields entered
     */
@@ -71,24 +67,26 @@ public class RegisterController implements Initializable {
             return;
         }
 
-
         //Checks if password is confirmed before making User
-        //if user exists --> error
-        //If user is new --> create
         if(!newConfirmPassword.equals(newPassword)){
             lblErrorMessage.setText("passwords don't match");
             return;
         }
-        //check if user already exists
-        if(true){
-            User user = new User();
-            user.setUsername(newUsername);
-            user.setPassword(newPassword);
-            user.save();
+
+        //error message = "Username already taken" or "Illegal Username"
+        String errorMessage = User.checkErrors(new User(newUsername, newPassword));
+        if(!(errorMessage == null))
+            lblErrorMessage.setText(errorMessage);
+        else
+            new User(newUsername, newPassword).save();
+
+        //if error message exists, clear forms
+        if(!(lblErrorMessage.getText().equals(""))){
+            username.setText(null);
+            password.setText(null);
+            confirmPassword.setText(null);
         }
-        else{
-            lblErrorMessage.setText("Username already taken");
-        }
+
 
     }
 

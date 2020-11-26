@@ -1,5 +1,14 @@
 package controllers;
-
+/*
+*Last updated on 11/21/20
+*
+*
+*Work In Progress
+*
+*Contributing authors
+*@author Andy
+*@author Ryan
+ */
 import apiarcade.RunApp;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;

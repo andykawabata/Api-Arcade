@@ -177,6 +177,7 @@ public class MovieGame extends Game {
         String[] descArray = _description.split(" ");
         for(String t : titleArray){
             for (int i = 0; i < descArray.length; i++) {
+                    //remove punctuation from description
                     descArray[i] = descArray[i].replaceAll("\\p{Punct}", "");
                 if (descArray[i].toLowerCase().equals(t.toLowerCase())) {
                     descArray[i] = "[CENSORED]";

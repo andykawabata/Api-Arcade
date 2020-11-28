@@ -38,16 +38,17 @@ public class Score extends DataObject {
      * @throws Exception
      */
     public boolean save() throws Exception {
+        
+        if (LoginSession.currentUser.getUsername().equals("Guest"))
+            return false;
 
         //get list of rows where the user is currentUser and game is currentGame
         Map<String, String> usernameAndGame = new HashMap<>();
         usernameAndGame.put("username", LoginSession.currentUser.getUsername());
         usernameAndGame.put("game", String.valueOf(GameFactory.currentGame));
         List<Map<String, String>> currentHighScoreRows = DataStoreAdapter.readObject(usernameAndGame, Score.TABLE);
-
         //if user doesn't have a score on this game yet, create one with current score
         if(currentHighScoreRows == null){
-
             Map<String, String> scoreProperties = new HashMap<>();
             Map<String, String> parentProperties = new HashMap<>();
             scoreProperties.put("highscore", String.valueOf(this.score));
@@ -63,6 +64,8 @@ public class Score extends DataObject {
             Map<String, String>  currentHighScoreRow = currentHighScoreRows.get(0);
             int currentHighScore = Integer.valueOf(currentHighScoreRow.get("highscore"));
             //if they got a new highscore, update their current entry
+            System.out.println("HS: "+ currentHighScore);
+            System.out.println("this: "+ this.score);
             if(currentHighScore < this.score){
                 String uuid = currentHighScoreRow.get("uuid");
                 Map<String, String> newScoreMap = new HashMap<>();

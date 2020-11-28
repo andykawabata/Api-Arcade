@@ -134,8 +134,6 @@ public class MovieGame extends Game {
             Score finalScore = new Score(this.currentScore);
             try {
                 finalScore.save();
-                //this.currentScore = 0;
-                //this.currentQuestionNumber = 1;
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -162,21 +160,23 @@ public class MovieGame extends Game {
         return id;
     }
    
-    public String sanitizeDescription(String _title, String _description) throws JSONException {
+    private String sanitizeDescription(String _title, String _description) throws JSONException {
         //first get title to major words then replace
 
         boolean cleanTitleEmpty = true;
 
         //clean title to remove punctuation and small words (the, a, as)
         String[] titleArray = _title.split(" ");
-        removePunctuation(titleArray);
-        trimSmallWords(titleArray);
-        if (isStringArrayEmpty(titleArray))
+        String[] titleNoPunc = Sanitizer.removePunctuation(titleArray);
+        String[] titleNoSmall =  Sanitizer.trimSmallWords(titleArray);
+        //if there was an error or if the above functions filtered out whole title
+        if (Sanitizer.isStringArrayEmpty(titleNoSmall))
             return _description;
 
         String[] descArray = _description.split(" ");
         for(String t : titleArray){
             for (int i = 0; i < descArray.length; i++) {
+                    //remove punctuation from description
                     descArray[i] = descArray[i].replaceAll("\\p{Punct}", "");
                 if (descArray[i].toLowerCase().equals(t.toLowerCase())) {
                     descArray[i] = "[CENSORED]";
@@ -189,28 +189,5 @@ public class MovieGame extends Game {
             copy += i + " ";
         return copy.trim();
     }
-
-    //returns true if array has only empty elements
-    public boolean isStringArrayEmpty(String[] array) {
-        for (String i : array)
-            if(i.length() > 0)
-                return false;
-        return true;
-    }
-    //Get rid of small words then sort array
-    public String[] trimSmallWords(String[] array) {
-        for (int i = 0; i < array.length; i++)
-            array[i] = array[i].replaceAll("\\b\\w{1,4}\\b\\s?", "");
-        return array;
-    }
-
-    //delete punctuation from elements in String array using regex
-    public String[] removePunctuation(String[] array) {
-        for(int i = 0; i < array.length; i++){
-            array[i] = array[i].replaceAll("\\p{Punct}", "");
-        }
-        return array;
-    }
-
 
 }

@@ -1,4 +1,5 @@
 package controllers;
+
 /*
 *Last updated on 11/21/20
 *
@@ -7,7 +8,7 @@ package controllers;
 *
 *Contributing authors
 *@author Ryan
-*/
+ */
 import apiarcade.RunApp;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
@@ -25,7 +26,7 @@ import models.LoginSession;
 import models.Score;
 import models.User;
 
-public class LeaderboardController  implements Initializable {
+public class LeaderboardController implements Initializable {
 
     @FXML
     private ResourceBundle resources;
@@ -67,47 +68,45 @@ public class LeaderboardController  implements Initializable {
     private User user = LoginSession.currentUser;
     private Leaderboard lb = new Leaderboard();
 
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //get high scores
         /*numOfLabels is the number of high scores to get
         *which corresponds directly to the number of labels displayed*/
         int numOfLabels = 3;
-        try{
-        Map<String, Integer> highScoresGameOne = lb.getHighScores(lb.getGame1ID(), numOfLabels);
-        Map<String, Integer> highScoresGameTwo = lb.getHighScores(lb.getGame2ID(), numOfLabels);
+        try {
+            Map<String, Integer> highScoresGameOne = lb.getHighScores(lb.getGame1ID(), numOfLabels);
+            Map<String, Integer> highScoresGameTwo = lb.getHighScores(lb.getGame2ID(), numOfLabels);
 
-        //get strings for tgame 1 labels
-        String[] keySet = new String[numOfLabels];
-        int iterator = 0;
-        for(String key : highScoresGameOne.keySet()){
-            keySet[iterator] = key;
-            iterator++;
-        }
-        //populate labels
-        game1user1.setText(keySet[0]);
-        game1user2.setText(keySet[1]);
-        game1user3.setText(keySet[2]);
-        game1score1.setText("" + highScoresGameOne.get(game1user1.getText()));
-        game1score2.setText("" + highScoresGameOne.get(game1user2.getText()));
-        game1score3.setText("" + highScoresGameOne.get(game1user3.getText()));
+            //get strings for tgame 1 labels
+            String[] keySet = new String[numOfLabels];
+            int iterator = 0;
+            for (String key : highScoresGameOne.keySet()) {
+                keySet[iterator] = key;
+                iterator++;
+            }
+            //populate labels
+            game1user1.setText(keySet[0]);
+            game1user2.setText(keySet[1]);
+            game1user3.setText(keySet[2]);
+            game1score1.setText("" + highScoresGameOne.get(game1user1.getText()));
+            game1score2.setText("" + highScoresGameOne.get(game1user2.getText()));
+            game1score3.setText("" + highScoresGameOne.get(game1user3.getText()));
 
-        //get strings for game 2 labels
-        iterator = 0;
-        for(String key : highScoresGameTwo.keySet()){
-            keySet[iterator] = key;
-            iterator++;
-        }
-        game2user1.setText(keySet[0]);
-        game2user2.setText(keySet[1]);
-        game2user3.setText(keySet[2]);
-        game2score1.setText("" + highScoresGameTwo.get(game2user1.getText()));
-        game2score2.setText("" + highScoresGameTwo.get(game2user2.getText()));
-        game2score3.setText("" + highScoresGameTwo.get(game2user3.getText()));
+            //get strings for game 2 labels
+            iterator = 0;
+            for (String key : highScoresGameTwo.keySet()) {
+                keySet[iterator] = key;
+                iterator++;
+            }
+            game2user1.setText(keySet[0]);
+            game2user2.setText(keySet[1]);
+            game2user3.setText(keySet[2]);
+            game2score1.setText("" + highScoresGameTwo.get(game2user1.getText()));
+            game2score2.setText("" + highScoresGameTwo.get(game2user2.getText()));
+            game2score3.setText("" + highScoresGameTwo.get(game2user3.getText()));
 
-        }
-        catch(IOException e){
+        } catch (IOException e) {
             System.out.println(e.toString());
         }
 
@@ -142,13 +141,10 @@ public class LeaderboardController  implements Initializable {
         RunApp.showLoginView();
     }
 
-    @FXML
-    void _viewProfile(ActionEvent event) throws IOException {
-        System.out.println("Move to profile view");
-        //RunApp.showProfileView();
-    }
-
-
-
+//    @FXML
+//    void _viewProfile(ActionEvent event) throws IOException {
+//        System.out.println("Move to profile view");
+//        //RunApp.showProfileView();
+//    }
 
 }

@@ -6,7 +6,6 @@ package db;
 *implements CRUD methods on CSV files User and Score based on their
 *table path string.
 *
-*Work In Progress
 *
 *Contributing authors
 *@author Andy
@@ -22,7 +21,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +30,7 @@ public class CSVConnector implements DBConnectorInterface {
     ///////////////////////////////////////////////////////////////////////////
     //    CRUD METHODS
     /////////////////////////////////////////////////////////////////////////
-    
+
     /*
     *Takes in query as one or more key value pairs (ex "username": "user123")
     *Returns maps representing the rows that match the query
@@ -91,7 +89,6 @@ public class CSVConnector implements DBConnectorInterface {
             return null;
         }
 
-
         //IF THERE IS MORE THAN ONE QUERY CONDITION (MORE THAN ONE KEY VALUE PAIR)
         //REMOVE ROWS THAT DON'T MATCH THE ADDITIONAL QUERYS
         for (Map.Entry<String, String> entry : _keyValuePairs.entrySet()) {
@@ -105,11 +102,11 @@ public class CSVConnector implements DBConnectorInterface {
                 if (!row[keyIndex].equals(value)) {
                     indiciesToRemove.add(index);
                     index++;
-                }else{
+                } else {
                     index++;
                 }
             }
-            
+
             for (int i = indiciesToRemove.size() - 1; i >= 0; i--) {
                 matchingRows.remove((int) indiciesToRemove.get(i));
             }
@@ -140,9 +137,10 @@ public class CSVConnector implements DBConnectorInterface {
         String[] selectedRow = new String[columnNames.length];
 
         ArrayList<String> csvElements = getTableRows(_table);
-        for(String row : csvElements){
-            if(row.contains(_uuid))
+        for (String row : csvElements) {
+            if (row.contains(_uuid)) {
                 selectedRow = row.split(",");
+            }
         }
 
         //alter line
@@ -227,7 +225,7 @@ public class CSVConnector implements DBConnectorInterface {
         }
         return null;
     }
-*/
+     */
     private String[] getColumnNames(String _table) throws FileNotFoundException, IOException {
         String line;
         String[] columnNames = new String[0];

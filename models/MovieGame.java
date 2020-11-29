@@ -1,4 +1,5 @@
 package models;
+
 /*
 *Last updated on 10/28/20
 *
@@ -8,7 +9,7 @@ package models;
 *@author Francisco
 *@author Ryan
 *@author Andy
-*/
+ */
 import API.MovieApiAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +18,7 @@ import java.util.Random;
 import org.json.JSONException;
 
 public class MovieGame extends Game {
+
     /*
     PARENT FEILDS:
     String gameTitle
@@ -28,7 +30,7 @@ public class MovieGame extends Game {
     static String correctAnswer
     static Integer currentQuestionNumber = 1
     static Integer totalQuestions
-    */
+     */
     public final int NUM_FALSE_MOVIES = 4;
     MovieApiAdapter api = new MovieApiAdapter();
 
@@ -43,21 +45,13 @@ public class MovieGame extends Game {
         this.setNewQuestion();
     }
 
-    private int shufflePosters(String[] _posterUrls) {
-        Random rand = new Random();
-        int correctIndex = rand.nextInt(this.NUM_FALSE_MOVIES)+1;
-        swap(_posterUrls, correctIndex, 0);
-        return correctIndex + 1;
-
-    }
-
     public void swap(String[] _posters, int i, int j) {
         String temp = _posters[i];
         _posters[i] = _posters[j];
         _posters[j] = temp;
     }
 
-    public void setNewQuestion(){
+    public void setNewQuestion() {
         int movieId = generateRandomId(2000);
         String description = "";
         String posterUrl = "";
@@ -65,7 +59,7 @@ public class MovieGame extends Game {
         int correctIndexInt = 0;
         String[] similarPosterUrls = new String[NUM_FALSE_MOVIES];
         String[] allPosterUrls = new String[NUM_FALSE_MOVIES + 1];
-        ArrayList<HashMap<String ,String>> posterList = new ArrayList<>();
+        ArrayList<HashMap<String, String>> posterList = new ArrayList<>();
 
         try {
             //GET CORRECT POSTER AND DESCRIPTION
@@ -85,16 +79,16 @@ public class MovieGame extends Game {
 
             //GET ALL POSTERS INTO SINGLE ARRAY
             allPosterUrls[0] = posterUrl;
-            for(int i = 0; i < allPosterUrls.length -1; i++) {
-                allPosterUrls[i+1] = similarPosterUrls[i];
+            for (int i = 0; i < allPosterUrls.length - 1; i++) {
+                allPosterUrls[i + 1] = similarPosterUrls[i];
             }
 
             //SHUFFLE ARRAY, GET CORRECT INDEX, ADD TO ARRAYLIST
             correctIndexInt = this.shufflePosters(allPosterUrls);
-            for(int i = 0; i < allPosterUrls.length; i++) {
-                HashMap<String,String> imageAndLabel = new HashMap<>();
+            for (int i = 0; i < allPosterUrls.length; i++) {
+                HashMap<String, String> imageAndLabel = new HashMap<>();
                 imageAndLabel.put("image", allPosterUrls[i]);
-                imageAndLabel.put("label", String.valueOf(i+1));
+                imageAndLabel.put("label", String.valueOf(i + 1));
                 posterList.add(imageAndLabel);
             }
 
@@ -115,20 +109,19 @@ public class MovieGame extends Game {
     }
 
     @Override
-    public void processAnswer(String _givenAnswer)  {
+    public void processAnswer(String _givenAnswer) {
 
         //CHECK IF ANSWER IS CORRECT AND UPDATE RESULT/SCORE
-        if(_givenAnswer.equals(this.correctAnswer)){
+        if (_givenAnswer.equals(this.correctAnswer)) {
             this.result = "Correct";
             this.currentScore += 1;
-        }
-        else{
+        } else {
             this.result = "Incorrect";
         }
 
         //IF GAMES IS OVER APPEND "GAMEOVER" TO RESULT
         //ELSE INCRAMENT  QUESTION NUMBER
-        if(checkGameOver()){
+        if (checkGameOver()) {
             this.gameOver = true;
             this.result = this.result + " - GAME OVER";
             Score finalScore = new Score(this.currentScore);
@@ -141,17 +134,24 @@ public class MovieGame extends Game {
 
     }
 
-    private boolean checkGameOver(){
+    private boolean checkGameOver() {
         //RETURN TRUE IF GAME IS OVER
 
         return !(this.currentQuestionNumber < this.totalQuestions);
 
-
     }
-    
+
     public void resetGame() {
         this.currentScore = 0;
         this.currentQuestionNumber = 1;
+    }
+
+    private int shufflePosters(String[] _posterUrls) {
+        Random rand = new Random();
+        int correctIndex = rand.nextInt(this.NUM_FALSE_MOVIES) + 1;
+        swap(_posterUrls, correctIndex, 0);
+        return correctIndex + 1;
+
     }
 
     private int generateRandomId(int _range) {
@@ -159,7 +159,7 @@ public class MovieGame extends Game {
         int id = rand.nextInt(_range) + 1;
         return id;
     }
-   
+
     private String sanitizeDescription(String _title, String _description) throws JSONException {
         //first get title to major words then replace
 
@@ -168,16 +168,17 @@ public class MovieGame extends Game {
         //clean title to remove punctuation and small words (the, a, as)
         String[] titleArray = _title.split(" ");
         String[] titleNoPunc = Sanitizer.removePunctuation(titleArray);
-        String[] titleNoSmall =  Sanitizer.trimSmallWords(titleArray);
+        String[] titleNoSmall = Sanitizer.trimSmallWords(titleArray);
         //if there was an error or if the above functions filtered out whole title
-        if (Sanitizer.isStringArrayEmpty(titleNoSmall))
+        if (Sanitizer.isStringArrayEmpty(titleNoSmall)) {
             return _description;
+        }
 
         String[] descArray = _description.split(" ");
-        for(String t : titleArray){
+        for (String t : titleArray) {
             for (int i = 0; i < descArray.length; i++) {
-                    //remove punctuation from description
-                    descArray[i] = descArray[i].replaceAll("\\p{Punct}", "");
+                //remove punctuation from description
+                descArray[i] = descArray[i].replaceAll("\\p{Punct}", "");
                 if (descArray[i].toLowerCase().equals(t.toLowerCase())) {
                     descArray[i] = "[CENSORED]";
                 }
@@ -185,8 +186,9 @@ public class MovieGame extends Game {
         }
 
         String copy = "";
-        for(String i : descArray)
+        for (String i : descArray) {
             copy += i + " ";
+        }
         return copy.trim();
     }
 

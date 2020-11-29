@@ -49,13 +49,13 @@ public class MainGameController implements Initializable {
     @FXML
     private void _gameOneStart(ActionEvent event) throws IOException {
         GameFactory.setCurrentGame(GameFactory.GAME_ONE);
-        RunApp.showgenericGame();
+        RunApp.showGenericGame();
     }
 
     @FXML
     private void _gameTwoStart(ActionEvent event) throws IOException {
         GameFactory.setCurrentGame(GameFactory.GAME_TWO);
-        RunApp.showgenericGame();
+        RunApp.showGenericGame();
     }
 
 

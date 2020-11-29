@@ -36,7 +36,7 @@ public class LoginController implements Initializable {
     @FXML
     private JFXPasswordField password;
     @FXML
-    private Label errorLabel;
+    private Label _lblErrorMessage;
     /**
      * Initializes the controller class.
      * @param url
@@ -44,7 +44,6 @@ public class LoginController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 
     /**
@@ -61,7 +60,7 @@ public class LoginController implements Initializable {
 
         //IF FIELDS ARE BLANK
         if(username.getText().isBlank() || password.getText().isBlank()){
-            errorLabel.setText("Please fill out all text fields");
+            _lblErrorMessage.setText("Please fill out all text fields");
             return;
         }
 
@@ -69,13 +68,13 @@ public class LoginController implements Initializable {
 
         //IF USER NOT IN DATABASE
         if(user == null){
-            errorLabel.setText("Username doesn't exist");
+            _lblErrorMessage.setText("Username doesn't exist");
             return;
         }
 
         //IF INCORRECT PASSWORD
         if(!user.passwordMatches(givenPassword)){
-            errorLabel.setText("Incorrect Password");
+            _lblErrorMessage.setText("Incorrect Password");
             return;
         }
 

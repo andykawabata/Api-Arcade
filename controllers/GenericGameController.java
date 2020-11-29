@@ -3,11 +3,10 @@ package controllers;
 *Last updated on 11/21/20
 *
 *
-*Work In Progress
+*FXML Controller class
 *
 *Contributing authors
-*@author Andy
-*@author Ryan
+*@author Francisco
  */
 import apiarcade.RunApp;
 import factories.GameFactory;
@@ -31,12 +30,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import models.Game;
 
-
-/**
- * FXML Controller class
- *
- * @author cisco
- */
 public class GenericGameController implements Initializable {
 
 
@@ -106,12 +99,7 @@ public class GenericGameController implements Initializable {
             this._submitBtn.setDisable(true);
             this._nxtQuestion.setDisable(true);
         }
-
-
-
     }
-
-
 
     /*
     data:

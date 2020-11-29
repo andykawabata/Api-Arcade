@@ -64,8 +64,6 @@ public class Score extends DataObject {
             Map<String, String>  currentHighScoreRow = currentHighScoreRows.get(0);
             int currentHighScore = Integer.valueOf(currentHighScoreRow.get("highscore"));
             //if they got a new highscore, update their current entry
-            System.out.println("HS: "+ currentHighScore);
-            System.out.println("this: "+ this.score);
             if(currentHighScore < this.score){
                 String uuid = currentHighScoreRow.get("uuid");
                 Map<String, String> newScoreMap = new HashMap<>();

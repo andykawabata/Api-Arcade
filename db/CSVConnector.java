@@ -22,6 +22,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,7 @@ public class CSVConnector implements DBConnectorInterface {
     ///////////////////////////////////////////////////////////////////////////
     //    CRUD METHODS
     /////////////////////////////////////////////////////////////////////////
+    
     /*
     *Takes in query as one or more key value pairs (ex "username": "user123")
     *Returns maps representing the rows that match the query
@@ -41,7 +43,6 @@ public class CSVConnector implements DBConnectorInterface {
     *username: user123
     *password: 12345
      */
-
     @Override
     public int createObject(Map<String, String> _keyValuePairs, String _table) throws IOException {
 
@@ -73,10 +74,7 @@ public class CSVConnector implements DBConnectorInterface {
         firstValue = _keyValuePairs.get(firstKey);
         _keyValuePairs.remove(firstKey);
 
-        //GUEST CHECK
-        if (_keyValuePairs.containsValue("Guest"))
-            return null;
-
+        //Get column names and find index of key
         columnNames = getColumnNames(_table);
         int keyIndex = indexOf(columnNames, firstKey);
         //if key not found in column names
@@ -93,6 +91,7 @@ public class CSVConnector implements DBConnectorInterface {
             return null;
         }
 
+
         //IF THERE IS MORE THAN ONE QUERY CONDITION (MORE THAN ONE KEY VALUE PAIR)
         //REMOVE ROWS THAT DON'T MATCH THE ADDITIONAL QUERYS
         for (Map.Entry<String, String> entry : _keyValuePairs.entrySet()) {
@@ -106,8 +105,11 @@ public class CSVConnector implements DBConnectorInterface {
                 if (!row[keyIndex].equals(value)) {
                     indiciesToRemove.add(index);
                     index++;
+                }else{
+                    index++;
                 }
             }
+            
             for (int i = indiciesToRemove.size() - 1; i >= 0; i--) {
                 matchingRows.remove((int) indiciesToRemove.get(i));
             }

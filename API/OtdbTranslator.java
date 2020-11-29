@@ -22,9 +22,9 @@ public class OtdbTranslator implements TriviaApiInterface {
     String numOfQuestions   = "?amount=" + 10;
     String questionCategory = ""; //&category=" + 11;
     String questionDiff     = "&difficulty=" + "easy";
-    String qustionType      = "&type=boolean";
+    String questionType      = "&type=boolean";
     String sessionToken     = "";
-    String urlString        = baseUrl + numOfQuestions + questionCategory + questionDiff + qustionType +"&encode=base64" + "&token=" + sessionToken;
+    String urlString        = baseUrl + numOfQuestions + questionCategory + questionDiff + questionType +"&encode=base64" + "&token=" + sessionToken;
     String retriveToken     = "https://opentdb.com/api_token.php?command=request";
     String quest;
     JSONArray arr;

@@ -32,7 +32,7 @@ public class RegisterController implements Initializable {
     JFXPasswordField confirmPassword;
 
     @FXML
-    private Label lblErrorMessage;
+    private Label _lblErrorMessage;
 
     @FXML
     private Label _lblXOut;
@@ -57,31 +57,31 @@ public class RegisterController implements Initializable {
         String newPassword = password.getText();
         String newConfirmPassword = confirmPassword.getText();
         //Checks nulls
-        lblErrorMessage.setText("");
+        _lblErrorMessage.setText("");
         if(newConfirmPassword == null){
-            lblErrorMessage.setText("Confirm password");
+            _lblErrorMessage.setText("Confirm password");
             return;
         }
         if(newUsername == null || newPassword == null){
-            lblErrorMessage.setText("Enter username and password");
+            _lblErrorMessage.setText("Enter username and password");
             return;
         }
 
         //Checks if password is confirmed before making User
         if(!newConfirmPassword.equals(newPassword)){
-            lblErrorMessage.setText("passwords don't match");
+            _lblErrorMessage.setText("passwords don't match");
             return;
         }
 
         //error message = "Username already taken" or "Illegal Username"
         String errorMessage = User.checkErrors(new User(newUsername, newPassword));
         if(!(errorMessage == null))
-            lblErrorMessage.setText(errorMessage);
+            _lblErrorMessage.setText(errorMessage);
         else
             new User(newUsername, newPassword).save();
 
         //if error message exists, clear forms
-        if(!(lblErrorMessage.getText().equals(""))){
+        if(!(_lblErrorMessage.getText().equals(""))){
             username.setText(null);
             password.setText(null);
             confirmPassword.setText(null);

@@ -1,4 +1,5 @@
 package models;
+
 /*
 *Last updated on 11/21/20
 *
@@ -8,7 +9,7 @@ package models;
 *@author Francisco
 *@author Ryan
 *@author Andy
-*/
+ */
 import db.DataObject;
 import db.DataStoreAdapter;
 import java.util.HashMap;
@@ -22,13 +23,12 @@ public class User extends DataObject {
     private String password;
     public static String TABLE = "src/storage/users.csv";
 
-
     public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public User(){
+    public User() {
         this.username = null;
         this.password = null;
     }
@@ -38,31 +38,35 @@ public class User extends DataObject {
     }
 
     /**
-     * uses "readObject()" method to load a user into a User object, give the username
+     * uses "readObject()" method to load a user into a User object, give the
+     * username
+     *
      * @param _username: String
-     * @return User object with all properties filled. Null if username was not found.
+     * @return User object with all properties filled. Null if username was not
+     * found.
      * @throws Exception
      */
     public static User loadByUsername(String _username) throws Exception {
 
-       _username = _username.toLowerCase();
-       Map<String, String> keyValue = new HashMap<>();
-       keyValue.put("username", _username);
-       List<Map<String, String>> response = DataStoreAdapter.readObject(keyValue, User.TABLE);
-       // IF USER DIDN'T EXIST IN DB
-       if(response == null)
-           return null;
-       User user = new User();
-       user.id = Integer.valueOf(response.get(0).get("id"));
-       user.uuid = response.get(0).get("uuid");
-       user.username = response.get(0).get("username");
-       user.password = response.get(0).get("password");
+        _username = _username.toLowerCase();
+        Map<String, String> keyValue = new HashMap<>();
+        keyValue.put("username", _username);
+        List<Map<String, String>> response = DataStoreAdapter.readObject(keyValue, User.TABLE);
+        // IF USER DIDN'T EXIST IN DB
+        if (response == null) {
+            return null;
+        }
+        User user = new User();
+        user.id = Integer.valueOf(response.get(0).get("id"));
+        user.uuid = response.get(0).get("uuid");
+        user.username = response.get(0).get("username");
+        user.password = response.get(0).get("password");
 
-       return user;
+        return user;
     }
 
     public Boolean passwordMatches(String _password) {
-         return this.password.equals(_password);
+        return this.password.equals(_password);
     }
 
     /**
@@ -73,17 +77,20 @@ public class User extends DataObject {
     }
 
     /**
-     *uses User properties to either create new User or update current user,
+     * uses User properties to either create new User or update current user,
      * depending of if the user is in the table already (id != 0)
+     *
      * @return true if user was saved, false if error
      */
     public Boolean save() {
         Map<String, String> userProperties = new HashMap<>();
         Map<String, String> parentProperties = new HashMap<>();
-        if(this.username != null)
+        if (this.username != null) {
             userProperties.put("username", this.username.toLowerCase());
-        if(this.password != null)
+        }
+        if (this.password != null) {
             userProperties.put("password", this.password.toLowerCase());
+        }
         parentProperties = super.createMap();
         userProperties.putAll(parentProperties);
 
@@ -97,10 +104,11 @@ public class User extends DataObject {
     }
 
     public static String checkErrors(User user) throws Exception {
-        if(user.getUsername().toLowerCase().equals("guest"))
+        if (user.getUsername().toLowerCase().equals("guest")) {
             return "Illegal Username";
-        else if(loadByUsername(user.getUsername()) != null)
+        } else if (loadByUsername(user.getUsername()) != null) {
             return "Username already taken";
+        }
         return null;
     }
 
@@ -111,7 +119,7 @@ public class User extends DataObject {
        keyValue.put("username", _givenUsername);
        return DataStoreAdapter.findObjectByUsername(keyValue, User.TABLE);
     }
-    */
+     */
     //=================  GETTERS ===============
     public String getPassword() {
         return password;

@@ -65,32 +65,6 @@ public class OmdbTranslator implements MovieApiInterface {
         return true;
     }
 
-    private JSONObject getResponse(String requestUrl, String movieID, boolean similar) throws IOException, InterruptedException, JSONException {
-        
-        HttpClient httpClient = HttpClient.newHttpClient();
-        HttpResponse response;
-        boolean success = false;
-        JSONObject obj = new JSONObject();
-
-        while(!success){
-                response = httpClient.send(HttpRequest.newBuilder()
-                    .GET()
-                    .uri(URI.create(requestUrl))
-                    .build(), HttpResponse.BodyHandlers.ofString());
-                obj = new JSONObject(response.body().toString());
-                //Increment movieID in case this movie didn't have description or poster
-                success = !obj.has("success");
-                movieID = String.valueOf(Integer.valueOf(movieID) + 1);
-
-                //Determine whether we need that movie's URL or a similar movie's URL
-                if(similar)
-                    requestUrl = baseURL + movieID + "/similar" + "?api_key=" + apiKey;
-                else
-                    requestUrl = baseURL + movieID + "?api_key=" + apiKey;
-            }
-        return obj;
-    }
-
     @Override
     public Map<String, String> getPosterTitleDescriptionById(int id) throws Exception {
 
@@ -99,7 +73,7 @@ public class OmdbTranslator implements MovieApiInterface {
         JSONObject obj;
 
         obj = getResponse(requestUrl, movieID, false);
-        
+
         String overview = (String) obj.get("overview");
         String imgPath = (String) obj.get("poster_path");
         String title = (String) obj.get("title");
@@ -162,5 +136,31 @@ public class OmdbTranslator implements MovieApiInterface {
         for(String i : descArray)
             copy += i + " ";
         return copy.trim();
+    }
+
+    private JSONObject getResponse(String requestUrl, String movieID, boolean similar) throws IOException, InterruptedException, JSONException {
+
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpResponse response;
+        boolean success = false;
+        JSONObject obj = new JSONObject();
+
+        while(!success){
+                response = httpClient.send(HttpRequest.newBuilder()
+                    .GET()
+                    .uri(URI.create(requestUrl))
+                    .build(), HttpResponse.BodyHandlers.ofString());
+                obj = new JSONObject(response.body().toString());
+                //Increment movieID in case this movie didn't have description or poster
+                success = !obj.has("success");
+                movieID = String.valueOf(Integer.valueOf(movieID) + 1);
+
+                //Determine whether we need that movie's URL or a similar movie's URL
+                if(similar)
+                    requestUrl = baseURL + movieID + "/similar" + "?api_key=" + apiKey;
+                else
+                    requestUrl = baseURL + movieID + "?api_key=" + apiKey;
+            }
+        return obj;
     }
 }

@@ -1,10 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package apiarcade;
-
+/*
+*Last updated on 10/28/20
+*
+*Launches the desired fxml file
+*
+*Contributing authors
+*@author Francisco
+*/
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -88,7 +90,7 @@ public class RunApp extends Application{
         primaryStage.show();
     }
 
-    public static void showgenericGame() throws IOException {
+    public static void showGenericGame() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(RunApp.class.getResource("/views/genericGame.fxml"));
         AnchorPane genGame = loader.load();

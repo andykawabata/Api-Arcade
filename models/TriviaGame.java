@@ -29,8 +29,7 @@ public class TriviaGame extends Game {
     */
     private final int SCORE_UP = 100;
     private final int SCORE_DOWN = 50;
-    private final int ZERO = 0;
-    private final int ONE = 1;
+
     public static int counter = 0;
     TriviaApiAdapter api = new TriviaApiAdapter();
 
@@ -63,7 +62,7 @@ public class TriviaGame extends Game {
         try {
             question = api.getCurrentQuestion(counter);
             answer = api.getCurrentAnswer(counter);
-            countUp();
+            counter++;
         } catch (Exception ex) {
             Logger.getLogger(TriviaGame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -105,19 +104,15 @@ public class TriviaGame extends Game {
         }
     }
 
+    public void resetGame() {
+        counter = 0;
+        this.currentScore = 0;
+        this.currentQuestionNumber = 1;
+    }
+
     private boolean checkGameOver(){
         //RETURN TRUE IF GAME IS OVER
         return !(this.currentQuestionNumber < this.totalQuestions);
-    }
-
-    public void resetGame() {
-        counter = ZERO;
-        this.currentScore = ZERO;
-        this.currentQuestionNumber = ONE;
-    }
-
-    public int countUp() {
-        return counter++;
     }
 
 }

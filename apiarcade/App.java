@@ -1,10 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package apiarcade;
-
+/*
+*Last updated on 10/28/20
+*
+*Chooses what file to start the program in
+*
+*Contributing authors
+*@author Francisco
+*@author Ryan
+*@author Andy
+*/
 import java.io.IOException;
 import org.json.JSONException;
 

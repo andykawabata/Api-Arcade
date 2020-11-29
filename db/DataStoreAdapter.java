@@ -1,13 +1,14 @@
 package db;
 
 /*
-*Last updated on 10/24/20
+*Last updated on 11/21/20
 *
 *Implements the DBConnector interface using a CSV connector
 *Can CRUD a DataObject
 *
 *Contributing authors
 *@author Andy
+*@author Ryan
 */
 
 import java.io.IOException;
@@ -33,8 +34,8 @@ public class DataStoreAdapter {
         return connector.readObject(_keyValue, _table);
     }
 
-    public static Boolean updateObject(Map<String, String> _keyValue, String uuid, String _table) throws IOException {
-        return connector.updateObject(_keyValue, uuid, _table);
+    public static Boolean updateObject(Map<String, String> _keyValue, String _uuid, String _table) throws IOException {
+        return connector.updateObject(_keyValue, _uuid, _table);
     }
 
     public Boolean deleteObject(String _uuid, String _table) throws IOException {

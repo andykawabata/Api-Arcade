@@ -1,6 +1,6 @@
 # Api-Arcade  
 
-Project for CSC-340 Software Engineering
+Project for CSC-340 Software Engineering  
 Team: The Elon Musketeers
 
 ### General Info  
@@ -19,7 +19,10 @@ This Java desktop application is an 'arcade' of trivia-based mini games, all dep
 4) Navigate to `ApiArcade/src/apiarcade`
 5) run `javac App.java` then `java App`
 
-
+### Team Memebers
+Ryan Cabell  
+Francisco Serratos-Prudencio  
+Andy Kawabata
 
 
 

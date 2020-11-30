@@ -1,21 +1,25 @@
-# Api-Arcade
-This is going to be the central repository for the Elon Musketeers.
+# Api-Arcade  
 
-## Workflow after initial clone and branch creation  
+Project for CSC-340 Software Engineering
+Team: The Elon Musketeers
 
-We've already cloned the repo and pushed/merged changes in the central repo, so here's the workflow for making changes
+### General Info  
+This Java desktop application is an 'arcade' of trivia-based mini games, all dependent on external API's to extract the questions. Once a user creates an account, their game scores will be saved to the database. There is a leaderboard page that displays the three highest scores for each game. The app's "Generic Game" architecure allows developers to quickly and easily add new games, so you will never get bored!  
 
-### When adding to or editing the code:
-1) MAKE SURE YOUR LOCAL MASTER IS UP TO DATE WITH THE REMOTE (GITHUB) MASTER
-2) Make changes to code on YOUR BRANCH
-3) Stage and commit your changes
-4) Push your local branch to your remote branch
-5) Create pull request on github
-  
-### Commands to accomplish the above steps
-1) On your local <your name> branch, run `git pull origin master` to make sure your branch is up to date with remote master
-2) Write ur code and stuff
-3) Run `git add .` to stage then `git commit -m"<your name>"` to commit
-4) Run `git push origin <your name>` to push your branch to the remote
-5) Go to github and create pull request from YOUR BRANCH to MASTER
+### Dependecies  
+- JavaFX 14
+- Jfoenix 9.0.10
+- JSON-java
+- opencsv 5.2  
+
+### Installation
+1) Install JVM and JRE  
+2) Install dependencies  
+3) Clone or download repository
+4) Navigate to `ApiArcade/src/apiarcade`
+5) run `javac App.java` then `java App`
+
+
+
+
 

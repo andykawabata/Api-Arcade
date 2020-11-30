@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  * @author andyk
  */
 public class Sanitizer {
-    
+
     /**
      * @param _array an array of strings obtained from a sentence split by spaces
      * @return true if array has only empty elements
@@ -25,7 +25,7 @@ public class Sanitizer {
                 return false;
         return true;
     }
-    
+
     /**
      * @param _array an array of strings obtained from a sentence split by spaces
      * punctuation should have been removed from any of the strings prior to
@@ -34,10 +34,10 @@ public class Sanitizer {
      * returns null if any string contains punctuation
      */
     public static String[] trimSmallWords(String[] _array) {
-        
+
         //initialize array to hold the new strings
         String[] trimmedArray = new String[_array.length];
-        
+
         for (int i = 0; i < _array.length; i++){
             //If any string contains punctuation, return array of empty strings
             if(Pattern.matches(".*?\\p{Punct}.*?", _array[i])){
@@ -58,5 +58,5 @@ public class Sanitizer {
         }
         return _array;
     }
-    
+
 }

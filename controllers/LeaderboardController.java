@@ -69,7 +69,7 @@ public class LeaderboardController implements Initializable {
     private Leaderboard lb = new Leaderboard();
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL _url, ResourceBundle _rb) {
         //get high scores
         /*numOfLabels is the number of high scores to get
         *which corresponds directly to the number of labels displayed*/
@@ -126,17 +126,17 @@ public class LeaderboardController implements Initializable {
     }
 
     @FXML
-    void _mainGamesLink(ActionEvent event) throws IOException {
-        _mainGamesPlayNow(event);
+    void _mainGamesLink(ActionEvent _event) throws IOException {
+        _mainGamesPlayNow(_event);
     }
 
     @FXML
-    void _mainGamesPlayNow(ActionEvent event) throws IOException {
+    void _mainGamesPlayNow(ActionEvent _event) throws IOException {
         RunApp.showMainGameView();
     }
 
     @FXML
-    void _userLogOut(ActionEvent event) throws IOException {
+    void _userLogOut(ActionEvent _event) throws IOException {
         System.out.println("User logged out");
         RunApp.showLoginView();
     }

@@ -45,10 +45,10 @@ public class MovieGame extends Game {
         this.setNewQuestion();
     }
 
-    public void swap(String[] _posters, int i, int j) {
-        String temp = _posters[i];
-        _posters[i] = _posters[j];
-        _posters[j] = temp;
+    public void swap(String[] _posters, int _i, int _j) {
+        String temp = _posters[_i];
+        _posters[_i] = _posters[_j];
+        _posters[_j] = temp;
     }
 
     public void setNewQuestion() {

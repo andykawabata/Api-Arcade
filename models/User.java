@@ -1,7 +1,7 @@
 package models;
 
 /*
-*Last updated on 11/21/20
+*Last updated on 11/30/20
 *
 *Inherits the DataOject class to create a User for later use.
 *
@@ -23,18 +23,14 @@ public class User extends DataObject {
     private String password;
     public static String TABLE = "src/storage/users.csv";
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public User(String _username, String _password) {
+        this.username = _username;
+        this.password = _password;
     }
 
     public User() {
         this.username = null;
         this.password = null;
-    }
-
-    public String getUsername() {
-        return username;
     }
 
     /**
@@ -103,10 +99,10 @@ public class User extends DataObject {
         return false;
     }
 
-    public static String checkErrors(User user) throws Exception {
-        if (user.getUsername().toLowerCase().equals("guest")) {
+    public static String checkErrors(User _user) throws Exception {
+        if (_user.getUsername().toLowerCase().equals("guest")) {
             return "Illegal Username";
-        } else if (loadByUsername(user.getUsername()) != null) {
+        } else if (loadByUsername(_user.getUsername()) != null) {
             return "Username already taken";
         }
         return null;
@@ -123,6 +119,10 @@ public class User extends DataObject {
     //=================  GETTERS ===============
     public String getPassword() {
         return password;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     //=================  SETTERS ===============

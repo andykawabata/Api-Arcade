@@ -57,9 +57,11 @@ public class GenericGameController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param _url
+     * @param _rb
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL _url, ResourceBundle _rb) {
 
         Game currentGame = GameFactory.getCurrentGameInstance();
         if(currentGame == null)
@@ -73,7 +75,7 @@ public class GenericGameController implements Initializable {
     }
 
    @FXML
-    private void _newQuestion(ActionEvent event) {
+    private void _newQuestion(ActionEvent _event) {
         Game currentGame = GameFactory.getCurrentGameInstance();
         currentGame.newQuestion();
         Map<String, Object> data = currentGame.createMap();
@@ -84,7 +86,7 @@ public class GenericGameController implements Initializable {
     }
 
     @FXML
-    private void _submitAnswer(ActionEvent event) {
+    private void _submitAnswer(ActionEvent _event) {
         //ADD CODE TO CHECK IF GAME OVER
         Game currentGame = GameFactory.getCurrentGameInstance();
         currentGame.processAnswer(_answerInput.getText());
@@ -169,7 +171,7 @@ public class GenericGameController implements Initializable {
     }
 
     @FXML
-    private void _backBtn(ActionEvent event) throws IOException {
+    private void _backBtn(ActionEvent _event) throws IOException {
         RunApp.showMainGameView();
     }
 

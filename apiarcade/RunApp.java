@@ -23,16 +23,16 @@ public class RunApp extends Application{
     private static Stage primaryStage;
     private static AnchorPane mainLayout;
     /**
-     * @param args the command line arguments
+     * @param _args the command line arguments
      */
-    public static void main(String[] args) {
-        launch(args);
+    public static void main(String[] _args) {
+        launch(_args);
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        this.primaryStage = primaryStage;
-        primaryStage.setTitle("The Elon Musketeers");
+    public void start(Stage _primaryStage) throws Exception {
+        this.primaryStage = _primaryStage;
+        _primaryStage.setTitle("The Elon Musketeers");
         showLoginView();
     }
 

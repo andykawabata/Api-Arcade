@@ -42,33 +42,33 @@ public class OmdbTranslator implements MovieApiInterface {
 
 
     //delete punctuation from elements in String array using regex
-    public String[] removePunctuation(String[] array) {
-        for(int i = 0; i < array.length; i++){
-            array[i] = array[i].replaceAll("\\p{Punct}", "");
+    public String[] removePunctuation(String[] _array) {
+        for(int i = 0; i < _array.length; i++){
+            _array[i] = _array[i].replaceAll("\\p{Punct}", "");
         }
-        return array;
+        return _array;
     }
 
     //Get rid of small words then sort array
-    public String[] trimSmallWords(String[] array) {
-    for (int i = 0; i < array.length; i++)
-        array[i] = array[i].replaceAll("\\b\\w{1,4}\\b\\s?", "");
+    public String[] trimSmallWords(String[] _array) {
+    for (int i = 0; i < _array.length; i++)
+        _array[i] = _array[i].replaceAll("\\b\\w{1,4}\\b\\s?", "");
 
-    return array;
+    return _array;
 }
 
     //returns true if array has only empty elements
-    public boolean isStringArrayEmpty(String[] array) {
-        for (String i : array)
+    public boolean isStringArrayEmpty(String[] _array) {
+        for (String i : _array)
             if(i.length() > 0)
                 return false;
         return true;
     }
 
     @Override
-    public Map<String, String> getPosterTitleDescriptionById(int id) throws Exception {
+    public Map<String, String> getPosterTitleDescriptionById(int _id) throws Exception {
 
-        String movieID = String.valueOf(id);
+        String movieID = String.valueOf(_id);
         String requestUrl = baseURL + movieID + "?api_key=" + apiKey;
         JSONObject obj;
 
@@ -88,10 +88,10 @@ public class OmdbTranslator implements MovieApiInterface {
     }
 
     @Override
-    public String[] getPostersOfSimilarById(int id, int numPosters) throws IOException, InterruptedException, JSONException {
+    public String[] getPostersOfSimilarById(int _id, int _numPosters) throws IOException, InterruptedException, JSONException {
 
-        String movieID = String.valueOf(id);
-        String[] posterUrls = new String[numPosters];
+        String movieID = String.valueOf(_id);
+        String[] posterUrls = new String[_numPosters];
         String requestUrl = baseURL + movieID + "/similar" + "?api_key=" + apiKey;
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse response;
@@ -138,7 +138,7 @@ public class OmdbTranslator implements MovieApiInterface {
         return copy.trim();
     }
 
-    private JSONObject getResponse(String requestUrl, String movieID, boolean similar) throws IOException, InterruptedException, JSONException {
+    private JSONObject getResponse(String _requestUrl, String _movieID, boolean _similar) throws IOException, InterruptedException, JSONException {
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse response;
@@ -148,18 +148,18 @@ public class OmdbTranslator implements MovieApiInterface {
         while(!success){
                 response = httpClient.send(HttpRequest.newBuilder()
                     .GET()
-                    .uri(URI.create(requestUrl))
+                    .uri(URI.create(_requestUrl))
                     .build(), HttpResponse.BodyHandlers.ofString());
                 obj = new JSONObject(response.body().toString());
                 //Increment movieID in case this movie didn't have description or poster
                 success = !obj.has("success");
-                movieID = String.valueOf(Integer.valueOf(movieID) + 1);
+                _movieID = String.valueOf(Integer.valueOf(_movieID) + 1);
 
                 //Determine whether we need that movie's URL or a similar movie's URL
-                if(similar)
-                    requestUrl = baseURL + movieID + "/similar" + "?api_key=" + apiKey;
+                if(_similar)
+                    _requestUrl = baseURL + _movieID + "/similar" + "?api_key=" + apiKey;
                 else
-                    requestUrl = baseURL + movieID + "?api_key=" + apiKey;
+                    _requestUrl = baseURL + _movieID + "?api_key=" + apiKey;
             }
         return obj;
     }

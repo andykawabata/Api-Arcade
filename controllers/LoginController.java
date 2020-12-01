@@ -46,7 +46,7 @@ public class LoginController implements Initializable {
      * @param rb
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL _url, ResourceBundle _rb) {
     }
 
     /**
@@ -57,7 +57,7 @@ public class LoginController implements Initializable {
      * @throws Exception
      */
     @FXML
-    private void _btnSignIn(ActionEvent event) throws Exception {
+    private void _btnSignIn(ActionEvent _event) throws Exception {
 
         String givenUsername = username.getText();
         String givenPassword = password.getText();

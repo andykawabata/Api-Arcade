@@ -38,9 +38,8 @@ public class Score extends DataObject {
      */
     public boolean save() throws Exception {
 
-        if (LoginSession.currentUser.getUsername().equals("Guest")) {
+        if (LoginSession.currentUser.getUsername().equals("Guest")) 
             return false;
-        }
 
         //get list of rows where the user is currentUser and game is currentGame
         Map<String, String> usernameAndGame = new HashMap<>();
@@ -75,7 +74,7 @@ public class Score extends DataObject {
         }
     }
 
-    public static int getScoreByUuid(String _uuid, int gameID) throws Exception {
+    public static int getScoreByUuid(String _uuid, int _gameID) throws Exception {
         int resultingScore = -1;
         Map<String, String> keyValue = new HashMap<>();
         keyValue.put("uuid", _uuid);
@@ -88,7 +87,7 @@ public class Score extends DataObject {
         return resultingScore;
     }
 
-    public static int getScoreByUsername(String _username, int gameID) throws Exception {
+    public static int getScoreByUsername(String _username, int _gameID) throws Exception {
         int resultingScore = -1;
         Map<String, String> keyValue = new HashMap<>();
         keyValue.put("username", _username);

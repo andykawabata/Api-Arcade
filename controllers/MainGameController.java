@@ -32,35 +32,35 @@ public class MainGameController implements Initializable {
 
     /**
      *
-     * @param url
-     * @param rb
+     * @param _url
+     * @param _rb
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL _url, ResourceBundle _rb) {
         // Works to display the username
         userID.setText("Hello! " + LoginSession.currentUser.getUsername());
     }
 
     @FXML
-    private void _userLogOut(ActionEvent event) throws IOException {
+    private void _userLogOut(ActionEvent _event) throws IOException {
         System.out.println("User logged out");
         RunApp.showLoginView();
     }
 
     @FXML
-    private void _gameOneStart(ActionEvent event) throws IOException {
+    private void _gameOneStart(ActionEvent _event) throws IOException {
         GameFactory.setCurrentGame(GameFactory.GAME_ONE);
         RunApp.showGenericGame();
     }
 
     @FXML
-    private void _gameTwoStart(ActionEvent event) throws IOException {
+    private void _gameTwoStart(ActionEvent _event) throws IOException {
         GameFactory.setCurrentGame(GameFactory.GAME_TWO);
         RunApp.showGenericGame();
     }
 
     @FXML
-    void _leaderboardLink(ActionEvent event) throws IOException {
+    void _leaderboardLink(ActionEvent _event) throws IOException {
         System.out.println("User went to leaderboards");
         RunApp.showLeaderboardsView();
     }

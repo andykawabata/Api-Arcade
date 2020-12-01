@@ -39,7 +39,7 @@ public class RegisterController implements Initializable {
     private Label _lblXOut;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL _url, ResourceBundle _rb) {
     }
 
 
@@ -50,7 +50,7 @@ public class RegisterController implements Initializable {
     @param event - click on button and check fields entered
      */
     @FXML
-    private void _btnRegister(ActionEvent event) throws Exception {
+    private void _btnRegister(ActionEvent _event) throws Exception {
 
         String newUsername = username.getText();
         String newPassword = password.getText();
@@ -90,7 +90,7 @@ public class RegisterController implements Initializable {
     }
 
     @FXML
-    private void _backBtn(ActionEvent event) throws IOException {
+    private void _backBtn(ActionEvent _event) throws IOException {
         RunApp.showLoginView();
     }
 

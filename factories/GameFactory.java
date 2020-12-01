@@ -21,8 +21,10 @@ public class GameFactory {
     public static final int GAME_THREE = 3;
     public static int currentGame;
 
-    public static void setCurrentGame(int gameNumber) {
-        switch (gameNumber) {
+    //=================  GETTERS ===============//
+
+    public static void setCurrentGame(int _gameNumber) {
+        switch (_gameNumber) {
             case GAME_ONE:
                 currentGame = GAME_ONE;
                 break;

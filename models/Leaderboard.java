@@ -35,7 +35,7 @@ public class Leaderboard {
         return game2ID;
     }
 
-    public HashMap<String, Integer> getHighScores(int gameID, int howMany) throws IOException {
+    public HashMap<String, Integer> getHighScores(int _gameID, int _howMany) throws IOException {
         ArrayList<String> allTableRows = DataStoreAdapter.getTableRows(Score.TABLE);
         HashMap<String, Integer> HighScores = new HashMap<>();
         //take off first row (columnNames)

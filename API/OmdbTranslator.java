@@ -45,7 +45,7 @@ public class OmdbTranslator implements MovieApiInterface {
         for (int i = 0; i < array.length; i++) {
             array[i] = array[i].replaceAll("\\p{Punct}", "");
         }
-        return array;
+        return _array;
     }
 
     //Get rid of small words then sort array
@@ -68,9 +68,9 @@ public class OmdbTranslator implements MovieApiInterface {
     }
 
     @Override
-    public Map<String, String> getPosterTitleDescriptionById(int id) throws Exception {
+    public Map<String, String> getPosterTitleDescriptionById(int _id) throws Exception {
 
-        String movieID = String.valueOf(id);
+        String movieID = String.valueOf(_id);
         String requestUrl = baseURL + movieID + "?api_key=" + apiKey;
         JSONObject obj;
 
@@ -90,10 +90,10 @@ public class OmdbTranslator implements MovieApiInterface {
     }
 
     @Override
-    public String[] getPostersOfSimilarById(int id, int numPosters) throws IOException, InterruptedException, JSONException {
+    public String[] getPostersOfSimilarById(int _id, int _numPosters) throws IOException, InterruptedException, JSONException {
 
-        String movieID = String.valueOf(id);
-        String[] posterUrls = new String[numPosters];
+        String movieID = String.valueOf(_id);
+        String[] posterUrls = new String[_numPosters];
         String requestUrl = baseURL + movieID + "/similar" + "?api_key=" + apiKey;
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse response;
@@ -142,7 +142,7 @@ public class OmdbTranslator implements MovieApiInterface {
         return copy.trim();
     }
 
-    private JSONObject getResponse(String requestUrl, String movieID, boolean similar) throws IOException, InterruptedException, JSONException {
+    private JSONObject getResponse(String _requestUrl, String _movieID, boolean _similar) throws IOException, InterruptedException, JSONException {
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse response;
@@ -152,7 +152,7 @@ public class OmdbTranslator implements MovieApiInterface {
         while (!success) {
             response = httpClient.send(HttpRequest.newBuilder()
                     .GET()
-                    .uri(URI.create(requestUrl))
+                    .uri(URI.create(_requestUrl))
                     .build(), HttpResponse.BodyHandlers.ofString());
             obj = new JSONObject(response.body().toString());
             //Increment movieID in case this movie didn't have description or poster

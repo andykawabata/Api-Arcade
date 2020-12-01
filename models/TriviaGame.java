@@ -1,7 +1,7 @@
 package models;
 
 /*
-*Last updated on 11/18/20
+*Last updated on 11/30/20
 *
 *Game based on the OTDB API.
 *
@@ -35,7 +35,7 @@ public class TriviaGame extends Game {
     TriviaApiAdapter api = new TriviaApiAdapter();
 
     public TriviaGame() {
-        this.totalQuestions = 10;
+        this.totalQuestions = 5;
         this.gameTitle = "Trivia Game: Text Edition";
     }
 
@@ -82,7 +82,8 @@ public class TriviaGame extends Game {
 
     @Override
     public void processAnswer(String _givenAnswer) {
-        if (_givenAnswer.equals(this.correctAnswer)) {
+        if(_givenAnswer.toLowerCase().equals(this.correctAnswer)) {
+
             this.result = "correct";
             this.currentScore += SCORE_UP;
         } else {

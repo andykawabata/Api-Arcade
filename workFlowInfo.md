@@ -7,7 +7,7 @@
 5) Commit changes
 6) Push branch to github repository
 7) Create a pull request to merge you changes
-  
+
 ### Commands to accomplish the above steps
 (INSTALL GIT ON YOUR LOCAL MACHINE BEFORE DOING THIS)
 1) from the command line, navigate to the directory you wish to clone into (I just use the Desktop)

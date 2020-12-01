@@ -1,6 +1,6 @@
 # Api-Arcade
 
-Project for CSC-340 Software Engineering
+Project for CSC-340 Software Engineering  
 Team: The Elon Musketeers
 
 ### General Info

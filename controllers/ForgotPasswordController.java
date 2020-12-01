@@ -42,12 +42,12 @@ public class ForgotPasswordController implements Initializable {
     private RunApp run;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL _url, ResourceBundle _rb) {
         // TODO
     }
 
     @FXML
-    private void _btnCancel(ActionEvent event) throws IOException {
+    private void _btnCancel(ActionEvent _event) throws IOException {
         System.out.println("Returned to login view");
         RunApp.showLoginView();
     }
@@ -87,7 +87,7 @@ public class ForgotPasswordController implements Initializable {
     }
 
     @FXML
-    void _fieldConfPassword(KeyEvent event) {
+    void _fieldConfPassword(KeyEvent _event) {
         if (checkFieldsPopulated()) {
             _btnResetPassword.setDisable(false);
         }

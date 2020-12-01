@@ -1,6 +1,6 @@
 package API;
 /*
-*Last updated on 11/10/20
+*Last updated on 11/30/20
 *
 *Sets up the httpClient link and finds the question and answer in the JSONObject
 *
@@ -19,16 +19,16 @@ import org.json.JSONObject;
 public class OtdbTranslator implements TriviaApiInterface {
 
     String baseUrl          = "https://opentdb.com/api.php";
-    String numOfQuestions   = "?amount=" + 10;
-    String questionCategory = ""; //&category=" + 11;
+    String numOfQuestions   = "?amount=" + 5;
     String questionDiff     = "&difficulty=" + "easy";
     String questionType      = "&type=boolean";
     String sessionToken     = "";
-    String urlString        = baseUrl + numOfQuestions + questionCategory + questionDiff + questionType +"&encode=base64" + "&token=" + sessionToken;
+    String urlString        = baseUrl + numOfQuestions + questionDiff + questionType +"&encode=base64" + "&token=" + sessionToken;
     String retriveToken     = "https://opentdb.com/api_token.php?command=request";
     String quest;
     JSONArray arr;
 
+    //Reuseable api call
     public JSONObject apiCall(String _urlString) throws Exception {
 
         HttpClient httpClient = HttpClient.newHttpClient();
@@ -39,7 +39,17 @@ public class OtdbTranslator implements TriviaApiInterface {
 
         return new JSONObject(response.body().toString());
     }
-    // Need to implement to avoid getting the same question twice in one session
+
+        // Decodes string using Base64
+    public static String Decode(String _string){
+
+        byte[] actualByte = Base64.getDecoder().decode(_string);
+        return new String(actualByte);
+    }
+
+    //=================  GETTERS ===============//
+
+    // generates a token to avoid repeat questions
     public String getToken() throws Exception{
 
         JSONObject token = apiCall(retriveToken);
@@ -47,8 +57,10 @@ public class OtdbTranslator implements TriviaApiInterface {
         return sessionToken;
     }
 
+    // get the array with all questions for the game instance
     @Override
     public JSONArray getGameQuestions() throws Exception{
+
         if(sessionToken.isEmpty()) {
             getToken();
         }
@@ -56,6 +68,7 @@ public class OtdbTranslator implements TriviaApiInterface {
         return arr;
     }
 
+    // parser to pull one quetions at a time
     @Override
     public String getCurrentQuestion(int _counter) throws Exception {
 
@@ -64,17 +77,13 @@ public class OtdbTranslator implements TriviaApiInterface {
         return TriviaQuestion;
     }
 
+    // parser to pull the answer to the question above
     @Override
     public String getCurrentAnswer(int _counter) throws Exception {
 
         quest = arr.getJSONObject(_counter).getString("correct_answer");
         String TriviaAnswer = Decode(quest);
-        return TriviaAnswer;
-    }
-
-    public static String Decode(String s){
-        byte[] actualByte = Base64.getDecoder().decode(s);
-        return new String(actualByte);
+        return TriviaAnswer.toLowerCase();
     }
 
 }

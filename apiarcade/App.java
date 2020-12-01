@@ -19,13 +19,13 @@ import org.json.JSONException;
  */
 public class App{
 
-    public static void main(String[] args) throws IOException, InterruptedException, JSONException, Exception{
+    public static void main(String[] _args) throws IOException, InterruptedException, JSONException, Exception{
 
         //HttpClientTest.getHttpResponseAndPrint();
         //JsonJavaTest.getJokeCategoryAndPrint();
         //JsonJavaTest2.getTwopartJokesAndPrint();
         //RunLoginView.main(args);
-        RunApp.main(args);
+        RunApp.main(_args);
 
     }
 

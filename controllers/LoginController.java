@@ -43,7 +43,7 @@ public class LoginController implements Initializable {
      * @param rb
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL _url, ResourceBundle _rb) {
     }
 
     /**
@@ -53,7 +53,7 @@ public class LoginController implements Initializable {
      * @throws Exception
      */
     @FXML
-    private void _btnSignIn(ActionEvent event) throws Exception {
+    private void _btnSignIn(ActionEvent _event) throws Exception {
 
         String givenUsername = username.getText();
         String givenPassword = password.getText();
@@ -86,7 +86,7 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void _hyplnkForgotPassword(ActionEvent event) throws IOException{
+    private void _hyplnkForgotPassword(ActionEvent _event) throws IOException{
         System.out.println("Clicked Forgot Password");
         RunApp.showPassRecoveryView();
     }
@@ -95,13 +95,13 @@ public class LoginController implements Initializable {
     *This method changes the login scene to the register scene
     */
     @FXML
-    private void _btnSignUp(ActionEvent event) throws IOException{
+    private void _btnSignUp(ActionEvent _event) throws IOException{
         System.out.println("Clicked Sign Up");
         RunApp.showRegisterView();
     }
 
     @FXML
-     private void guestLogin(ActionEvent event) throws IOException, Exception{
+     private void guestLogin(ActionEvent _event) throws IOException, Exception{
         System.out.println("Clicked Guest login");
         User user = new Guest();
         user.login();

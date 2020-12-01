@@ -1,4 +1,5 @@
 package API;
+
 /*
 *Last updated on 10/24/20
 *
@@ -8,7 +9,7 @@ package API;
 *Contributing authors
 *@author Francisco
 *@author Ryan
-*/
+ */
 import org.json.JSONArray;
 
 public class TriviaApiAdapter implements TriviaApiInterface {
@@ -16,7 +17,6 @@ public class TriviaApiAdapter implements TriviaApiInterface {
     public static final TriviaApiInterface triviaApiTranslator = new OtdbTranslator();
 
     //=================  GETTERS ===============//
-
     @Override
     public JSONArray getGameQuestions() throws Exception {
         return triviaApiTranslator.getGameQuestions();

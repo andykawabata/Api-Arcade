@@ -20,7 +20,7 @@ import org.json.JSONException;
 public class MovieGame extends Game {
 
     /*
-    PARENT FEILDS:
+    PARENT FIELDS:
     String gameTitle
     String questionText
     ArrayList<String> images

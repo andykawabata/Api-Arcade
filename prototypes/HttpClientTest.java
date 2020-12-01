@@ -1,4 +1,5 @@
 package prototypes;
+
 /*
 *Last updated on MM/DD/20
 *
@@ -7,17 +8,18 @@ package prototypes;
 *Contributing authors
 *@author Andy?
 *@author Francisco?
-*/
+ */
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.*;
+
 /**
  *
  *
  *
  */
 
-public class HttpClientTest{
+public class HttpClientTest {
 
     public static void getHttpResponseAndPrint() throws IOException, InterruptedException {
 
@@ -28,6 +30,5 @@ public class HttpClientTest{
                 .build(), HttpResponse.BodyHandlers.ofString());
         System.out.println(response.body());
     }
-
 
 }

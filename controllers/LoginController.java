@@ -1,4 +1,5 @@
 package controllers;
+
 /*
 *Last updated on 10/25/20
 *
@@ -7,7 +8,7 @@ package controllers;
 *Contributing authors
 *@author Andy
 *@author Ryan
-*/
+ */
 import apiarcade.RunApp;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
@@ -37,8 +38,10 @@ public class LoginController implements Initializable {
     private JFXPasswordField password;
     @FXML
     private Label _lblErrorMessage;
+
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
@@ -47,8 +50,9 @@ public class LoginController implements Initializable {
     }
 
     /**
-     * Signs in user given username and password
-     * or prints error message if unable to sign in
+     * Signs in user given username and password or prints error message if
+     * unable to sign in
+     *
      * @param event
      * @throws Exception
      */
@@ -59,7 +63,7 @@ public class LoginController implements Initializable {
         String givenPassword = password.getText();
 
         //IF FIELDS ARE BLANK
-        if(username.getText().isBlank() || password.getText().isBlank()){
+        if (username.getText().isBlank() || password.getText().isBlank()) {
             _lblErrorMessage.setText("Please fill out all text fields");
             return;
         }
@@ -67,13 +71,13 @@ public class LoginController implements Initializable {
         User user = User.loadByUsername(givenUsername);
 
         //IF USER NOT IN DATABASE
-        if(user == null){
+        if (user == null) {
             _lblErrorMessage.setText("Username doesn't exist");
             return;
         }
 
         //IF INCORRECT PASSWORD
-        if(!user.passwordMatches(givenPassword)){
+        if (!user.passwordMatches(givenPassword)) {
             _lblErrorMessage.setText("Incorrect Password");
             return;
         }
@@ -86,22 +90,22 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void _hyplnkForgotPassword(ActionEvent event) throws IOException{
+    private void _hyplnkForgotPassword(ActionEvent event) throws IOException {
         System.out.println("Clicked Forgot Password");
         RunApp.showPassRecoveryView();
     }
 
     /*
     *This method changes the login scene to the register scene
-    */
+     */
     @FXML
-    private void _btnSignUp(ActionEvent event) throws IOException{
+    private void _btnSignUp(ActionEvent event) throws IOException {
         System.out.println("Clicked Sign Up");
         RunApp.showRegisterView();
     }
 
     @FXML
-     private void guestLogin(ActionEvent event) throws IOException, Exception{
+    private void guestLogin(ActionEvent event) throws IOException, Exception {
         System.out.println("Clicked Guest login");
         User user = new Guest();
         user.login();

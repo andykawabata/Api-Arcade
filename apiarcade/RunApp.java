@@ -1,4 +1,5 @@
 package apiarcade;
+
 /*
 *Last updated on 10/28/20
 *
@@ -6,7 +7,7 @@ package apiarcade;
 *
 *Contributing authors
 *@author Francisco
-*/
+ */
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,10 +19,11 @@ import javafx.stage.Stage;
  *
  * @author Francisco
  */
-public class RunApp extends Application{
+public class RunApp extends Application {
 
     private static Stage primaryStage;
     private static AnchorPane mainLayout;
+
     /**
      * @param args the command line arguments
      */
@@ -80,7 +82,6 @@ public class RunApp extends Application{
 //        primaryStage.setScene(scene);
 //        primaryStage.show();
 //    }
-
     public static void showPassRecoveryView() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(RunApp.class.getResource("/views/forgotPassword.fxml"));

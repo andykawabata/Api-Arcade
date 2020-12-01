@@ -1,4 +1,5 @@
 package controllers;
+
 /*
 *Last updated on 11/21/20
 *
@@ -32,7 +33,6 @@ import models.Game;
 
 public class GenericGameController implements Initializable {
 
-
     @FXML
     private Button _nxtQuestion;
     @FXML
@@ -54,7 +54,6 @@ public class GenericGameController implements Initializable {
     @FXML
     private HBox _imageContainer;
 
-
     /**
      * Initializes the controller class.
      */
@@ -62,8 +61,9 @@ public class GenericGameController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         Game currentGame = GameFactory.getCurrentGameInstance();
-        if(currentGame == null)
+        if (currentGame == null) {
             return;
+        }
         currentGame.initialize();
         Map<String, Object> data = currentGame.createMap();
         updateView(data);
@@ -72,7 +72,7 @@ public class GenericGameController implements Initializable {
         this._submitBtn.setDisable(false);
     }
 
-   @FXML
+    @FXML
     private void _newQuestion(ActionEvent event) {
         Game currentGame = GameFactory.getCurrentGameInstance();
         currentGame.newQuestion();
@@ -91,11 +91,10 @@ public class GenericGameController implements Initializable {
         Map<String, Object> data = currentGame.createMap();
         updateView(data);
         this._answerInput.setText("");
-        if(!currentGame.gameOver){
+        if (!currentGame.gameOver) {
             this._submitBtn.setDisable(true);
             this._nxtQuestion.setDisable(false);
-        }
-        else{
+        } else {
             this._submitBtn.setDisable(true);
             this._nxtQuestion.setDisable(true);
         }
@@ -112,41 +111,41 @@ public class GenericGameController implements Initializable {
         currentQuestionNumber: String
         }
      */
-    private void updateView(Map<String, Object> _data){
-        if(_data.containsKey("gameTitle")){
+    private void updateView(Map<String, Object> _data) {
+        if (_data.containsKey("gameTitle")) {
             String title = (String) _data.get("gameTitle");
             this._gameTitle.setText(title);
         }
-        if(_data.containsKey("questionText")){
+        if (_data.containsKey("questionText")) {
             String text = (String) _data.get("questionText");
             this._questionText.setText(text);
-         }
-        if(_data.containsKey("imageLabelPairs")){
-            ArrayList<HashMap<String,String>>  imageLabelPairs = (ArrayList<HashMap<String,String>>) _data.get("imageLabelPairs");
+        }
+        if (_data.containsKey("imageLabelPairs")) {
+            ArrayList<HashMap<String, String>> imageLabelPairs = (ArrayList<HashMap<String, String>>) _data.get("imageLabelPairs");
             this.addImagesToView(imageLabelPairs);
         }
-        if(_data.containsKey("result")){
+        if (_data.containsKey("result")) {
             String result = (String) _data.get("result");
             this._resultDisplay.setText(result);
         }
-        if(_data.containsKey("currentScore")){
+        if (_data.containsKey("currentScore")) {
             String currentScore = (String) _data.get("currentScore");
             this._currentScore.setText(currentScore);
         }
-        if(_data.containsKey("currentQuestionNumber")){
+        if (_data.containsKey("currentQuestionNumber")) {
             String currentQuestionNumber = (String) _data.get("currentQuestionNumber");
             this._currentQuestionNumber.setText(currentQuestionNumber);
         }
-        if(_data.containsKey("totalQuestions")){
+        if (_data.containsKey("totalQuestions")) {
             String currentQuestionNumber = (String) _data.get("totalQuestions");
             this._totalQuestions.setText(currentQuestionNumber);
         }
     }
 
-    private void addImagesToView(ArrayList<HashMap<String,String>> _imageLabelPairs){
+    private void addImagesToView(ArrayList<HashMap<String, String>> _imageLabelPairs) {
         this._imageContainer.getChildren().clear();
         int index = 0;
-        for(HashMap<String, String> imageLabelaPair : _imageLabelPairs){
+        for (HashMap<String, String> imageLabelaPair : _imageLabelPairs) {
 
             //CREATE JAVAFX ELEMENTS
             VBox vbox = new VBox();
@@ -172,6 +171,5 @@ public class GenericGameController implements Initializable {
     private void _backBtn(ActionEvent event) throws IOException {
         RunApp.showMainGameView();
     }
-
 
 }

@@ -1,4 +1,5 @@
 package db;
+
 /*
 *Last updated on 10/25/20
 *
@@ -7,7 +8,7 @@ package db;
 *Contributing authors
 *@author Andy
 *@author Ryan
-*/
+ */
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,11 +17,11 @@ import java.util.Map;
 
 public interface DBConnectorInterface {
 
-    public abstract int createObject(Map<String,String> _keyValuePairs, String _table) throws Exception;
+    public abstract int createObject(Map<String, String> _keyValuePairs, String _table) throws Exception;
 
-    public abstract List<Map<String, String>> readObject(Map<String,String> _keyValuePairs, String _table) throws Exception;
+    public abstract List<Map<String, String>> readObject(Map<String, String> _keyValuePairs, String _table) throws Exception;
 
-    public abstract Boolean updateObject(Map<String,String> _keyValuePairs, String _uuid, String _table)  throws FileNotFoundException, IOException;
+    public abstract Boolean updateObject(Map<String, String> _keyValuePairs, String _uuid, String _table) throws FileNotFoundException, IOException;
 
     public abstract Boolean deleteObject(String _uuid, String _table) throws FileNotFoundException, IOException;
 

@@ -1,4 +1,5 @@
 package apiarcade;
+
 /*
 *Last updated on 10/28/20
 *
@@ -8,18 +9,17 @@ package apiarcade;
 *@author Francisco
 *@author Ryan
 *@author Andy
-*/
+ */
 import java.io.IOException;
 import org.json.JSONException;
-
 
 /**
  *
  * @author andyk
  */
-public class App{
+public class App {
 
-    public static void main(String[] args) throws IOException, InterruptedException, JSONException, Exception{
+    public static void main(String[] args) throws IOException, InterruptedException, JSONException, Exception {
 
         //HttpClientTest.getHttpResponseAndPrint();
         //JsonJavaTest.getJokeCategoryAndPrint();

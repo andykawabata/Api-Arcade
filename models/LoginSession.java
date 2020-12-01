@@ -1,4 +1,5 @@
 package models;
+
 /*
 *Last updated on 10/28/20
 *
@@ -8,11 +9,12 @@ package models;
 *@author Francisco
 *@author Ryan
 *@author Andy
-*/
+ */
 public class LoginSession {
 
     public static User currentUser;
-    public LoginSession(){
+
+    public LoginSession() {
 
 //        protected getUsername();
     }

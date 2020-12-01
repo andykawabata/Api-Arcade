@@ -1,4 +1,5 @@
 package models;
+
 /*
 *Last updated on 11/18/20
 *
@@ -8,7 +9,7 @@ package models;
 *@author Francisco
 *@author Ryan
 *@author Andy
-*/
+ */
 import API.TriviaApiAdapter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +27,7 @@ public class TriviaGame extends Game {
     static String correctAnswer
     static Integer currentQuestionNumber = 1
     static Integer totalQuestions
-    */
+     */
     private final int SCORE_UP = 100;
     private final int SCORE_DOWN = 50;
 
@@ -39,7 +40,7 @@ public class TriviaGame extends Game {
     }
 
     @Override
-    public void initialize(){
+    public void initialize() {
         try {
             resetGame();
             setGameQuestions();
@@ -49,7 +50,7 @@ public class TriviaGame extends Game {
         }
     }
 
-    public void setGameQuestions() throws Exception{
+    public void setGameQuestions() throws Exception {
 
         api.getGameQuestions();
     }
@@ -76,23 +77,22 @@ public class TriviaGame extends Game {
     public void newQuestion() {
 
         setNewQuestion();
-        this.currentQuestionNumber += 1 ;
+        this.currentQuestionNumber += 1;
     }
 
     @Override
     public void processAnswer(String _givenAnswer) {
-        if(_givenAnswer.equals(this.correctAnswer)) {
+        if (_givenAnswer.equals(this.correctAnswer)) {
             this.result = "correct";
             this.currentScore += SCORE_UP;
-        }
-        else {
+        } else {
             this.result = "Incorrect";
             this.currentScore -= SCORE_DOWN;
         }
 
         //IF GAMES IS OVER APPEND "GAMEOVER" TO RESULT
         //ELSE INCRAMENT  QUESTION NUMBER
-        if(checkGameOver()){
+        if (checkGameOver()) {
             this.gameOver = true;
             this.result = this.result + " - GAME OVER";
             Score finalScore = new Score(this.currentScore);
@@ -110,7 +110,7 @@ public class TriviaGame extends Game {
         this.currentQuestionNumber = 1;
     }
 
-    private boolean checkGameOver(){
+    private boolean checkGameOver() {
         //RETURN TRUE IF GAME IS OVER
         return !(this.currentQuestionNumber < this.totalQuestions);
     }

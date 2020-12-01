@@ -25,7 +25,7 @@ public class App {
         //JsonJavaTest.getJokeCategoryAndPrint();
         //JsonJavaTest2.getTwopartJokesAndPrint();
         //RunLoginView.main(args);
-        RunApp.main(_args);
+        RunApp.main(args);
 
     }
 

@@ -45,7 +45,7 @@ public class OmdbTranslator implements MovieApiInterface {
         for (int i = 0; i < array.length; i++) {
             array[i] = array[i].replaceAll("\\p{Punct}", "");
         }
-        return _array;
+        return array;
     }
 
     //Get rid of small words then sort array
@@ -157,13 +157,13 @@ public class OmdbTranslator implements MovieApiInterface {
             obj = new JSONObject(response.body().toString());
             //Increment movieID in case this movie didn't have description or poster
             success = !obj.has("success");
-            movieID = String.valueOf(Integer.valueOf(movieID) + 1);
+            _movieID = String.valueOf(Integer.valueOf(_movieID) + 1);
 
             //Determine whether we need that movie's URL or a similar movie's URL
-            if (similar) {
-                requestUrl = baseURL + movieID + "/similar" + "?api_key=" + apiKey;
+            if (_similar) {
+                _requestUrl = baseURL + _movieID + "/similar" + "?api_key=" + apiKey;
             } else {
-                requestUrl = baseURL + movieID + "?api_key=" + apiKey;
+                _requestUrl = baseURL + _movieID + "?api_key=" + apiKey;
             }
         }
         return obj;

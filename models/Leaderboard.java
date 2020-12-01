@@ -63,7 +63,7 @@ public class Leaderboard {
         int iterator = 0;
         for (String entry : allTableRows) {
             indexOfEntry = allTableRows.indexOf(entry);
-            if (entry.substring(entry.length() - 1).equals("" + gameID)) {
+            if (entry.substring(entry.length() - 1).equals("" + _gameID)) {
                 HighScores.put(entry.substring(entry.indexOf(',') + 1, entry.lastIndexOf(',')),
                         Integer.parseInt(entry.substring(0, entry.indexOf(','))));
                 iterator++;
@@ -71,13 +71,13 @@ public class Leaderboard {
             } else {
                 allTableRows.set(indexOfEntry, "");
             }
-            if (iterator == howMany) {
+            if (iterator == _howMany) {
                 break;
             }
         }
 
-        if (iterator < howMany) {
-            while (iterator < howMany) {
+        if (iterator < _howMany) {
+            while (iterator < _howMany) {
                 HighScores.put("[empty]" + iterator, 0);
                 iterator++;
             }

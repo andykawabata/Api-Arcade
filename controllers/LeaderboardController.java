@@ -141,10 +141,10 @@ public class LeaderboardController implements Initializable {
         RunApp.showLoginView();
     }
 
-//    @FXML
-//    void _viewProfile(ActionEvent event) throws IOException {
+    @FXML
+    void _viewProfile(ActionEvent event) throws IOException {
 //        System.out.println("Move to profile view");
-//        //RunApp.showProfileView();
-//    }
+//        RunApp.showProfileView();
+    }
 
 }

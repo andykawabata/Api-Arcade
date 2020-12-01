@@ -1,4 +1,5 @@
 package factories;
+
 /*
 *Last updated on 11/29/20
 *
@@ -22,7 +23,7 @@ public class GameFactory {
 
     //=================  GETTERS ===============//
 
-    public static void setCurrentGame(int _gameNumber){
+    public static void setCurrentGame(int _gameNumber) {
         switch (_gameNumber) {
             case GAME_ONE:
                 currentGame = GAME_ONE;
@@ -38,7 +39,7 @@ public class GameFactory {
         }
     }
 
-    public static Game getCurrentGameInstance(){
+    public static Game getCurrentGameInstance() {
         switch (currentGame) {
             case GAME_ONE:
                 return new MovieGame();

@@ -1,4 +1,5 @@
 package controllers;
+
 /*
 *Last updated on 11/21/20
 *
@@ -57,7 +58,6 @@ public class MainGameController implements Initializable {
         GameFactory.setCurrentGame(GameFactory.GAME_TWO);
         RunApp.showGenericGame();
     }
-
 
     @FXML
     void _leaderboardLink(ActionEvent _event) throws IOException {

@@ -1,4 +1,5 @@
 package controllers;
+
 /*
 *Last updated on 10/25/20
 *
@@ -7,7 +8,7 @@ package controllers;
 *Contributing authors
 *@author Andy
 *@author Ryan
-*/
+ */
 import apiarcade.RunApp;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -37,7 +38,6 @@ public class RegisterController implements Initializable {
     @FXML
     private Label _lblXOut;
 
-
     @Override
     public void initialize(URL _url, ResourceBundle _rb) {
     }
@@ -48,45 +48,44 @@ public class RegisterController implements Initializable {
     Then checks if either username or password have not been entered
 
     @param event - click on button and check fields entered
-    */
+     */
     @FXML
     private void _btnRegister(ActionEvent _event) throws Exception {
-
 
         String newUsername = username.getText();
         String newPassword = password.getText();
         String newConfirmPassword = confirmPassword.getText();
         //Checks nulls
         _lblErrorMessage.setText("");
-        if(newConfirmPassword == null){
+        if (newConfirmPassword == null) {
             _lblErrorMessage.setText("Confirm password");
             return;
         }
-        if(newUsername == null || newPassword == null){
+        if (newUsername == null || newPassword == null) {
             _lblErrorMessage.setText("Enter username and password");
             return;
         }
 
         //Checks if password is confirmed before making User
-        if(!newConfirmPassword.equals(newPassword)){
+        if (!newConfirmPassword.equals(newPassword)) {
             _lblErrorMessage.setText("passwords don't match");
             return;
         }
 
         //error message = "Username already taken" or "Illegal Username"
         String errorMessage = User.checkErrors(new User(newUsername, newPassword));
-        if(!(errorMessage == null))
+        if (!(errorMessage == null)) {
             _lblErrorMessage.setText(errorMessage);
-        else
+        } else {
             new User(newUsername, newPassword).save();
+        }
 
         //if error message exists, clear forms
-        if(!(_lblErrorMessage.getText().equals(""))){
+        if (!(_lblErrorMessage.getText().equals(""))) {
             username.setText(null);
             password.setText(null);
             confirmPassword.setText(null);
         }
-
 
     }
 

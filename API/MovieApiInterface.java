@@ -1,4 +1,5 @@
 package API;
+
 /*
 *Last updated on 11/30/20
 *
@@ -16,8 +17,8 @@ public interface MovieApiInterface {
 
     //=================  GETTERS ===============//
 
-    public Map<String, String> getPosterTitleDescriptionById(int _id) throws Exception;
+    public String[] getPostersOfSimilarById(int id, int numPosters) throws Exception;
 
-    public String[] getPostersOfSimilarById(int _id, int _numPosters)throws Exception;
+    public Map<String, String> getPosterTitleDescriptionById(int _id) throws Exception;
 
 }

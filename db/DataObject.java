@@ -1,4 +1,5 @@
 package db;
+
 /*
 *Last updated on 10/24/20
 *
@@ -6,7 +7,7 @@ package db;
 *
 *Contributing authors
 *@author Andy
-*/
+ */
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -17,7 +18,6 @@ public class DataObject {
     protected int id = 0;
     protected String uuid;
 
-
     public DataObject() {
         this.setUuid(generateUuid());
     }
@@ -26,8 +26,9 @@ public class DataObject {
     public Map<String, String> createMap() {
         Map<String, String> map = new HashMap<>();
         map.put("id", String.valueOf(this.id));
-        if(uuid != null)
+        if (uuid != null) {
             map.put("uuid", uuid);
+        }
         return map;
     }
 
@@ -36,7 +37,6 @@ public class DataObject {
     }
 
     // ================================ GETTERS ====================================
-
     public String getUuid() {
         return this.uuid;
     }
@@ -46,7 +46,6 @@ public class DataObject {
     }
 
 // ================================ SETTERS ====================================
-
     private void setUuid(String _uuid) {
         this.uuid = _uuid;
     }

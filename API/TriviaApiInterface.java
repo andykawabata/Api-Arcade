@@ -1,4 +1,5 @@
 package API;
+
 /*
 *Last updated on 10/24/20
 *
@@ -7,15 +8,12 @@ package API;
 *
 *Contributing authors
 *@author Francisco
-*@author Ryan
-*/
+ */
 import org.json.JSONArray;
 
 public interface TriviaApiInterface {
 
     //=================  GETTERS ===============//
-
-
     public JSONArray getGameQuestions() throws Exception;
 
     public String getCurrentQuestion(int _counter) throws Exception;

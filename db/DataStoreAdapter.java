@@ -9,8 +9,7 @@ package db;
 *Contributing authors
 *@author Andy
 *@author Ryan
-*/
-
+ */
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -39,7 +38,7 @@ public class DataStoreAdapter {
     }
 
     public Boolean deleteObject(String _uuid, String _table) throws IOException {
-        return  connector.deleteObject(_uuid, _table);
+        return connector.deleteObject(_uuid, _table);
     }
 
     public static ArrayList<String> getTableRows(String _table) throws IOException {

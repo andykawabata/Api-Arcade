@@ -1,4 +1,5 @@
 package API;
+
 /*
 *Last updated on 10/24/20
 *
@@ -20,7 +21,7 @@ package API;
 *Contributing authors
 *@author Andy
 *@author Ryan
-*/
+ */
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -39,29 +40,30 @@ public class OmdbTranslator implements MovieApiInterface {
     String imageBaseURL = "https://image.tmdb.org/t/p/";
     String size = "w154";
 
-
-
     //delete punctuation from elements in String array using regex
-    public String[] removePunctuation(String[] _array) {
-        for(int i = 0; i < _array.length; i++){
-            _array[i] = _array[i].replaceAll("\\p{Punct}", "");
+    public String[] removePunctuation(String[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = array[i].replaceAll("\\p{Punct}", "");
         }
         return _array;
     }
 
     //Get rid of small words then sort array
-    public String[] trimSmallWords(String[] _array) {
-    for (int i = 0; i < _array.length; i++)
-        _array[i] = _array[i].replaceAll("\\b\\w{1,4}\\b\\s?", "");
+    public String[] trimSmallWords(String[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = array[i].replaceAll("\\b\\w{1,4}\\b\\s?", "");
+        }
 
-    return _array;
-}
+        return array;
+    }
 
     //returns true if array has only empty elements
-    public boolean isStringArrayEmpty(String[] _array) {
-        for (String i : _array)
-            if(i.length() > 0)
+    public boolean isStringArrayEmpty(String[] array) {
+        for (String i : array) {
+            if (i.length() > 0) {
                 return false;
+            }
+        }
         return true;
     }
 
@@ -101,7 +103,7 @@ public class OmdbTranslator implements MovieApiInterface {
         obj = getResponse(requestUrl, movieID, true);
         JSONArray results = obj.getJSONArray("results");
 
-        for(int i=0; i < posterUrls.length; i++){
+        for (int i = 0; i < posterUrls.length; i++) {
             JSONObject result = results.getJSONObject(i);
             String posterPath = result.getString("poster_path");
             String posterURL = imageBaseURL + size + posterPath;
@@ -119,13 +121,14 @@ public class OmdbTranslator implements MovieApiInterface {
         String[] titleArray = _title.split(" ");
         removePunctuation(titleArray);
         trimSmallWords(titleArray);
-        if (isStringArrayEmpty(titleArray))
+        if (isStringArrayEmpty(titleArray)) {
             return _description;
+        }
 
         String[] descArray = _description.split(" ");
-        for(String t : titleArray){
+        for (String t : titleArray) {
             for (int i = 0; i < descArray.length; i++) {
-                    descArray[i] = descArray[i].replaceAll("\\p{Punct}", "");
+                descArray[i] = descArray[i].replaceAll("\\p{Punct}", "");
                 if (descArray[i].toLowerCase().equals(t.toLowerCase())) {
                     descArray[i] = "[CENSORED]";
                 }
@@ -133,8 +136,9 @@ public class OmdbTranslator implements MovieApiInterface {
         }
 
         String copy = "";
-        for(String i : descArray)
+        for (String i : descArray) {
             copy += i + " ";
+        }
         return copy.trim();
     }
 
@@ -145,22 +149,23 @@ public class OmdbTranslator implements MovieApiInterface {
         boolean success = false;
         JSONObject obj = new JSONObject();
 
-        while(!success){
-                response = httpClient.send(HttpRequest.newBuilder()
+        while (!success) {
+            response = httpClient.send(HttpRequest.newBuilder()
                     .GET()
                     .uri(URI.create(_requestUrl))
                     .build(), HttpResponse.BodyHandlers.ofString());
-                obj = new JSONObject(response.body().toString());
-                //Increment movieID in case this movie didn't have description or poster
-                success = !obj.has("success");
-                _movieID = String.valueOf(Integer.valueOf(_movieID) + 1);
+            obj = new JSONObject(response.body().toString());
+            //Increment movieID in case this movie didn't have description or poster
+            success = !obj.has("success");
+            movieID = String.valueOf(Integer.valueOf(movieID) + 1);
 
-                //Determine whether we need that movie's URL or a similar movie's URL
-                if(_similar)
-                    _requestUrl = baseURL + _movieID + "/similar" + "?api_key=" + apiKey;
-                else
-                    _requestUrl = baseURL + _movieID + "?api_key=" + apiKey;
+            //Determine whether we need that movie's URL or a similar movie's URL
+            if (similar) {
+                requestUrl = baseURL + movieID + "/similar" + "?api_key=" + apiKey;
+            } else {
+                requestUrl = baseURL + movieID + "?api_key=" + apiKey;
             }
+        }
         return obj;
     }
 }
